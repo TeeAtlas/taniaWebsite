@@ -7,11 +7,11 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col p-4">
-      <div className="flex space-x-4 mb-8">
-        <a href="#about" className="text-black hover:underline">
+      <div className="flex space-x-4 mb-4">
+        <a href="#about">
           About
         </a>
-        <a href="#contact" className="text-black hover:underline">
+        <a href="#contact">
           Contact
         </a>
         </div>
@@ -20,7 +20,7 @@ function App() {
         alt="Placeholder"
         className="rounded-lg shadow-lg mb-8"
       />
-      <h1 className="text-4xl font-bold text-black mb-8">
+      <h1 className="text-4xl">
         Hello My Name is Tania
       </h1>
 
