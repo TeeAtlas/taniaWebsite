@@ -13,7 +13,7 @@ export default function MainContent() {
         <div className="flex items-center mb-1">
           <h1 className="text-4xl font-bold">Hello, I'm Tania</h1>
           <div className="ml-auto">
-            <Navigation />
+            <Navigation />  
           </div>
         </div>
         <div>

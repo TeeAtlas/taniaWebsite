@@ -12,7 +12,7 @@ export default function Navigation() {
 
   return (
     <nav className="relative ">
-      <div className="flex lg:items-start gap-2">
+      <div className="hidden md:flex lg:items-start gap-2">
         <a
           href="https://github.com/TeeAtlas/"
           className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
@@ -34,7 +34,7 @@ export default function Navigation() {
       </div>
 
       {/* mobile navigation */}
-      <div className="lg:hidden">
+      <div className="md:hidden">
         <button
           onClick={toggleMenu}
           className=" text-gray-600 hover:text-gray-900 focus:outline-none"
