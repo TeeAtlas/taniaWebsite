@@ -1,26 +1,35 @@
-import React from "react";
-import NavLink from "./NavLink";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"; // Import icons from react-icons
+import React, { useState, useEffect } from "react";
+import Navigation from "./Navigation";
 
-export default function Header({ onAboutClick }) {
+export default function Header() {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <>
-      <div className="flex space-x-4 mb-4">
-        <NavLink href="#about" text="About" onClick={onAboutClick} />
-        <NavLink href="#contact" text="Contact" />
+    <header
+      className={`w-full top-0 left-0 z-50 bg-white transition-all duration-300 ${
+        isSticky ? "fixed shadow-md py-2" : "relative py-4"
+      }`}
+    >
+      <div className="container mx-auto flex items-center">
+        <h1 className="text-4xl font-bold">Hello, I'm Tania</h1>
+        <div className="ml-auto">
+          <Navigation />
+        </div>
       </div>
-      
-      <div className="flex gap-4">
-        <a href="https://github.com" className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
-          <FaGithub className="h-6 w-6" />
-        </a>
-        <a href="https://linkedin.com" className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
-          <FaLinkedin className="h-6 w-6" />
-        </a>
-        <a href="mailto:your@email.com" className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
-          <FaEnvelope className="h-6 w-6" />
-        </a>
-      </div>
-    </>
+      <p className="text-gray-700">I'm a Web Developer</p>
+    </header>
   );
 }

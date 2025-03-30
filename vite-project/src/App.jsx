@@ -1,7 +1,7 @@
 import React, { useState }from "react";
 import "./App.css";
 import MainContent from "./components/MainContent"
-import Header from "./components/Header";
+import Header from "./components/Navigation";
 
 function App() {
   const [showAbout, setShowAbout] = useState(false);
@@ -14,7 +14,6 @@ function App() {
   return (
       
     <div className="min-h-screen flex flex-col p-4">
-      <Header onAboutClick={handleAboutClick}/>
       <MainContent showAbout={showAbout} />
     </div>
   );
