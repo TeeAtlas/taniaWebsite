@@ -26,7 +26,7 @@ export default function Navigation() {
           <FaLinkedin className="h-6 w-6" />
         </a>
         <a
-          href="mailto:your@email.com"
+          href="mailto:taniaboterman@gmail.com"
           className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
         >
           <FaEnvelope className="h-6 w-6" />
