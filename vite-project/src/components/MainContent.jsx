@@ -59,7 +59,7 @@ function HeroBanner() {
 
       {/* 🧭 Navigation: bottom-right on mobile, top-right on desktop */}
       <div className="absolute right-4 bottom-4 md:top-4 md:right-6 md:left-auto md:bottom-auto z-20">
-        <Navigation />
+      <Navigation />
       </div>
     </section>
   );
