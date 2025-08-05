@@ -1,36 +1,52 @@
 import React, { useState } from "react";
 import NavLink from "./NavLink";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"; // Import icons from react-icons
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
+  const email = "taniaboterman@gmail.com";
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(email);
+    alert("Email address copied!");
+    setShowEmail(false);
   };
 
   return (
     <nav className="relative ">
       <div className="hidden md:flex lg:items-start gap-2">
-        <a
+        <NavLink
           href="https://github.com/TeeAtlas/"
-          className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-        >
-          <FaGithub className="h-6 w-6" />
-        </a>
-        <a
+          text={<FaGithub className="h-6 w-6" />}
+          _blank
+        />
+        <NavLink
           href="https://www.linkedin.com/in/tania-boterman/"
-          className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-        >
-          <FaLinkedin className="h-6 w-6" />
-        </a>
-        <a
-          href="mailto:taniaboterman@gmail.com"
-          className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          text={<FaLinkedin className="h-6 w-6" />}
+          _blank
+        />
+        <button
+          className="h-6 w-6 text-gray-800 hover:text-gray-900 transition-colors flex items-center justify-center"
+          style={{ background: "none", border: "none", cursor: "pointer" }}
+          onMouseEnter={() => setShowEmail(true)}
+          onMouseLeave={() => setShowEmail(false)}
         >
           <FaEnvelope className="h-6 w-6" />
-        </a>
+          {showEmail && (
+            <div className="absolute -top-0.5 -right-2.5 bg-white border rounded shadow p-2 z-10 flex flex-col items-start">
+              <span
+                className="mb-2 text-sm cursor-pointer hover:underline"
+                onClick={handleCopy}
+              >
+                {email}
+              </span>
+            </div>
+          )}
+        </button>
       </div>
 
       {/* mobile navigation */}
@@ -46,34 +62,38 @@ export default function Navigation() {
           )}
         </button>
         {isOpen && (
-          <div className="asolute top-12 right-0 bg-white shadow-lg rounded-lg p-4 flex flex-col items-start gap-4">
-            <a
+          <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg p-4 flex flex-col items-start gap-4">
+            <NavLink
               href="https://github.com/TeeAtlas/"
-              className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <FaGithub className="h-6 w-6" />
-            </a>
-            <a
+              text={<FaGithub className="h-6 w-6" />}
+              _blank
+            />
+            <NavLink
               href="https://www.linkedin.com/in/tania-boterman/"
-              className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <FaLinkedin className="h-6 w-6" />
-            </a>
-            <a
-              href="mailto:your@email.com"
-              className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+              text={<FaLinkedin className="h-6 w-6" />}
+              _blank
+            />
+            <button
+              className="h-6 w-6 text-gray-800 hover:text-gray-900 transition-colors flex items-center justify-center"
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+              onMouseEnter={() => setShowEmail(true)}
+              onMouseLeave={() => setShowEmail(false)}
             >
               <FaEnvelope className="h-6 w-6" />
-            </a>
+              {showEmail && (
+                <div className="absolute right-4 top-23 bg-white rounded shadow p-2 z-10 flex flex-col items-start">
+                  <span
+                    className="mb-2 text-sm cursor-pointer hover:underline"
+                    onClick={handleCopy}
+                  >
+                    {email}
+                  </span>
+                </div>
+              )}
+            </button>
           </div>
         )}
       </div>
     </nav>
   );
 }
-
-// ** Possible Nav Links **
-//          <div className="flex space-x-4">
-//             <NavLink href="#about" text="About" />
-//             <NavLink href="#contact" text="Contact" />
-//           </div>

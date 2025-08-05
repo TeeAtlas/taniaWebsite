@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header"
+import Header from "./Header";
 import Navigation from "./Navigation";
 import NavLink from "./NavLink";
 import "../App.css";
@@ -7,29 +7,32 @@ import "../App.css";
 export default function MainContent() {
   return (
     <>
-      {/* header section */}
-      <section
-      >
-        <div className="flex items-center mb-1">
-          <h1 className="text-4xl font-bold">Hello, I'm Tania</h1>
-          <div className="ml-auto">
-            <Navigation />  
-          </div>
+      {/* Hero Section */}
+      <section className="relative h-[400px] mb-12 flex items-center justify-center">
+        <img
+          src="/assets/tania.jpg"
+          alt="Placeholder"
+          className="absolute inset-0 w-full h-full object-cover object-[0_13%] rounded-lg shadow-lg"
+          />
+        {/* Overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/40 rounded-lg" />
+        <div className="absolute inset-4 flex flex-col  z-10">
+          <h1 className="text-5xl font-bold text-white mb-2">
+            Hello, I'm Tania
+          </h1>
+          <p className="mb-0 text-lg text-white">
+            I’m a UI focused web developer and I like making interesting stuff.
+          </p>
+          <p className="mb-0 text-lg text-white">
+            I build clean, beautiful work from prototype to production.
+          </p>
         </div>
-        <div>
-          <p className="mb-8">I'm a Web Developer</p>
+        <div className="absolute top-4 right-6 z-20">
+          <Navigation />
         </div>
       </section>
-  
 
-      {/* Hero Section */}
-      <img
-        src="/assets/sun.jpg" // Ensure the image is in the public/assets folder
-        alt="Placeholder"
-        className="h-100 rounded-lg shadow-lg object-cover mb-12"
-      />
-
-      <About />
+      {/* <About /> */}
       <Projects />
     </>
   );
@@ -40,12 +43,9 @@ function About() {
     <section id="about">
       <h2 className="text-2xl font-bold mb-4">About Me</h2>
       <p className="mb-12">
-        I was a bartender and an artist for around 20 years. In that time, I
-        learned a lot about people, animals, and art. COVID hit, and like many
-        of us, I had to pivot. That’s when I found Web Development and UI. I
-        love it. It feels like a good fit for a creative mind like mine. I love
-        nothing more than to see a project take shape. Whether it's an app or a
-        painting... I'm all in!
+        Hi, my name is Tania, I’m a UI focused web developer and I like making
+        interesting r. I build clean, beautiful work from prototype to
+        production.
       </p>
     </section>
   );
