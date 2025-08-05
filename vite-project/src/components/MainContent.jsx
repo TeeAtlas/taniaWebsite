@@ -7,13 +7,28 @@ import "../App.css";
 export default function MainContent() {
   return (
     <>
+      {/* Diagonal background */}
+      <div
+        className="fixed inset-0 -z-10"
+        style={{
+          background: "#fce4ec",
+          clipPath: "polygon(0 0, 40% 0, 100% 100%, 0% 100%)",
+        }}
+      />
+      <div
+        className="fixed inset-0 -z-20"
+        style={{
+          background: "#ffe29a",
+          clipPath: "polygon(40% 0, 100% 0, 100% 100%, 0% 100%)",
+        }}
+      />
       {/* Hero Section */}
       <section className="relative h-[400px] mb-12 flex items-center justify-center">
         <img
           src="/assets/tania.jpg"
           alt="Placeholder"
           className="absolute inset-0 w-full h-full object-cover object-[0_13%] rounded-lg shadow-lg"
-          />
+        />
         {/* Overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/40 rounded-lg" />
         <div className="absolute inset-4 flex flex-col  z-10">
@@ -64,22 +79,4 @@ function Projects() {
       </p>
     </section>
   );
-}
-
-{
-  /* <div className="absolute inset-0 bg-gradient-to-b from-orange-400/20 to-orange-500/40"></div>
-        
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24">
-          <div className="relative">
-            <div className="absolute -top-24">
-              <div className="h-48 w-48 rounded-full border-4 border-white bg-white shadow-lg overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=80"
-                  alt="Profile"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div> */
 }
