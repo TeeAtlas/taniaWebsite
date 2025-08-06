@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./BackButton.css"; // optional if styling separately
 
-export default function BackButton({ label = "← Back", className = "" }) {
+export default function BackButton({ label = "←", className = "" }) {
   const navigate = useNavigate();
 
   return (
