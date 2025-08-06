@@ -1,35 +1,93 @@
+/* === Tailwind and Fonts === */
 @import "tailwindcss";
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600&display=swap");
 
+/* === Base Styles === */
 body {
-  font-family: "Inter", sans-serif; /*default font*/
+  font-family: "Inter", sans-serif;
   background-color: #e9e9e9; /* Very light cream grey */
 }
 
-h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  /* color: #333; */
-}
-
+h1,
 h2 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  /* color: #333; */
-}
-
-p {
-  /* color: #333; */
 }
 
 a {
-  color: #333; /*dark grey for links*/
+  color: #333; /* Dark grey for links */
   text-decoration: none;
   font-weight: 500;
-  
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+/* === Semantic Tailwind Utility Classes === */
+
+/* Decorative background shapes */
+.bg-shape-pink {
+  @apply fixed inset-0 -z-10;
+  background: #fce4ec;
+  clip-path: polygon(0 0, 40% 0, 100% 100%, 0% 100%);
+}
+
+.bg-shape-yellow {
+  @apply fixed inset-0 -z-20;
+  background: #ffe29a;
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* Hero banner section */
+
+.hero-image-wrapper {
+  @apply absolute inset-0 overflow-hidden rounded-lg shadow-lg;
+}
+.hero-banner {
+  @apply relative h-[200px] md:h-[400px] mb-12 flex items-center justify-center;
+}
+
+.hero-image {
+  @apply w-full h-full object-cover transition-transform duration-500;
+  transform: scale(1.2); /* Zoom in on mobile */
+  object-position: 0% 7%;
+}
+
+@media (min-width: 768px) {
+  .hero-image {
+    transform: scale(1); /* Reset zoom on desktop */
+    object-position: 0% 8%;
+  }
+}
+
+.hero-overlay {
+  @apply absolute inset-0 bg-black/40 rounded-lg;
+}
+
+.hero-text {
+  @apply absolute z-10 -mt-2  text-white text-left px-4 top-6 
+         md:top-[35%] md:left-[30%] md:-translate-x-1/2 md:-translate-y-1/2;
+}
+
+.hero-heading {
+  @apply text-3xl md:text-6xl font-bold mb-2;
+}
+
+.hero-subtext {
+  @apply text-sm -mt-1 md:text-lg md:mt-0;
+}
+
+.nav-container {
+  @apply absolute right-4 bottom-4 md:bottom-6 md:right-25 md:left-auto z-20;
+}
+
+/* Projects section */
+.projects-area {
+  @apply mt-10 p-6 rounded-lg shadow-lg bg-gray-100 text-gray-800;
+}
+
+.projects-heading {
+  @apply text-2xl font-bold mb-4;
 }
