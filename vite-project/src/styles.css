@@ -28,13 +28,14 @@ a:hover {
 /* === Semantic Tailwind Utility Classes === */
 
 /* Decorative background shapes */
-.bg-shape-pink {
+
+.bg-shape-1 {
   @apply fixed inset-0 -z-10;
   background: #fce4ec;
   clip-path: polygon(0 0, 40% 0, 100% 100%, 0% 100%);
 }
 
-.bg-shape-yellow {
+.bg-shape-2 {
   @apply fixed inset-0 -z-20;
   background: #ffe29a;
   clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
@@ -72,9 +73,8 @@ a:hover {
 }
 
 .hero-heading {
-  @apply text-3xl md:text-6xl font-bold mb-2;
+  @apply text-3xl md:text-6xl font-bold mb-2 tracking-tight;
 }
-
 .hero-subtext {
   @apply text-sm -mt-1 md:text-lg md:mt-0;
 }
@@ -85,9 +85,90 @@ a:hover {
 
 /* Projects section */
 .projects-area {
-  @apply mt-10 p-6 rounded-lg shadow-lg bg-gray-100 text-gray-800;
+  @apply mt-10 p-6 rounded-lg text-gray-800;
 }
 
 .projects-heading {
   @apply text-2xl font-bold mb-4;
+}
+
+/* === Navigation Styles === */
+
+.navigation-wrapper {
+  @apply relative;
+}
+.project-tag {
+  @apply uppercase text-xs font-medium tracking-wide text-gray-500 mb-2 block;
+}
+
+.nav-desktop {
+  @apply hidden md:flex lg:items-start gap-3;
+}
+
+.nav-mobile {
+  @apply md:hidden flex flex-row items-center gap-1.5;
+}
+
+.nav-icon {
+  @apply text-white h-5 w-5 md:h-6 w-6 tracking-tight;
+}
+
+.email-button {
+  @apply bg-transparent border-none cursor-pointer;
+}
+
+/* Tooltip text */
+.email-text {
+  @apply text-sm cursor-pointer hover:underline;
+}
+
+/* Tooltip container - desktop */
+.email-tooltip-desktop {
+  @apply absolute -top-0.5 -right-2.5 bg-white border rounded p-2 z-10 flex flex-col items-start;
+}
+
+/* Tooltip container - mobile */
+.email-tooltip-mobile {
+  @apply absolute right-4 top-24 bg-white rounded p-2 z-10 flex flex-col items-start;
+}
+
+/* === Projects Area === */
+.projects-area {
+  @apply mt-10 p-6 rounded-lg;
+  background: #252422;
+}
+.projects-heading {
+  @apply text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight;
+}
+
+.projects-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 px-4 md:px-0;
+}
+.project-title {
+  @apply text-xl font-medium mb-2 tracking-tight;
+}
+
+.project-description {
+  @apply text-sm leading-relaxed opacity-90 tracking-normal;
+}
+.project-card {
+  @apply rounded-lg p-4 bg-white cursor-pointer transform transition-transform duration-300 ease-in-out;
+}
+.project-card:hover {
+  transform: scale(1.03) rotate(-0.8deg);
+}
+.project-card-1 {
+  @apply bg-[#F3ECE7];
+}
+
+.project-card-2 {
+  @apply bg-[#E3D5CA];
+}
+
+.project-card-3 {
+  @apply bg-[#DAD7CD];
+}
+
+.project-card-4 {
+  @apply bg-[#C4D7E0];
 }

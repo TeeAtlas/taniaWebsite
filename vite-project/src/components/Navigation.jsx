@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import NavLink from "./NavLink";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { HiMenu, HiX } from "react-icons/hi";
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
   const email = "taniaboterman@gmail.com";
-
-  const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
@@ -17,30 +13,28 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="relative ">
-      <div className="hidden md:flex lg:items-start gap-2">
+    <nav className="navigation-wrapper">
+      {/* Desktop navigation */}
+      <div className="nav-desktop">
         <NavLink
           href="https://github.com/TeeAtlas/"
-          text={<FaGithub className="text-white h-6 w-6" />}
+          text={<FaGithub className="nav-icon" />}
           _blank
         />
         <NavLink
           href="https://www.linkedin.com/in/tania-boterman/"
-          text={<FaLinkedin className="text-white h-6 w-6" />}
+          text={<FaLinkedin className="nav-icon" />}
           _blank
         />
         <button
-          style={{ background: "none", border: "none", cursor: "pointer" }}
+          className="email-button"
           onMouseEnter={() => setShowEmail(true)}
           onMouseLeave={() => setShowEmail(false)}
         >
-          <FaEnvelope className="text-white h-6 w-6" />
+          <FaEnvelope className="nav-icon" />
           {showEmail && (
-            <div className="absolute -top-0.5 -right-2.5 bg-white border rounded p-2 z-10 flex flex-col items-start">
-              <span
-                className="mb-0.5 text-sm cursor-pointer hover:underline"
-                onClick={handleCopy}
-              >
+            <div className="email-tooltip-desktop">
+              <span className="email-text" onClick={handleCopy}>
                 {email}
               </span>
             </div>
@@ -48,37 +42,33 @@ export default function Navigation() {
         </button>
       </div>
 
-      {/* mobile navigation */}
-<div className="md:hidden flex flex-row items-center gap-2">
-  <NavLink
-    href="https://github.com/TeeAtlas/"
-    text={<FaGithub className="text-white h-6 w-6" />}
-    _blank
-  />
-  <NavLink
-    href="https://www.linkedin.com/in/tania-boterman/"
-    text={<FaLinkedin className="text-white h-6 w-6" />}
-    _blank
-  />
-  <button
-    style={{ background: "none", border: "none", cursor: "pointer" }}
-    onMouseEnter={() => setShowEmail(true)}
-    onMouseLeave={() => setShowEmail(false)}
-  >
-    <FaEnvelope className="text-white h-6 w-6" />
-    {showEmail && (
-      <div className="absolute right-4 top-24 bg-white rounded p-2 z-10 flex flex-col items-start">
-        <span
-          className="mb-1 text-sm cursor-pointer hover:underline"
-          onClick={handleCopy}
+      {/* Mobile navigation */}
+      <div className="nav-mobile">
+        <NavLink
+          href="https://github.com/TeeAtlas/"
+          text={<FaGithub className="nav-icon" />}
+          _blank
+        />
+        <NavLink
+          href="https://www.linkedin.com/in/tania-boterman/"
+          text={<FaLinkedin className="nav-icon" />}
+          _blank
+        />
+        <button
+          className="email-button"
+          onMouseEnter={() => setShowEmail(true)}
+          onMouseLeave={() => setShowEmail(false)}
         >
-          {email}
-        </span>
+          <FaEnvelope className="nav-icon" />
+          {showEmail && (
+            <div className="email-tooltip-mobile">
+              <span className="email-text" onClick={handleCopy}>
+                {email}
+              </span>
+            </div>
+          )}
+        </button>
       </div>
-    )}
-  </button>
-</div>
-
     </nav>
   );
 }

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainContent from "./components/MainContent";
-import Header from "./components/Header";
+import Seabody from "./pages/Seabody/Seabody";
 
 function App() {
   return (
-    <div>
-      <MainContent />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/seabody" element={<Seabody />} />
+      </Routes>
+    </Router>
   );
 }
 
