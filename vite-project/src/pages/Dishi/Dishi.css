@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Page wrapper */
+.dishi-page {
+  @apply relative;
+}
+
+/* Inner content layout */
+.dishi-wrapper {
+  @apply w-full flex justify-center px-4;
+}
+
+/* Card container */
+.dishi-card {
+  @apply bg-[#E3D5CA] rounded-xl p-8 relative z-10 w-full max-w-[1200px];
+}
+
+/* Header section */
+.dishi-header {
+  @apply mb-8 flex flex-col items-center text-center gap-2;
+}
+
+.dishi-header-row {
+  @apply w-full flex justify-between items-baseline relative mb-[-1rem];
+}
+
+.dishi-title {
+  @apply text-[2.5rem] text-[#333e] m-0 text-center absolute left-1/2 -translate-x-1/2;
+}
+
+.dishi-subtitle {
+  @apply text-[1.25rem] text-[#333] mt-2;
+}
+
+/* Body content */
+.dishi-body {
+  @apply flex flex-col gap-6;
+}
+
+.dishi-image {
+  @apply w-full rounded-md mb-[0.2rem];
+}
+
+.dishi-description {
+  @apply text-base text-[#333] leading-[1.6];
+}

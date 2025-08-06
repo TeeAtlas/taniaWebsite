@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-export default function ProjectCard({ title, description, tag, className, to }) {
+export default function ProjectCard({
+  title,
+  description,
+  tag,
+  className,
+  to,
+}) {
   const CardContent = (
     <div className={className}>
       {tag && <span className="project-tag">{tag}</span>}

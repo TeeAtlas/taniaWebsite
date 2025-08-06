@@ -1,6 +1,8 @@
 import React from "react";
 import Navigation from "./Navigation";
 import ProjectCard from "./ProjectCard";
+import DiagonalBackgroundShapes from "./DiagonalBGShapes";
+
 import "../App.css"; // This is where the semantic class definitions live
 
 export default function MainContent() {
@@ -9,15 +11,6 @@ export default function MainContent() {
       <DiagonalBackgroundShapes />
       <HeroBanner />
       <ProjectsArea />
-    </>
-  );
-}
-
-function DiagonalBackgroundShapes() {
-  return (
-    <>
-      <div className="bg-shape-pink" />
-      <div className="bg-shape-yellow" />
     </>
   );
 }
@@ -66,6 +59,7 @@ function ProjectsArea() {
           description="A minimal, mobile-first React MVP. With focus on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs."
           tag="school project"
           className="project-card project-card-3"
+          to="/dishi"
         />
 
         <ProjectCard
