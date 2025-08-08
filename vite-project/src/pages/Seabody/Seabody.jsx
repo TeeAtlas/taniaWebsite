@@ -1,46 +1,37 @@
 import React from "react";
-import "./Seabody.css"; // or Seabody.module.css
-import BackButton from "../../components/BackButton";
-import DiagonalBackgroundShapes from "../../components/DiagonalBGShapes";
+import CaseStudyLayout from "../../components/CaseStudyLayout";
+import { FaGithub } from "react-icons/fa";
 
 export default function Seabody() {
   return (
-    <main className="relative">
-  <DiagonalBackgroundShapes /> {/* Full-screen background */}
+    <CaseStudyLayout
+      title="Seabody"
+      subtitle="Clean, image-forward site for sustainable beauty."
+      backButtonClass="text-[#333]"    // dark arrow matching subtitle/text
+      bgClass="bg-[#E3D5CA]"            // light peach card background
+      textClass="text-[#333]"           // dark text everywhere
+    >
 
-  <div className="seabody-wrapper"> {/* Centered content wrapper */}
-    <section className="seabody-card">
-      <header className="seabody-header">
-        <div className="seabody-header-row">
-          <BackButton />
-          <h1 className="seabody-title">Seabody</h1>
-        </div>
-        <p className="seabody-subtitle">
-          Clean, image-forward site for sustainable beauty.
-        </p>
-      </header>
-
-      <section className="seabody-body">
-        <img
-          src="/assets/s_bodyHomepage_1.jpg"
-          alt="Seabody homepage"
-          className="seabody-image"
-        />
-        <div className="seabody-description">
-          <p>
-            <strong>My Role:</strong> Seabody being a legacy Wordpress build I
-            was tasked with streamlining and re-designing site navigation,
-            routing, responsiveness and menus. Cleaning up and consolidating
-            the CSS files for more readable code. As well as SEO duties, which
-            included cleaning duplicate tags and debugging analytics, creating
-            custom JavaScript code to improve site performance and search
-            visibility.
-          </p>
-        </div>
-      </section>
-    </section>
-  </div>
-</main>
-
+      {/* Section 1 */}
+      <img
+        src="/assets/s_bodyHomepage_1.jpg"
+        alt="Seabody homepage"
+        className="rounded-lg w-3/4 mx-auto mb-2"
+      />
+      <p className="leading-relaxed">
+        <strong>My Role:</strong> Seabody being a legacy WordPress build I was tasked with streamlining and re-designing site navigation, routing, responsiveness and menus. Cleaning up and consolidating the CSS files for more readable code. As well as SEO duties, which included cleaning duplicate tags and debugging analytics, creating custom JavaScript code to improve site performance and search visibility.
+      </p>
+      {/* Optional GitHub Link */}
+      <div className="flex justify-center mb-4">
+        <a
+          href="https://github.com/your-username/seabody"
+          target="_blank"
+          rel="noopener"
+          className="inline-flex items-center hover:underline"
+        >
+          <FaGithub className="mr-2" /> View on GitHub
+        </a>
+      </div>
+    </CaseStudyLayout>
   );
 }

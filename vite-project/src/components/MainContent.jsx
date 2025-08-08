@@ -56,7 +56,7 @@ function ProjectsArea() {
 
         <ProjectCard
           title="School Portfolio: DiSHi"
-          description="A minimal, mobile-first React MVP. With focus on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs."
+          description="A minimal React MVP. With focus on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs."
           tag="school project"
           className="project-card project-card-3"
           to="/dishi"
@@ -67,6 +67,7 @@ function ProjectsArea() {
           description="A concept UI project built for a school module — clean layouts, structured typography, and design tokens. An app for parents to teach kids how to manage finances."
           tag="school project"
           className="project-card project-card-4"
+          to="/seedling"
         />
         <ProjectCard
           title="Kindergalactic App (WIP)"
