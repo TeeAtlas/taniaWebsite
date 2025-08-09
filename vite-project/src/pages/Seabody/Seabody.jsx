@@ -21,17 +21,7 @@ export default function Seabody() {
       <p className="leading-relaxed">
         <strong>My Role:</strong> Seabody being a legacy WordPress build I was tasked with streamlining and re-designing site navigation, routing, responsiveness and menus. Cleaning up and consolidating the CSS files for more readable code. As well as SEO duties, which included cleaning duplicate tags and debugging analytics, creating custom JavaScript code to improve site performance and search visibility.
       </p>
-      {/* Optional GitHub Link */}
-      <div className="flex justify-center mb-4">
-        <a
-          href="https://github.com/your-username/seabody"
-          target="_blank"
-          rel="noopener"
-          className="inline-flex items-center hover:underline"
-        >
-          <FaGithub className="mr-2" /> View on GitHub
-        </a>
-      </div>
+      
     </CaseStudyLayout>
   );
 }

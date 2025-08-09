@@ -1,55 +1,115 @@
+// src/components/CaseStudyLayout.jsx
 import React from "react";
 import BackButton from "./BackButton";
 import DiagonalBackgroundShapes from "./DiagonalBGShapes";
+import { FaGithub } from "react-icons/fa";
 
 export default function CaseStudyLayout({
   title = "Case Study",
   subtitle = "",
-  backButtonClass = "text-[#E3D5CA]",
-  bgClass = "bg-[#252422]",   // default background
-  textClass = "text-[#E3D5CA]", // default text color
-  children
+  headerVariant = "divider",
+  info = null,
+  actions = null,
+  headerCta = null,
+  bgClass = "bg-[#252422]",
+  textClass = "text-[#E3D5CA]",
+  backButtonClass,
+  dividerClass = "h-[2px] bg-current/30",
+  children,
 }) {
+  const backBtnClass = backButtonClass || textClass;
+
+    // Use the same width as your images/text blocks
+  const contentWidth = "w-11/12 md:w-5/6";
+
+ 
   return (
     <main className="relative">
       <DiagonalBackgroundShapes variant="bw" />
 
       <div className="w-full flex justify-center px-4">
-        <section
-          className={`
-            rounded-xl p-8 relative z-10 w-full max-w-[1200px]
-            min-h-[clamp(400px,60vh,900px)]
-            flex flex-col justify-start
-            ${bgClass}
-          `}
+        <article
+          className={`relative z-10 w-full max-w-[1200px] rounded-xl p-8 min-h-[clamp(400px,60vh,900px)] ${bgClass} ${textClass}`}
+          aria-labelledby="case-title"
         >
-          <header className="mb-8 flex flex-col items-center text-center gap-2">
-            <div className="w-full flex justify-between items-baseline relative mb-[-1rem]">
-              <BackButton className={backButtonClass} />
-              <h1
-                className={`
-                  text-[2.5rem] m-0 text-center absolute left-1/2 -translate-x-1/2
-                  ${textClass}
-                `}
-              >
-                {title}
-              </h1>
+          {/* Back • Title • Actions */}
+          <div className="mb-3 grid grid-cols-[auto,1fr,auto] items-center gap-3">
+            <div className="justify-self-start">
+              <BackButton className={backBtnClass} />
             </div>
-            {subtitle && (
-              <p className={`text-[1.25rem] mt-2 ${textClass}`}>{subtitle}</p>
-            )}
-          </header>
 
+            {headerVariant === "divider" ? (
+              <div className="justify-self-center text-center">
+                <h1 id="case-title" className="text-[2rem] md:text-[2.5rem] font-semibold tracking-tight">
+                  {title}
+                </h1>
+                {subtitle ? (
+                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">
+                    {subtitle}
+                  </p>
+                ) : null}
+                {headerCta ? (
+                  <div className="mt-3 flex justify-center">{headerCta}</div>
+                ) : null}
+              </div>
+            ) : (
+              <div />
+            )}
+
+            <div className="justify-self-end">
+              {actions ?? (
+                <span aria-hidden="true" className="opacity-0 pointer-events-none select-none inline-block">
+                  <BackButton className={backBtnClass} />
+                </span>
+              )}
+            </div>
+          </div>
+
+          {headerVariant === "divider" ? (
+            // 👇 divider matches image/text width and is centered
+            <div className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`} />
+          ) : (
+            <>
+              <div className="mb-4 w-full md:max-w-3xl mx-auto rounded-lg border border-current/15 p-4 text-center">
+                <h1 id="case-title" className="text-[2rem] md:text-[2.5rem] font-semibold tracking-tight">
+                  {title}
+                </h1>
+                {subtitle ? (
+                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">
+                    {subtitle}
+                  </p>
+                ) : null}
+                {headerCta ? (
+                  <div className="mt-3 flex justify-center">{headerCta}</div>
+                ) : null}
+              </div>
+              {info ? (
+                <div className="mb-6 w-full md:max-w-3xl mx-auto rounded-lg border border-current/15 p-4">
+                  {info}
+                </div>
+              ) : null}
+            </>
+          )}
+
+          {/* CONTENT */}
           <section
             className={`
-              flex flex-col gap-6
-              ${textClass}
-              [&_img]:rounded-lg [&_img]:w-3/4 [&_img]:mx-auto
+              flex flex-col gap-6 leading-relaxed
+              [&_img]:rounded-lg
+              /* images slightly wider, centered */
+              [&_img]:w-11/12 md:[&_img]:w-5/6 [&_img]:mx-auto
+
+              /* text blocks match image width, centered */
+              [&_p]:w-11/12 md:[&_p]:w-5/6 [&_p]:mx-auto
+              [&_.case-study-description]:w-11/12 md:[&_.case-study-description]:w-5/6 [&_.case-study-description]:mx-auto
+              [&_ul]:w-11/12 md:[&_ul]:w-5/6 [&_ul]:mx-auto
+              [&_ol]:w-11/12 md:[&_ol]:w-5/6 [&_ol]:mx-auto
+              [&_blockquote]:w-11/12 md:[&_blockquote]:w-5/6 [&_blockquote]:mx-auto
             `}
           >
             {children}
           </section>
-        </section>
+        </article>
       </div>
     </main>
   );
