@@ -27,20 +27,6 @@ a:hover {
 
 /* === Semantic Tailwind Utility Classes === */
 
-/* Decorative background shapes */
-
-.bg-shape-1 {
-  @apply fixed inset-0 -z-10;
-  background: #fce4ec;
-  clip-path: polygon(0 0, 40% 0, 100% 100%, 0% 100%);
-}
-
-.bg-shape-2 {
-  @apply fixed inset-0 -z-20;
-  background: #ffe29a;
-  clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
-}
-
 /* Hero banner section */
 
 .hero-image-wrapper {
@@ -64,7 +50,7 @@ a:hover {
 }
 
 .hero-overlay {
-  @apply absolute inset-0 bg-neutral-900/40 rounded-lg;
+  @apply absolute inset-0 bg-neutral-900/20 rounded-lg;
 }
 
 .hero-text {
@@ -198,5 +184,3 @@ a:hover {
 .project-card-4 {
   @apply bg-[#C4D7E0];
 }
-
-
