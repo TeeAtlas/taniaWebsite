@@ -38,7 +38,7 @@ export default function Dishi() {
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
-                src="/assets/dishiBurger.jpg"
+                src="/assets/dishiReview.jpg"
                 alt="Detail view A"
                 className="block !w-full h-auto !mx-0 rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
@@ -57,14 +57,14 @@ export default function Dishi() {
             className="group cursor-pointer"
             onClick={() =>
               openModal(
-                "/assets/dishiSignUp_1.jpg",
+                "/assets/dishiSignUp.jpg",
                 "Sign-up flow with custom features"
               )
             }
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
-                src="/assets/dishiSignUp_1.jpg"
+                src="/assets/dishiSignUp.jpg"
                 alt="Detail view B"
                 className="block !w-full h-auto !mx-0 rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
