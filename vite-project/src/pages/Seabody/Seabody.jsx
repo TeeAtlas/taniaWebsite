@@ -13,7 +13,7 @@ export default function Seabody() {
     >
       {/* Section 1 */}
       <img
-        src="/assets/s_bodyHomepage_1.jpg"
+        src="/images/s_bodyHomepage_1.jpg"
         alt="Seabody homepage"
         className="rounded-lg w-3/4 mx-auto mb-2"
       />

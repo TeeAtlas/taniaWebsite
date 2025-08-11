@@ -16,15 +16,15 @@ export default function Seedling() {
       textClass="text-[#333]"
     >
       {/* Hero image */}
-      <imgyes
-        src="/assets/seedlingIntro.jpg"
+      <img
+        src="/images/seedlingIntro.jpg"
         alt="Seedling homepage"
         className="rounded-lg w-3/4 mx-auto"
       />
 
       {/* Second full-width image */}
       <img
-        src="/assets/seedlingLowFiFrames.jpg"
+        src="/images/seedlingLowFiFrames.jpg"
         alt="Seedling secondary feature"
         className="rounded-lg w-3/4 mx-auto mt-6"
         loading="lazy"
@@ -40,12 +40,12 @@ export default function Seedling() {
           <figure
             className="group cursor-pointer"
             onClick={() =>
-              openModal("/assets/seedlingUserFlow.jpg", "Seedling screen 1")
+              openModal("/images/seedlingUserFlow.jpg", "Seedling screen 1")
             }
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
-                src="/assets/seedlingUserFlow.jpg"
+                src="/images/seedlingUserFlow.jpg"
                 alt="Seedling screen 1"
                 className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
@@ -64,12 +64,12 @@ export default function Seedling() {
           <figure
             className="group cursor-pointer"
             onClick={() =>
-              openModal("/assets/seedlingStyleGuide.jpg", "Seedling screen 2")
+              openModal("/images/seedlingStyleGuide.jpg", "Seedling screen 2")
             }
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
-                src="/assets/seedlingStyleGuide.jpg"
+                src="/images/seedlingStyleGuide.jpg"
                 alt="Seedling screen 2"
                 className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
@@ -92,12 +92,12 @@ export default function Seedling() {
           <figure
             className="group cursor-pointer"
             onClick={() =>
-              openModal("/assets/seedlingFlow3.jpg", "Seedling screen 3")
+              openModal("/images/seedlingFlow3.jpg", "Seedling screen 3")
             }
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
-                src="/assets/seedlingFlow3.jpg"
+                src="/images/seedlingFlow3.jpg"
                 alt="Seedling screen 3"
                 className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
