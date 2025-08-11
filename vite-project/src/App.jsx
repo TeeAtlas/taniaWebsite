@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainContent from "./components/MainContent";
 import Seabody from "./pages/Seabody/Seabody";
 import Dishi from "./pages/Dishi/Dishi";
 import Seedling from "./pages/Seedling/Seedling";
+import Kindergalactic from "./pages/Kindergalactic/Kindergalactic";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/seabody" element={<Seabody />} />
         <Route path="/dishi" element={<Dishi />} />
         <Route path="/seedling" element={<Seedling />} />
+        <Route path="/kindergalactic" element={<Kindergalactic />} />
       </Routes>
     </Router>
   );

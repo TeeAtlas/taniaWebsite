@@ -1,4 +1,4 @@
-// src/pages/case-studies/Seedling.jsx
+
 import React, { useState } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
 
@@ -16,7 +16,7 @@ export default function Seedling() {
       textClass="text-[#333]"
     >
       {/* Hero image */}
-      <img
+      <imgyes
         src="/assets/seedlingIntro.jpg"
         alt="Seedling homepage"
         className="rounded-lg w-3/4 mx-auto"
@@ -53,7 +53,9 @@ export default function Seedling() {
             </div>
             <figcaption className="mt-2 text-sm leading-relaxed text-[#333]/50">
               <strong>
-                Example UI screen — clean layout and readable hierarchy.
+                Designed a simple user flow focused on MVP essentials — clear
+                interactions for sign-up, adding funds, and deleting accounts,
+                avoiding non-essential features.
               </strong>
             </figcaption>
           </figure>
@@ -75,7 +77,8 @@ export default function Seedling() {
             </div>
             <figcaption className="mt-2 text-sm leading-relaxed text-[#333]/50">
               <strong>
-                Responsive component with consistent spacing and type scale.
+                Created a playful moodboard to keep the design fun and engaging
+                for kids while remaining intuitive for all users.
               </strong>
             </figcaption>
           </figure>
@@ -101,7 +104,11 @@ export default function Seedling() {
               />
             </div>
             <figcaption className="mt-2 text-sm leading-relaxed text-[#333]/50">
-              <strong>Additional feature view with consistent styling.</strong>
+              <strong>
+                Developed a streamlined onboarding flow with smooth login and
+                robust error handling for a frictionless first-time user
+                experience.
+              </strong>
             </figcaption>
           </figure>
         </div>
@@ -133,22 +140,30 @@ export default function Seedling() {
           <strong>MY ROLE</strong>
         </p>
         <p className="leading-relaxed mb-2">
-          Seedling was my final school project — a complete website concept I
-          designed and built end-to-end. I led user research, competitive
-          analysis, and persona development, then created wireframes,
-          high-fidelity UI, and interactive prototypes in Figma. All branding
-          and visual assets were produced in Adobe Creative Suite, ensuring a
-          cohesive, cross-device design system.
+          Seedling was my final school project — a complete app concept I
+          designed end-to-end.
+        </p>
+        <p className="leading-relaxed mb-2">
+          I led user research, competitive analysis, and persona development,
+          then created wireframes, high-fidelity UI, and interactive prototypes
+          in <strong>Figma</strong>.
+        </p>
+        <p className="leading-relaxed mb-2">
+          All branding and visual assets were produced in{" "}
+          <strong>Adobe Creative Suite</strong>, ensuring a cohesive,
+          cross-device design system.
+        </p>
+        <p className="leading-relaxed mb-2">
+          I developed responsive layouts, navigation, and interactions, applying
+          information architecture and UX best practices to make the site
+          intuitive and visually engaging.
         </p>
         <p className="leading-relaxed mb-6">
-          I developed the responsive layouts, navigation, and interactions,
-          applying information architecture and UX best practices to make the
-          site intuitive and visually engaging. This project showcases my
-          ability to own the full UI/UX process — from research to polished,
-          functional front-end.
+          This project demonstrates my ability to own the full UI/UX process —
+          from research to a polished product design.
         </p>
 
-        <p className="mb-3">
+        <p className="mb-4">
           <strong>Tools & Technologies </strong>
         </p>
         <div className="mx-auto w-3/4">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BackButton from "./BackButton";
 import DiagonalBackgroundShapes from "./DiagonalBGShapes";
 import { FaGithub, FaLinkedin, FaEnvelope, FaBehance } from "react-icons/fa";
@@ -16,11 +16,18 @@ export default function CaseStudyLayout({
   dividerClass = "h-[2px] bg-current/30",
   children,
 }) {
+  const [emailCopied, setEmailCopied] = useState(false);
+
   const backBtnClass = backButtonClass || textClass;
   const iconClass = `w-5 h-5 ${textClass} hover:opacity-80 transition`;
-
-  // Use the same width as your images/text blocks
   const contentWidth = "w-11/12 md:w-5/6";
+
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("taniaboterman@gmail.com");
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 1500);
+  };
 
   return (
     <main className="relative">
@@ -32,13 +39,11 @@ export default function CaseStudyLayout({
           aria-labelledby="case-title"
         >
           {/* Back • Title • Actions */}
-          <div className="mb- grid grid-cols-[auto,1fr,auto] items-center gap-0">
-            {/* Back button on left • Social icons on right */}
+          <div className="grid grid-cols-[auto,1fr,auto] items-center gap-0">
+            {/* Back button + Social icons */}
             <div className="mb-4 flex items-center justify-between">
-              {/* Left: Back button */}
               <BackButton className={backBtnClass} />
 
-              {/* Right: Social nav icons */}
               <div className="flex items-center gap-3">
                 <a
                   href="https://github.com/TeeAtlas"
@@ -64,9 +69,40 @@ export default function CaseStudyLayout({
                 >
                   <FaBehance className={iconClass} />
                 </a>
-                <a href="mailto:taniaboterman@gmail.com" aria-label="Email">
-                  <FaEnvelope className={iconClass} />
-                </a>
+
+                {/* Email with tooltip & popup */}
+                <div className="relative group">
+                  <a
+                    href="#"
+                    onClick={handleEmailClick}
+                    aria-label="Email"
+
+                  >
+                    <FaEnvelope className={iconClass} />
+                  </a>
+
+                  {/* Tooltip on hover */}
+                  {!emailCopied && (
+                    <span
+                      className="absolute mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap
+                      bg-[#333] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 
+                      transition-opacity duration-200 pointer-events-none"
+                    >
+                      taniaboterman@gmail.com
+                    </span>
+                  )}
+
+                  {/* White popup when clicked */}
+                  {emailCopied && (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center
+                      bg-white text-black text-xs font-medium rounded shadow 
+                      animate-fadeInOut"
+                    >
+                      Email copied!
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -91,7 +127,6 @@ export default function CaseStudyLayout({
           </div>
 
           {headerVariant === "divider" ? (
-            // Divider matches image/text width and is centered
             <div
               className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`}
             />

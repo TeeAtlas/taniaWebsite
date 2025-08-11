@@ -80,7 +80,7 @@ function ProjectsArea() {
       description:
         "A creative, whimsical UI concept — playful, cosmic, and kid-inspired.",
       tag: "upcoming",
-      to: "/kindergalactic", // or omit if not ready
+      to: "/kindergalactic",
       className:
         "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#C4D7E0] hover:scale-[1.03] hover:-rotate-[0.8deg]",
     },

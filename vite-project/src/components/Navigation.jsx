@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import NavLink from "./NavLink";
 import { FaGithub, FaLinkedin, FaEnvelope, FaBehance } from "react-icons/fa";
 
-export default function Navigation() {
+export default function NavigationDark() {
   const [showEmail, setShowEmail] = useState(false);
+  const [copied, setCopied] = useState(false);
   const email = "taniaboterman@gmail.com";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
-    alert("Email address copied!");
-    setShowEmail(false);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
   };
 
   return (
-    <nav className="navigation-wrapper">
+    <nav className="navigation-wrapper text-[#333]">
       {/* Desktop navigation */}
       <div className="nav-desktop">
         <NavLink
@@ -33,16 +34,27 @@ export default function Navigation() {
         />
 
         <button
-          className="email-button"
+          className="email-button relative"
           onMouseEnter={() => setShowEmail(true)}
-          onMouseLeave={() => setShowEmail(false)}
+          onMouseLeave={() => {
+            setShowEmail(false);
+            setCopied(false);
+          }}
+          onClick={handleCopy}
         >
           <FaEnvelope className="nav-icon" />
-          {showEmail && (
-            <div className="email-tooltip-desktop">
-              <span className="email-text" onClick={handleCopy}>
-                {email}
-              </span>
+
+          {/* Hover tooltip */}
+          {showEmail && !copied && (
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+              {email}
+            </div>
+          )}
+
+          {/* Clicked popup */}
+          {copied && (
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-xs font-medium px-2 py-1 rounded shadow animate-fadeInOut">
+              Email copied!
             </div>
           )}
         </button>
@@ -61,16 +73,25 @@ export default function Navigation() {
           _blank
         />
         <button
-          className="email-button"
+          className="email-button relative"
           onMouseEnter={() => setShowEmail(true)}
-          onMouseLeave={() => setShowEmail(false)}
+          onMouseLeave={() => {
+            setShowEmail(false);
+            setCopied(false);
+          }}
+          onClick={handleCopy}
         >
           <FaEnvelope className="nav-icon" />
-          {showEmail && (
-            <div className="email-tooltip-mobile">
-              <span className="email-text" onClick={handleCopy}>
-                {email}
-              </span>
+
+          {showEmail && !copied && (
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+              {email}
+            </div>
+          )}
+
+          {copied && (
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-xs font-medium px-2 py-1 rounded shadow animate-fadeInOut">
+              Email copied!
             </div>
           )}
         </button>
