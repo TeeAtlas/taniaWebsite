@@ -15,7 +15,7 @@ export default function MainContent() {
 
 function HeroBanner() {
   return (
-    <section className="relative h-[200px] md:h-[400px] mb-12 flex items-center justify-center">
+    <section className="relative h-[200px] md:h-[400px] mb-9 flex items-center justify-center">
       <div className="absolute inset-0 overflow-hidden rounded-lg shadow-lg">
         <img
           src="/assets/tania_252422.jpg"
@@ -46,7 +46,7 @@ function HeroBanner() {
 
 function ProjectsArea() {
   return (
-    <section id="projects" className="mt-10 p-6 rounded-lg bg-[#252422]">
+    <section id="projects" className="p-6 rounded-lg bg-[#252422]">
       <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
         Projects
       </h2>

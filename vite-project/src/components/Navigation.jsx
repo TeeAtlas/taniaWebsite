@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NavLink from "./NavLink";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaBehance } from "react-icons/fa";
 
 export default function Navigation() {
   const [showEmail, setShowEmail] = useState(false);
@@ -26,6 +26,12 @@ export default function Navigation() {
           text={<FaLinkedin className="nav-icon" />}
           _blank
         />
+        <NavLink
+          href="https://www.behance.net/taniaboterman"
+          text={<FaBehance className="nav-icon" />}
+          _blank
+        />
+
         <button
           className="email-button"
           onMouseEnter={() => setShowEmail(true)}

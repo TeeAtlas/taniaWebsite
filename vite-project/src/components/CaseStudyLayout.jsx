@@ -33,7 +33,7 @@ export default function CaseStudyLayout({
           aria-labelledby="case-title"
         >
           {/* Back • Title • Actions */}
-          <div className="mb-3 grid grid-cols-[auto,1fr,auto] items-center gap-3">
+          <div className="mb- grid grid-cols-[auto,1fr,auto] items-center gap-0">
             <div className="justify-self-start">
               <BackButton className={backBtnClass} />
             </div>
@@ -48,9 +48,9 @@ export default function CaseStudyLayout({
                     {subtitle}
                   </p>
                 ) : null}
-                {headerCta ? (
+                {/* {headerCta ? (
                   <div className="mt-3 flex justify-center">{headerCta}</div>
-                ) : null}
+                ) : null} */}
               </div>
             ) : (
               <div />

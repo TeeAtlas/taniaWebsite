@@ -1,43 +1,75 @@
-// src/pages/Seedling/Seedling.jsx
+// src/pages/case-studies/Seediling.jsx
 import React from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
-import { FaBehance } from "react-icons/fa";
 
 export default function Seedling() {
   return (
     <CaseStudyLayout
       title="Seedling"
-      subtitle="MVP full-stack app for a digital food-sharing network."
-      // if you're using the bgClass/textClass props:
-      bgClass="bg-[#E3D5CA]"
-      textClass="text-[#333]"
-      // OR if you switched to themes: theme="seabody"
+      subtitle="Clean, image-forward site for sustainable beauty."
+      backButtonClass="text-[#333]" // dark arrow matching subtitle/text
+      bgClass="bg-[#DAD7CD]" // same light card background as Seabody
+      textClass="text-[#333]" // same dark text
     >
-      {/* Hero image */}
+      {/* Section 1 */}
       <img
-        src="/assets/seedlingIntro.jpg"
-        alt="Seedling homepage"
+        src="/assets/seedlingIntro.jpg" // TODO: replace with your actual image
+        alt="Seediling homepage"
         className="rounded-lg w-3/4 mx-auto mb-2"
       />
 
-      <p className="leading-relaxed">
-        <strong>My Role:</strong> As part of a collaborative final project, we
-        designed and built Seedling as a responsive, mobile-first React MVP. I
-        focused on structured layouts, pagination, CRUD operations, UI state
-        management, and accessibility.
-      </p>
+      {/* Content block: same style as Seabody */}
+      <aside>
+        {/* MY ROLE */}
+        <p className="mt-6 mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
+          MY ROLE
+        </p>
+        <p className="leading-relaxed mb-2">
+          {/* TODO: replace with Seediling-specific copy */}
+          Seedling was my final school project - a complete website concept I
+          designed and built end-to-end. I led user research, competitive
+          analysis, and persona development, then created wireframes,
+          high-fidelity UI, and interactive prototypes in Figma. All branding
+          and visual assets were produced in Adobe Creative Suite, ensuring a
+          cohesive, cross-device design system. 
+        </p>
+        <p className="leading-relaxed mb-6">I developed the responsive
+          layouts, navigation, and interactions, applying information
+          architecture and UX best practices to make the site intuitive and
+          visually engaging. This project showcases my ability to own the full
+          UI/UX process - from research to polished, functional front-end.</p>
 
-      {/* Behance link (replaces GitHub) */}
-      <div className="flex justify-center mt-4">
-        <a
-          href="https://www.behance.net/your-project-slug" // <-- drop your real Behance URL here
-          target="_blank"
-          rel="noopener"
-          className="inline-flex items-center hover:underline"
-        >
-          <FaBehance className="mr-2" /> View on Behance
-        </a>
-      </div>
+        {/* Tools header matches MY ROLE style */}
+        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
+          Tools & Technologies
+        </p>
+
+        {/* Badges aligned with the image edges */}
+        <div className="mx-auto w-3/4">
+          <div className="mb-6 flex flex-wrap gap-2">
+            {["Figma", "Adobe Photoshop"].map((tag) => (
+              <span
+                key={tag}
+                className="rounded-lg border-0 bg-stone-50 px-3 py-1 text-xs font-medium text-[#333]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Link aligned with badges/paragraph (left-aligned) */}
+        <div className="mx-auto w-3/4 mb-7">
+          <a
+            href="https://www.behance.net/taniaboterman"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium "
+          >
+            View on Behance &amp; other UI designs
+          </a>
+        </div>
+      </aside>
     </CaseStudyLayout>
   );
 }

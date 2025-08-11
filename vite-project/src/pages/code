@@ -1,0 +1,37 @@
+
+
+
+
+  // return (
+  //   <CaseStudyLayout
+  //     title="Seabody"
+  //     subtitle="Clean, image-forward site for sustainable beauty."
+  //     backButtonClass="text-[#333]" // dark arrow matching subtitle/text
+  //     bgClass="bg-[#DAD7CD]" // light peach card background
+  //     textClass="text-[#333]" // dark text everywhere
+  //   >
+  //     {/* Section 1 */}
+  //     <img
+  //       src="/assets/s_bodyHomepage_1.jpg"
+  //       alt="Seabody homepage"
+  //       className="rounded-lg w-3/4 mx-auto mb-2"
+  //     />
+  //     <p className="leading-relaxed">
+  //       <strong>My Role:</strong> As this was a legacy WordPress build, my role
+  //       focused on streamlining and redesigning the site’s navigation, routing,
+  //       responsive layouts, and menu structures to improve usability and reduce
+  //       friction for site visitors. I consolidated and cleaned the CSS for
+  //       better maintainability and readability, and handled SEO improvements by
+  //       removing duplicate tags, debugging analytics, and writing custom
+  //       JavaScript to enhance performance and search visibility. These updates
+  //       aimed to make the site faster, easier to navigate, and more accessible
+  //       across devices.
+  //     </p>
+  //     <p><strong>Tools & Technologies: </strong>WordPress, PHP, Vanilla CSS, JavaScript (custom
+  //       scripts), Google Analytics, SEO best practices, responsive design
+  //       principles, accessibility considerations.</p>
+  //     <p>To see the redesigned navigation and improved pagination in action, visit seabody.com.</p>
+
+  //   </CaseStudyLayout>
+  // );
+}
