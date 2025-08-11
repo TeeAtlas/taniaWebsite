@@ -19,7 +19,8 @@ function HeroBanner() {
     <section className="relative h-[200px] md:h-[400px] mb-9 flex items-center justify-center">
       <div className="absolute inset-0 overflow-hidden rounded-lg shadow-lg">
         <img
-          src="/images/tania_252422.jpg" alt="Portrait of Tania"
+          src="/images/tania_252422.jpg"
+          alt="Portrait of Tania"
           className="w-full h-full object-cover transition-transform duration-500 scale-[1.2] md:scale-100 object-[0%_7%] md:object-[0%_8%]"
         />
       </div>
