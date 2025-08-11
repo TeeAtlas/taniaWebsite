@@ -102,38 +102,58 @@ function ProjectsArea() {
 }
 
 function ToolsAndTech() {
-  return (
-    <section className="bg-[#252422] text-white py-8 px-6">
-      <p className="mb-2 text-sm font-semibold uppercase tracking-wide">
-        Tools & Technologies
-      </p>
+  const tools = [
+    "React",
+    "JavaScript",
+    "C Programming",
+    "Tailwind CSS",
+    "Figma",
+    "Adobe Creative Suite",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "Git",
+    "MongoDB",
+  ];
 
-      <div className="mx-auto w-3/4">
-        <div className="mb-6 flex flex-wrap gap-2">
-          {[
-            "React",
-            "Tailwind CSS",
-            "JavaScript",
-            "Figma",
-            "Adobe Creative Suite",
-            "Node.js",
-            "Express",
-            "PostgreSQL",
-            "Git",
-            "SEO Best Practices",
-            "Responsive Design",
-          ].map((tag) => (
-            <span
-              key={tag}
-              className="rounded-lg border-0 bg-stone-50 px-3 py-1 text-xs font-medium text-[#333]"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+  const colorCycle = [
+    "bg-[#DAD7CD]", // Seabody
+    "bg-[#E3D5CA]", // DiSHi
+    "bg-[#F3ECE7]", // Seedling
+    "bg-[#C4D7E0]", // Kindergalactic
+  ];
+
+  return (
+    <section className="mt-9 rounded-lg bg-[#252422] text-white py-8">
+      <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[4%] tracking-tight">
+        Tools & Technologies
+      </h2>
+
+      <div className="flex flex-wrap justify-center gap-4 px-4">
+        {tools.map((tag, i) => (
+          <span
+            key={tag}
+            className={[
+              "rounded-lg px-4 py-2 text-base font-medium text-[#333]",
+              "shadow-sm cursor-default select-none",
+              "transform transition-transform duration-300 ease-in-out",
+              "hover:scale-[1.03] hover:-rotate-[0.8deg] hover:shadow-md",
+              colorCycle[i % colorCycle.length],
+            ].join(" ")}
+          >
+            {tag}
+          </span>
+        ))}
       </div>
     </section>
   );
+}
+
+{
+  /* <div className="px-4 md:px-0 md:pl-[4%] md:pr-[4%]"> */
+}
+{
+  /* <div className="flex flex-wrap gap-4"></div> */
 }
 
 // bg-[#E3D5CA] bg-[#DAD7CD] bg-[#C4D7E0] bg-[#F3ECE7]
