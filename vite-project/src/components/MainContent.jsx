@@ -32,7 +32,7 @@ function HeroBanner() {
           Hello, I'm Tania
         </h1>
         <p className="text-sm -mt-1 md:text-lg md:mt-0">
-          I’m a UI-focused web developer and I like making interesting stuff.
+          I’m a UI-focused Web Developer and I like making interesting stuff.
           <br className="hidden sm:block" />I build clean, beautiful work from
           prototype to production.
         </p>
@@ -151,6 +151,5 @@ function ToolsAndTech() {
     </section>
   );
 }
-
 
 // bg-[#E3D5CA] bg-[#DAD7CD] bg-[#C4D7E0] bg-[#F3ECE7]
