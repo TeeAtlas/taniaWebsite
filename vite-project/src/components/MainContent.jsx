@@ -100,7 +100,6 @@ function ProjectsArea() {
     </section>
   );
 }
-
 function ToolsAndTech() {
   const tools = [
     "React",
@@ -124,36 +123,34 @@ function ToolsAndTech() {
   ];
 
   return (
-    <section className="mt-9 rounded-lg bg-[#252422] text-white py-8">
-      <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[4%] tracking-tight">
+    <section className="mt-9 rounded-lg bg-[#252422] relative isolate z-0 py-8">
+      {/* Match Projects title alignment but no global text color */}
+      <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
         Tools & Technologies
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-4 px-4">
-        {tools.map((tag, i) => (
-          <span
-            key={tag}
-            className={[
-              "rounded-lg px-4 py-2 text-base font-medium text-[#333]",
-              "shadow-sm cursor-default select-none",
-              "transform transition-transform duration-300 ease-in-out",
-              "hover:scale-[1.03] hover:-rotate-[0.8deg] hover:shadow-md",
-              colorCycle[i % colorCycle.length],
-            ].join(" ")}
-          >
-            {tag}
-          </span>
-        ))}
+      {/* Same left/right padding as Projects grid; center badges */}
+      <div className="px-4 md:px-0">
+        <div className="flex flex-wrap justify-center gap-4">
+          {tools.map((tag, i) => (
+            <span
+              key={tag}
+              className={[
+                "rounded-lg px-4 py-2 text-base font-medium text-[#333]",
+                "shadow-sm cursor-default select-none",
+                "transform transition-transform duration-300 ease-in-out",
+                "hover:scale-[1.03] hover:-rotate-[0.8deg] hover:shadow-md",
+                colorCycle[i % colorCycle.length],
+              ].join(" ")}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-{
-  /* <div className="px-4 md:px-0 md:pl-[4%] md:pr-[4%]"> */
-}
-{
-  /* <div className="flex flex-wrap gap-4"></div> */
-}
 
 // bg-[#E3D5CA] bg-[#DAD7CD] bg-[#C4D7E0] bg-[#F3ECE7]

@@ -1,4 +1,3 @@
-// src/components/CaseStudyLayout.jsx
 import React from "react";
 import BackButton from "./BackButton";
 import DiagonalBackgroundShapes from "./DiagonalBGShapes";
@@ -18,6 +17,9 @@ export default function CaseStudyLayout({
   children,
 }) {
   const backBtnClass = backButtonClass || textClass;
+  const iconClass = `w-5 h-5 ${textClass} hover:opacity-80 transition`;
+
+  // Use the same width as your images/text blocks
   const contentWidth = "w-11/12 md:w-5/6";
 
   return (
@@ -29,60 +31,70 @@ export default function CaseStudyLayout({
           className={`relative z-10 w-full max-w-[1200px] rounded-xl p-8 min-h-[clamp(400px,60vh,900px)] ${bgClass} ${textClass}`}
           aria-labelledby="case-title"
         >
-          {/* Top row: back arrow left, icons right */}
-          <div className="flex items-center justify-between mb-4">
-            {/* Back arrow */}
-            <BackButton className={backBtnClass} />
+          {/* Back • Title • Actions */}
+          <div className="mb- grid grid-cols-[auto,1fr,auto] items-center gap-0">
+            {/* Back button on left • Social icons on right */}
+            <div className="mb-4 flex items-center justify-between">
+              {/* Left: Back button */}
+              <BackButton className={backBtnClass} />
 
-            {/* Nav icons */}
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/TeeAtlas"
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="GitHub"
-              >
-                <FaGithub className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/tania-boterman/"
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
-              </a>
-              <a
-                href="https://www.behance.net/taniaboterman"
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Behance"
-              >
-                <FaBehance className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
-              </a>
-              <a href="mailto:taniaboterman@gmail.com" aria-label="Email">
-                <FaEnvelope className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
-              </a>
+              {/* Right: Social nav icons */}
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/TeeAtlas"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="GitHub"
+                >
+                  <FaGithub className={iconClass} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/tania-boterman/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin className={iconClass} />
+                </a>
+                <a
+                  href="https://www.behance.net/taniaboterman"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="Behance"
+                >
+                  <FaBehance className={iconClass} />
+                </a>
+                <a href="mailto:taniaboterman@gmail.com" aria-label="Email">
+                  <FaEnvelope className={iconClass} />
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Title + subtitle */}
-          {headerVariant === "divider" ? (
-            <>
-              <div className="text-center">
+            {/* Center: Title & subtitle */}
+            {headerVariant === "divider" ? (
+              <div className="justify-self-center text-center">
                 <h1
                   id="case-title"
                   className="text-[2rem] md:text-[2.5rem] font-semibold tracking-tight"
                 >
                   {title}
                 </h1>
-                {subtitle && (
-                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
-                )}
+                {subtitle ? (
+                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">
+                    {subtitle}
+                  </p>
+                ) : null}
               </div>
-              {/* Divider matches content width */}
-              <div className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`} />
-            </>
+            ) : (
+              <div />
+            )}
+          </div>
+
+          {headerVariant === "divider" ? (
+            // Divider matches image/text width and is centered
+            <div
+              className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`}
+            />
           ) : (
             <>
               <div className="mb-4 w-full md:max-w-3xl mx-auto rounded-lg border border-current/15 p-4 text-center">
@@ -92,20 +104,24 @@ export default function CaseStudyLayout({
                 >
                   {title}
                 </h1>
-                {subtitle && (
-                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
-                )}
-                {headerCta && <div className="mt-3 flex justify-center">{headerCta}</div>}
+                {subtitle ? (
+                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">
+                    {subtitle}
+                  </p>
+                ) : null}
+                {headerCta ? (
+                  <div className="mt-3 flex justify-center">{headerCta}</div>
+                ) : null}
               </div>
-              {info && (
+              {info ? (
                 <div className="mb-6 w-full md:max-w-3xl mx-auto rounded-lg border border-current/15 p-4">
                   {info}
                 </div>
-              )}
+              ) : null}
             </>
           )}
 
-          {/* Content */}
+          {/* CONTENT */}
           <section
             className={`
               flex flex-col gap-6 leading-relaxed
