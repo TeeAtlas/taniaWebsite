@@ -2,7 +2,7 @@
 import React from "react";
 import BackButton from "./BackButton";
 import DiagonalBackgroundShapes from "./DiagonalBGShapes";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaBehance } from "react-icons/fa";
 
 export default function CaseStudyLayout({
   title = "Case Study",
@@ -18,11 +18,8 @@ export default function CaseStudyLayout({
   children,
 }) {
   const backBtnClass = backButtonClass || textClass;
-
-    // Use the same width as your images/text blocks
   const contentWidth = "w-11/12 md:w-5/6";
 
- 
   return (
     <main className="relative">
       <DiagonalBackgroundShapes variant="bw" />
@@ -32,74 +29,88 @@ export default function CaseStudyLayout({
           className={`relative z-10 w-full max-w-[1200px] rounded-xl p-8 min-h-[clamp(400px,60vh,900px)] ${bgClass} ${textClass}`}
           aria-labelledby="case-title"
         >
-          {/* Back • Title • Actions */}
-          <div className="mb- grid grid-cols-[auto,1fr,auto] items-center gap-0">
-            <div className="justify-self-start">
-              <BackButton className={backBtnClass} />
-            </div>
+          {/* Top row: back arrow left, icons right */}
+          <div className="flex items-center justify-between mb-4">
+            {/* Back arrow */}
+            <BackButton className={backBtnClass} />
 
-            {headerVariant === "divider" ? (
-              <div className="justify-self-center text-center">
-                <h1 id="case-title" className="text-[2rem] md:text-[2.5rem] font-semibold tracking-tight">
-                  {title}
-                </h1>
-                {subtitle ? (
-                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">
-                    {subtitle}
-                  </p>
-                ) : null}
-                {/* {headerCta ? (
-                  <div className="mt-3 flex justify-center">{headerCta}</div>
-                ) : null} */}
-              </div>
-            ) : (
-              <div />
-            )}
-
-            <div className="justify-self-end">
-              {actions ?? (
-                <span aria-hidden="true" className="opacity-0 pointer-events-none select-none inline-block">
-                  <BackButton className={backBtnClass} />
-                </span>
-              )}
+            {/* Nav icons */}
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/TeeAtlas"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="GitHub"
+              >
+                <FaGithub className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tania-boterman/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
+              </a>
+              <a
+                href="https://www.behance.net/taniaboterman"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Behance"
+              >
+                <FaBehance className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
+              </a>
+              <a href="mailto:taniaboterman@gmail.com" aria-label="Email">
+                <FaEnvelope className={`w-5 h-5 ${textClass} hover:opacity-80 transition`} />
+              </a>
             </div>
           </div>
 
+          {/* Title + subtitle */}
           {headerVariant === "divider" ? (
-            // 👇 divider matches image/text width and is centered
-            <div className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`} />
+            <>
+              <div className="text-center">
+                <h1
+                  id="case-title"
+                  className="text-[2rem] md:text-[2.5rem] font-semibold tracking-tight"
+                >
+                  {title}
+                </h1>
+                {subtitle && (
+                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
+                )}
+              </div>
+              {/* Divider matches content width */}
+              <div className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`} />
+            </>
           ) : (
             <>
               <div className="mb-4 w-full md:max-w-3xl mx-auto rounded-lg border border-current/15 p-4 text-center">
-                <h1 id="case-title" className="text-[2rem] md:text-[2.5rem] font-semibold tracking-tight">
+                <h1
+                  id="case-title"
+                  className="text-[2rem] md:text-[2.5rem] font-semibold tracking-tight"
+                >
                   {title}
                 </h1>
-                {subtitle ? (
-                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">
-                    {subtitle}
-                  </p>
-                ) : null}
-                {headerCta ? (
-                  <div className="mt-3 flex justify-center">{headerCta}</div>
-                ) : null}
+                {subtitle && (
+                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
+                )}
+                {headerCta && <div className="mt-3 flex justify-center">{headerCta}</div>}
               </div>
-              {info ? (
+              {info && (
                 <div className="mb-6 w-full md:max-w-3xl mx-auto rounded-lg border border-current/15 p-4">
                   {info}
                 </div>
-              ) : null}
+              )}
             </>
           )}
 
-          {/* CONTENT */}
+          {/* Content */}
           <section
             className={`
               flex flex-col gap-6 leading-relaxed
               [&_img]:rounded-lg
-              /* images slightly wider, centered */
               [&_img]:w-11/12 md:[&_img]:w-5/6 [&_img]:mx-auto
-
-              /* text blocks match image width, centered */
               [&_p]:w-11/12 md:[&_p]:w-5/6 [&_p]:mx-auto
               [&_.case-study-description]:w-11/12 md:[&_.case-study-description]:w-5/6 [&_.case-study-description]:mx-auto
               [&_ul]:w-11/12 md:[&_ul]:w-5/6 [&_ul]:mx-auto

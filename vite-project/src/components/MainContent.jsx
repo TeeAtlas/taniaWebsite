@@ -9,6 +9,7 @@ export default function MainContent() {
       <DiagonalBackgroundShapes />
       <HeroBanner />
       <ProjectsArea />
+      <ToolsAndTech />
     </>
   );
 }
@@ -44,7 +45,47 @@ function HeroBanner() {
   );
 }
 
+// MainContent.jsx (replace ProjectsArea with this mapped version)
 function ProjectsArea() {
+  const projects = [
+    {
+      title: "Client Portfolio: Seabody",
+      description:
+        "A clean, image-forward site for sustainable skin care and beauty products.",
+      tag: "client work",
+      to: "/seabody",
+      className:
+        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#DAD7CD] hover:scale-[1.03] hover:-rotate-[0.8deg]",
+    },
+    {
+      title: "School Portfolio: DiSHi",
+      description:
+        "A minimal React MVP. With focus on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs.",
+      tag: "school project",
+      to: "/dishi",
+      className:
+        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#E3D5CA]  hover:scale-[1.03] hover:-rotate-[0.8deg]",
+    },
+    {
+      title: "School UI Concept: Seedling",
+      description:
+        "Concept UI for a school module — clean layouts, structured typography, and design tokens.",
+      tag: "school project",
+      to: "/seedling",
+      className:
+        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#F3ECE7]  hover:scale-[1.03] hover:-rotate-[0.8deg]",
+    },
+    {
+      title: "Kindergalactic App (WIP)",
+      description:
+        "A creative, whimsical UI concept — playful, cosmic, and kid-inspired.",
+      tag: "upcoming",
+      to: "/kindergalactic", // or omit if not ready
+      className:
+        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#C4D7E0] hover:scale-[1.03] hover:-rotate-[0.8deg]",
+    },
+  ];
+
   return (
     <section id="projects" className="p-6 rounded-lg bg-[#252422]">
       <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
@@ -52,49 +93,47 @@ function ProjectsArea() {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 px-4 md:px-0">
-        {/* Seabody */}
-        <ProjectCard
-          title="Client Portfolio: Seabody"
-          description="A clean, image-forward site for sustainable skin care and beauty products."
-          tag="client work"
-          to="/seabody"
-          className="rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#E3D5CA] hover:scale-[1.03] hover:-rotate-[0.8deg]"
-          // imageSrc="/assets/preview-seabody.jpg"
-          // aspectRatio="4 / 3"
-        />
-
-        {/* DiSHi */}
-        <ProjectCard
-          title="School Portfolio: DiSHi"
-          description="A minimal React MVP. With focus on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs."
-          tag="school project"
-          to="/dishi"
-          className="rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#DAD7CD] hover:scale-[1.03] hover:-rotate-[0.8deg]"
-          // imageSrc="/assets/preview-seabody.jpg"
-          // aspectRatio="4 / 3"
-        />
-
-        {/* Seedling */}
-        <ProjectCard
-          title="School UI Concept: Seedling"
-          description="A concept UI project built for a school module — clean layouts, structured typography, and design tokens. An app for parents to teach kids how to manage finances."
-          tag="school project"
-          to="/seedling"
-          className="rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#C4D7E0] hover:scale-[1.03] hover:-rotate-[0.8deg]"
-          // imageSrc="/assets/preview-seabody.jpg"
-          // aspectRatio="4 / 3"
-        />
-
-        {/* Kindergalactic */}
-        <ProjectCard
-          title="Kindergalactic App (WIP)"
-          description="A creative, whimsical UI concept for Kindergalactic — playful, cosmic, and kid-inspired."
-          tag="upcoming"
-          className="rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#F3ECE7] hover:scale-[1.03] hover:-rotate-[0.8deg]"
-          // imageSrc="/assets/preview-seabody.jpg"
-          // aspectRatio="4 / 3"
-        />
+        {projects.map((p) => (
+          <ProjectCard key={p.title} {...p} />
+        ))}
       </div>
     </section>
   );
 }
+
+function ToolsAndTech() {
+  return (
+    <section className="bg-[#252422] text-white py-8 px-6">
+      <p className="mb-2 text-sm font-semibold uppercase tracking-wide">
+        Tools & Technologies
+      </p>
+
+      <div className="mx-auto w-3/4">
+        <div className="mb-6 flex flex-wrap gap-2">
+          {[
+            "React",
+            "Tailwind CSS",
+            "JavaScript",
+            "Figma",
+            "Adobe Creative Suite",
+            "Node.js",
+            "Express",
+            "PostgreSQL",
+            "Git",
+            "SEO Best Practices",
+            "Responsive Design",
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="rounded-lg border-0 bg-stone-50 px-3 py-1 text-xs font-medium text-[#333]"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// bg-[#E3D5CA] bg-[#DAD7CD] bg-[#C4D7E0] bg-[#F3ECE7]

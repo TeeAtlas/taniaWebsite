@@ -8,7 +8,7 @@ export default function Seedling() {
       title="Seedling"
       subtitle="Clean, image-forward site for sustainable beauty."
       backButtonClass="text-[#333]" // dark arrow matching subtitle/text
-      bgClass="bg-[#DAD7CD]" // same light card background as Seabody
+      bgClass="bg-[#F3ECE7] " // same light card background as Seabody
       textClass="text-[#333]" // same dark text
     >
       {/* Section 1 */}
@@ -31,13 +31,15 @@ export default function Seedling() {
           analysis, and persona development, then created wireframes,
           high-fidelity UI, and interactive prototypes in Figma. All branding
           and visual assets were produced in Adobe Creative Suite, ensuring a
-          cohesive, cross-device design system. 
+          cohesive, cross-device design system.
         </p>
-        <p className="leading-relaxed mb-6">I developed the responsive
-          layouts, navigation, and interactions, applying information
-          architecture and UX best practices to make the site intuitive and
-          visually engaging. This project showcases my ability to own the full
-          UI/UX process - from research to polished, functional front-end.</p>
+        <p className="leading-relaxed mb-6">
+          I developed the responsive layouts, navigation, and interactions,
+          applying information architecture and UX best practices to make the
+          site intuitive and visually engaging. This project showcases my
+          ability to own the full UI/UX process - from research to polished,
+          functional front-end.
+        </p>
 
         {/* Tools header matches MY ROLE style */}
         <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
@@ -66,7 +68,7 @@ export default function Seedling() {
             rel="noreferrer noopener"
             className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium "
           >
-            View on Behance &amp; other UI designs
+            View this &amp; other UI designs on Behance
           </a>
         </div>
       </aside>

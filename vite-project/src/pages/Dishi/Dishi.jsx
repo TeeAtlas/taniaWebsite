@@ -8,7 +8,7 @@ export default function Dishi() {
       title="DiSHi"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio."
       backButtonClass="text-[#333]" // dark arrow matching subtitle/text
-      bgClass="bg-[#DAD7CD]" // light peach card background
+      bgClass="bg-[#E3D5CA] " // light peach card background
       textClass="text-[#333]" // dark text everywhere
     >
       {/* Section 1 (keep placement) */}
