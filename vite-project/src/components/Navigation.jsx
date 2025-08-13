@@ -84,7 +84,7 @@ export default function NavigationDark() {
           <FaEnvelope className="nav-icon" />
 
           {showEmail && !copied && (
-            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-s px-2 py-1 rounded shadow whitespace-nowrap">
               {email}
             </div>
           )}
