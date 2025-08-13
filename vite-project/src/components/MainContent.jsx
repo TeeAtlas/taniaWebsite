@@ -154,7 +154,7 @@ function ToolsAndTech() {
   ];
 
   return (
-    <section className="mb-9 rounded-lg bg-[#252422] relative isolate z-0 py-8">
+    <section className="mb-9 md:mb-9 rounded-lg bg-[#252422] relative isolate z-0 py-8">
       <h2 className="text-xl md:text-3xl font-semibold text-white mb-6 px-4 md:ml-[4%] tracking-tight">
         Tools & Technologies
       </h2>

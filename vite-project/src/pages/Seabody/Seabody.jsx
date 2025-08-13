@@ -44,6 +44,7 @@ const ToolBadge = ({ label }) => (
 
 export default function Seabody() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,16 +57,19 @@ export default function Seabody() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const openModal = (src, alt) => setModalImage({ src, alt });
+  const closeModal = () => setModalImage(null);
+
   return (
     <CaseStudyLayout
       title="Seabody"
       subtitle="Clean, image-forward site for sustainable beauty."
-      backButtonClass="text-[#333]" // dark arrow matching subtitle/text
-      bgClass="bg-[#DAD7CD]" // light peach card background (kept exactly)
-      textClass="text-[#333]" // dark text everywhere
+      backButtonClass="text-[#333]"
+      bgClass="bg-[#DAD7CD]"
+      textClass="text-[#333]"
     >
       {/* Sticky scrollable menu — match Seedling/Dishi styling; no content text changed */}
-      <nav className="sticky top-0 z-30 mx-auto w-11/12 md:w-5/6">
+      <nav className="sticky top-0 z-30 mx-auto w-11/12 md:w-5/6 hidden sm:block">
         <ul className="flex items-center justify-center gap-2 md:gap-3 whitespace-nowrap overflow-x-auto rounded-xl bg-white/60 backdrop-blur px-2 py-2">
           <li>
             <a
@@ -107,8 +111,14 @@ export default function Seabody() {
       {/* Top anchor for Overview */}
       <div id="top" className="scroll-mt-24" />
 
-      {/* Section 1 (hero image) — image src/alt kept exactly, just added id + hover micro-interaction */}
-      <figure id="hero-section" className="group w-3/4 mx-auto">
+      {/* Section 1 (hero image) — now pops up on click */}
+      <figure
+        id="hero-section"
+        className="group w-3/4 mx-auto cursor-pointer"
+        onClick={() =>
+          openModal("/images/s_bodyHomepage_1.jpg", "Seabody homepage")
+        }
+      >
         <img
           src="/images/s_bodyHomepage_1.jpg"
           alt="Seabody homepage"
@@ -116,12 +126,31 @@ export default function Seabody() {
         />
       </figure>
 
+      {/* Modal for hero image */}
+      {modalImage && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <button
+            onClick={closeModal}
+            className="absolute top-6 right-6 text-white text-3xl font-bold hover:opacity-80"
+            aria-label="Close image"
+          >
+            ×
+          </button>
+          <div className="bg-white p-3 rounded-lg shadow-lg">
+            <img
+              src={modalImage.src}
+              alt={modalImage.alt}
+              className="rounded max-w-full max-h-[90vh]"
+            />
+          </div>
+        </div>
+      )}
+
       {/* Divider below hero to match Seedling */}
       <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
 
       {/* Content block (unaltered text) */}
       <aside id="my-role" className="scroll-mt-40 md:scroll-mt-48">
-        {/* Left column content (if you're using columns elsewhere, keep this inside that grid) */}
         <p className="mt-6 mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
           MY ROLE
         </p>
@@ -137,7 +166,6 @@ export default function Seabody() {
           across devices.
         </p>
 
-        {/* Tools header matches MY ROLE style */}
         <p
           id="tools"
           className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]"
@@ -145,7 +173,6 @@ export default function Seabody() {
           Tools & Technologies
         </p>
 
-        {/* Badges aligned with paragraph (no extra indent) */}
         <div className="mx-auto w-3/4 mb-6">
           <div className="flex flex-wrap gap-3">
             {["Figma", "Adobe Photoshop", "Adobe Illustrator"].map((tag) => (
@@ -154,7 +181,6 @@ export default function Seabody() {
           </div>
         </div>
 
-        {/* Link aligned with badges/paragraph (left-aligned, not centered) */}
         <div className="mx-auto w-3/4 mb-7">
           <a
             href="https://seabody.com"

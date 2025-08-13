@@ -58,7 +58,7 @@ export default function Dishi() {
       textClass="text-[#333]"
     >
       {/* Sticky scrollable menu — same structure/styling as Seedling */}
-      <nav className="sticky top-0 z-30 mx-auto w-11/12 md:w-5/6">
+      <nav className="sticky top-0 z-30 mx-auto w-11/12 md:w-5/6 hidden sm:block">
         <ul className="flex items-center justify-center gap-2 md:gap-3 whitespace-nowrap overflow-x-auto rounded-xl bg-white/60 backdrop-blur px-2 py-2">
           <li>
             <a href="#top" className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90">Overview</a>
