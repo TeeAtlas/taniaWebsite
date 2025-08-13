@@ -2,14 +2,27 @@ import React from "react";
 import Navigation from "./Navigation";
 import ProjectCard from "./ProjectCard";
 import DiagonalBackgroundShapes from "./DiagonalBGShapes";
+import {
+  FaGithub,
+  FaFigma,
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+} from "react-icons/fa";
+import {
+  SiMongodb,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiGit,
+} from "react-icons/si";
 
 export default function MainContent() {
   return (
     <>
       <DiagonalBackgroundShapes />
       <HeroBanner />
-      <ProjectsArea />
       <ToolsAndTech />
+      <ProjectsArea />
     </>
   );
 }
@@ -100,6 +113,29 @@ function ProjectsArea() {
     </section>
   );
 }
+
+// --- Tool logos ---
+const ToolIcon = ({ name, className = "w-7 h-7" }) => {
+  switch (name.trim()) {
+    case "Figma":
+      return <FaFigma className={className} />;
+    case "React":
+      return <FaReact className={className} />;
+    case "Node.js":
+      return <FaNodeJs className={className} />;
+    case "MongoDB":
+      return <SiMongodb className={className} />;
+    case "Git":
+      return <SiGit className={className} />;
+    case "Adobe Photoshop":
+      return <SiAdobephotoshop className={className} />;
+    case "Adobe Illustrator":
+      return <SiAdobeillustrator className={className} />;
+    default:
+      return <FaDatabase className={className} />; // fallback generic icon
+  }
+};
+
 function ToolsAndTech() {
   const tools = [
     "React",
@@ -115,34 +151,35 @@ function ToolsAndTech() {
     "MongoDB",
   ];
 
-  const colorCycle = [
-    "bg-[#DAD7CD]", // Seabody
-    "bg-[#E3D5CA]", // DiSHi
-    "bg-[#F3ECE7]", // Seedling
-    "bg-[#C4D7E0]", // Kindergalactic
-  ];
+  // Split tools into two nearly equal arrays
+  const mid = Math.ceil(tools.length / 2);
+  const toolsRow1 = tools.slice(0, mid);
+  const toolsRow2 = tools.slice(mid);
 
   return (
-    <section className="mt-9 rounded-lg bg-[#252422] relative isolate z-0 py-8">
-      {/* Match Projects title alignment but no global text color */}
+    <section className="mb-9 rounded-lg bg-[#252422] relative isolate z-0 py-8">
       <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
         Tools & Technologies
       </h2>
-
-      {/* Same left/right padding as Projects grid; center badges */}
-      <div className="px-4 md:px-0">
-        <div className="flex flex-wrap justify-center gap-4">
-          {tools.map((tag, i) => (
+      <div className="px-4 md:px-0 flex flex-col gap-4 items-center">
+        <div className="flex flex-wrap justify-center gap-4 w-full">
+          {toolsRow1.map((tag) => (
             <span
               key={tag}
-              className={[
-                "rounded-lg px-4 py-2 text-base font-medium text-[#333]",
-                "shadow-sm cursor-default select-none",
-                "transform transition-transform duration-300 ease-in-out",
-                "hover:scale-[1.03] hover:-rotate-[0.8deg] hover:shadow-md",
-                colorCycle[i % colorCycle.length],
-              ].join(" ")}
+              className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]"
             >
+              <ToolIcon name={tag} className="w-5 h-5" />
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="flex flex-wrap justify-center gap-4 w-full">
+          {toolsRow2.map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]"
+            >
+              <ToolIcon name={tag} className="w-5 h-5" />
               {tag}
             </span>
           ))}
@@ -151,5 +188,3 @@ function ToolsAndTech() {
     </section>
   );
 }
-
-// bg-[#E3D5CA] bg-[#DAD7CD] bg-[#C4D7E0] bg-[#F3ECE7]
