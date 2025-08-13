@@ -1,6 +1,75 @@
-
+// src/pages/case-studies/Seedling.jsx
 import React, { useState } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
+
+const ToolIcon = ({ name, className = "w-7 h-7" }) => {
+  switch (name) {
+    case "Figma":
+      return (
+        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+          <path fill="#F24E1E" d="M5 2h4v8H5a4 4 0 0 1 0-8z" />
+          <path fill="#FF7262" d="M9 2h4a4 4 0 0 1 0 8H9V2z" />
+          <path fill="#A259FF" d="M13 10h-4v8h4a4 4 0 0 0 0-8z" />
+          <path fill="#1ABCFE" d="M9 10H5a4 4 0 0 0 0 8h4v-8z" />
+          <path fill="#0ACF83" d="M9 18H5a4 4 0 0 0 0 8h4v-8z" />
+        </svg>
+      );
+    case "Adobe Photoshop":
+      return (
+        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+          <rect width="24" height="24" rx="3" fill="#001E36" />
+          <text
+            x="5"
+            y="17"
+            fontSize="11"
+            fontFamily="Arial Black, sans-serif"
+            fill="#31A8FF"
+          >
+            Ps
+          </text>
+        </svg>
+      );
+    case "Adobe Illustrator":
+      return (
+        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+          <rect width="24" height="24" rx="3" fill="#300" />
+          <text
+            x="5"
+            y="17"
+            fontSize="11"
+            fontFamily="Arial Black, sans-serif"
+            fill="#FF9A00"
+          >
+            Ai
+          </text>
+        </svg>
+      );
+    case "Behance":
+      return (
+        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+          <rect width="24" height="24" rx="3" fill="#1769FF" />
+          <text
+            x="3.5"
+            y="16"
+            fontSize="10"
+            fontFamily="Arial Black, sans-serif"
+            fill="#fff"
+          >
+            Be
+          </text>
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
+const ToolBadge = ({ label }) => (
+  <span className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]">
+    <ToolIcon name={label} />
+    {label}
+  </span>
+);
 
 export default function Seedling() {
   const [modalImage, setModalImage] = useState(null);
@@ -15,38 +84,32 @@ export default function Seedling() {
       bgClass="bg-[#F3ECE7]"
       textClass="text-[#333]"
     >
-      {/* Hero image */}
       <img
         src="/images/seedlingIntro.jpg"
         alt="Seedling homepage"
         className="rounded-lg w-3/4 mx-auto"
       />
-
-      {/* Second full-width image */}
       <img
         src="/images/seedlingLowFiFrames.jpg"
-        alt="Seedling secondary feature"
+        alt="Seedling low-fidelity frames"
         className="rounded-lg w-3/4 mx-auto mt-6"
         loading="lazy"
       />
 
-      {/* Divider */}
       <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
 
-      {/* First two-up gallery */}
       <section className="w-11/12 md:w-5/6 mx-auto mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {/* Thumb A */}
           <figure
             className="group cursor-pointer"
             onClick={() =>
-              openModal("/images/seedlingUserFlow.jpg", "Seedling screen 1")
+              openModal("/images/seedlingUserFlow.jpg", "Seedling user flow")
             }
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
                 src="/images/seedlingUserFlow.jpg"
-                alt="Seedling screen 1"
+                alt="Seedling user flow"
                 className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
               />
@@ -60,17 +123,19 @@ export default function Seedling() {
             </figcaption>
           </figure>
 
-          {/* Thumb B */}
           <figure
             className="group cursor-pointer"
             onClick={() =>
-              openModal("/images/seedlingStyleGuide.jpg", "Seedling screen 2")
+              openModal(
+                "/images/seedlingStyleGuide.jpg",
+                "Seedling style guide"
+              )
             }
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
                 src="/images/seedlingStyleGuide.jpg"
-                alt="Seedling screen 2"
+                alt="Seedling style guide"
                 className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
               />
@@ -85,20 +150,18 @@ export default function Seedling() {
         </div>
       </section>
 
-      {/* Second two-up gallery */}
       <section className="w-11/12 md:w-5/6 mx-auto mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {/* Thumb C */}
           <figure
             className="group cursor-pointer"
             onClick={() =>
-              openModal("/images/seedlingFlow3.jpg", "Seedling screen 3")
+              openModal("/images/seedlingFlow3.jpg", "Seedling onboarding flow")
             }
           >
             <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
               <img
                 src="/images/seedlingFlow3.jpg"
-                alt="Seedling screen 3"
+                alt="Seedling onboarding flow"
                 className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
               />
@@ -114,7 +177,6 @@ export default function Seedling() {
         </div>
       </section>
 
-      {/* Modal */}
       {modalImage && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <button
@@ -134,17 +196,15 @@ export default function Seedling() {
         </div>
       )}
 
-      {/* Content block */}
       <aside>
-        <p>
-          <strong>MY ROLE</strong>
+        <p className="mt-6 mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
+          MY ROLE
         </p>
         <p className="leading-relaxed mb-2">
-          Seedling in a complete concept app I
-          designed end-to-end.
+          Seedling is a complete concept app I designed end-to-end.
         </p>
         <p className="leading-relaxed mb-2">
-          For this, I led user research, competitive analysis, and persona development,
+          I led user research, competitive analysis, and persona development,
           then created wireframes, high-fidelity UI, and interactive prototypes
           in <strong>Figma</strong>.
         </p>
@@ -154,27 +214,22 @@ export default function Seedling() {
           cross-device design system.
         </p>
         <p className="leading-relaxed mb-2">
-          The developement includes responsive layouts, navigation, and interactions, applying
-          information architecture and UX best practices to make the site
-          intuitive and visually engaging.
+          The development includes responsive layouts, navigation, and
+          interactions, applying information architecture and UX best practices
+          to make the product intuitive and visually engaging.
         </p>
         <p className="leading-relaxed mb-6">
           This project demonstrates my ability to own the full UI/UX process —
           from research to a polished product design.
         </p>
 
-        <p className="mb-4">
-          <strong>Tools & Technologies </strong>
+        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
+          Tools & Technologies
         </p>
         <div className="mx-auto w-3/4">
-          <div className="mb-6 flex flex-wrap gap-2">
+          <div className="mb-6 flex flex-wrap gap-3">
             {["Figma", "Adobe Photoshop", "Adobe Illustrator"].map((tag) => (
-              <span
-                key={tag}
-                className="rounded-lg border-0 bg-stone-50 px-3 py-1 text-xs font-medium text-[#333]"
-              >
-                {tag}
-              </span>
+              <ToolBadge key={tag} label={tag} />
             ))}
           </div>
         </div>
@@ -184,9 +239,10 @@ export default function Seedling() {
             href="https://www.behance.net/taniaboterman"
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium"
+            className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium hover:opacity-90"
           >
-            View this &amp; other UI designs on Behance
+            <ToolIcon name="Behance" />
+            View this &amp; my other UX/UI work on Behance
           </a>
         </div>
       </aside>

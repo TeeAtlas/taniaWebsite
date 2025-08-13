@@ -60,7 +60,7 @@ function ProjectsArea() {
     {
       title: "School Portfolio: DiSHi",
       description:
-        "A minimal React MVP. With focus on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs.",
+        "A minimal React MVP. Focused on responsive layouts, paginations, CRUD operations, Data management, and frontend UI.",
       tag: "school project",
       to: "/dishi",
       className:
@@ -69,7 +69,7 @@ function ProjectsArea() {
     {
       title: "School UI Concept: Seedling",
       description:
-        "Clean, structured app with thoughtful typography and consistent visual styles to help parents teach kids about money..",
+        "Clean, structured app with thoughtful typography and consistent visual styles to help parents teach kids about money.",
       tag: "school project",
       to: "/seedling",
       className:
@@ -78,7 +78,7 @@ function ProjectsArea() {
     {
       title: "Kindergalactic App (WIP)",
       description:
-        "A creative, whimsical UI concept — playful, cosmic, and kid-inspired.",
+        "A creative, whimsical UI concept. Playful, cosmic, and kid-inspired brand.",
       tag: "upcoming",
       to: "/kindergalactic",
       className:
