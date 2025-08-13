@@ -10,7 +10,7 @@ export default function Seedling() {
   return (
     <CaseStudyLayout
       title="Seedling"
-      subtitle="Clean, image-forward site for sustainable beauty."
+      subtitle="The fun and engaging way for parents to teach kids about money."
       backButtonClass="text-[#333]"
       bgClass="bg-[#F3ECE7]"
       textClass="text-[#333]"
@@ -140,11 +140,11 @@ export default function Seedling() {
           <strong>MY ROLE</strong>
         </p>
         <p className="leading-relaxed mb-2">
-          Seedling was my final school project — a complete app concept I
+          Seedling in a complete concept app I
           designed end-to-end.
         </p>
         <p className="leading-relaxed mb-2">
-          I led user research, competitive analysis, and persona development,
+          For this, I led user research, competitive analysis, and persona development,
           then created wireframes, high-fidelity UI, and interactive prototypes
           in <strong>Figma</strong>.
         </p>
@@ -154,7 +154,7 @@ export default function Seedling() {
           cross-device design system.
         </p>
         <p className="leading-relaxed mb-2">
-          I developed responsive layouts, navigation, and interactions, applying
+          The developement includes responsive layouts, navigation, and interactions, applying
           information architecture and UX best practices to make the site
           intuitive and visually engaging.
         </p>

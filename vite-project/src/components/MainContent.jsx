@@ -69,7 +69,7 @@ function ProjectsArea() {
     {
       title: "School UI Concept: Seedling",
       description:
-        "Concept UI for a school module — clean layouts, structured typography, and design tokens.",
+        "Clean, structured app with thoughtful typography and consistent visual styles to help parents teach kids about money..",
       tag: "school project",
       to: "/seedling",
       className:
