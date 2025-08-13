@@ -28,7 +28,9 @@ export default function CaseStudyLayout({
   const [emailCopied, setEmailCopied] = useState(false);
 
   // BackButton grows slightly on hover by default; caller can still pass extra classes.
-  const backBtnClass = `${backButtonClass ?? textClass} transition-transform duration-200 hover:scale-150`;
+  const backBtnClass = `${
+    backButtonClass ?? textClass
+  } transition-transform duration-200 hover:scale-150`;
   const iconBase = `w-5 h-5 ${textClass} hover:opacity-80 transition-opacity`;
   const contentWidth = "w-11/12 md:w-5/6";
 
@@ -85,7 +87,7 @@ export default function CaseStudyLayout({
               </a>
 
               {/* Email with hover tooltip & quick toast */}
-              <div className="relative group">
+              <div className="relative group flex items-center">
                 <button
                   onClick={handleEmailClick}
                   aria-label="Copy email"
@@ -98,7 +100,7 @@ export default function CaseStudyLayout({
                 {!emailCopied && (
                   <span
                     className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap
-                    bg-[#333] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100
+                    bg-white text-black text-s px-2 py-1 rounded opacity-0 group-hover:opacity-100
                     transition-opacity duration-200 pointer-events-none"
                   >
                     taniaboterman@gmail.com
@@ -108,7 +110,7 @@ export default function CaseStudyLayout({
                 {/* Tiny toast on click */}
                 {emailCopied && (
                   <div
-                    className="absolute -top-9 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-medium
+                    className="absolute -top-9 left-1/2 -translate-x-1/2 bg-white text-black text-s font-medium
                     px-2 py-1 rounded shadow"
                   >
                     Copied!
@@ -129,10 +131,14 @@ export default function CaseStudyLayout({
                   {title}
                 </h1>
                 {subtitle ? (
-                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
+                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">
+                    {subtitle}
+                  </p>
                 ) : null}
               </div>
-              <div className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`} />
+              <div
+                className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`}
+              />
             </>
           ) : (
             // Non-divider variant (kept for compatibility)
@@ -145,7 +151,9 @@ export default function CaseStudyLayout({
                   {title}
                 </h1>
                 {subtitle ? (
-                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
+                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">
+                    {subtitle}
+                  </p>
                 ) : null}
                 {headerCta ? (
                   <div className="mt-3 flex justify-center">{headerCta}</div>

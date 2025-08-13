@@ -223,7 +223,7 @@ export default function Dishi() {
         id="gallery"
         className="text-lg font-semibold text-[#333] w-11/12 md:w-5/6 mx-auto mb-4 scroll-mt-40 md:scroll-mt-48"
       >
-        Tools & Technology
+        Tools &
       </h2>
         <div className="mx-auto w-3/4 mb-6">
           <div className="flex flex-wrap gap-3">

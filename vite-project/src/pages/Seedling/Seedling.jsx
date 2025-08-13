@@ -1,57 +1,44 @@
 // src/pages/case-studies/Seedling.jsx
 import React, { useState, useEffect } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
+import {
+  FaGithub,
+  FaFigma,
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+} from "react-icons/fa";
+import {
+  SiMongodb,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiGit,
+} from "react-icons/si";
 
 const ToolIcon = ({ name, className = "w-7 h-7" }) => {
-  switch (name) {
+  switch (name.trim()) {
     case "Figma":
-      return (
-        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-          <path fill="#F24E1E" d="M5 2h4v8H5a4 4 0 0 1 0-8z" />
-          <path fill="#FF7262" d="M9 2h4a4 4 0 0 1 0 8H9V2z" />
-          <path fill="#A259FF" d="M13 10h-4v8h4a4 4 0 0 0 0-8z" />
-          <path fill="#1ABCFE" d="M9 10H5a4 4 0 0 0 0 8h4v-8z" />
-          <path fill="#0ACF83" d="M9 18H5a4 4 0 0 0 0 8h4v-8z" />
-        </svg>
-      );
+      return <FaFigma className={className} />;
+    case "React":
+      return <FaReact className={className} />;
+    case "Node.js":
+      return <FaNodeJs className={className} />;
+    case "MongoDB":
+      return <SiMongodb className={className} />;
+    case "Git":
+      return <SiGit className={className} />;
     case "Adobe Photoshop":
-      return (
-        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-          <rect width="24" height="24" rx="3" fill="#001E36" />
-          <text
-            x="5"
-            y="17"
-            fontSize="11"
-            fontFamily="Arial Black, sans-serif"
-            fill="#31A8FF"
-          >
-            Ps
-          </text>
-        </svg>
-      );
+      return <SiAdobephotoshop className={className} />;
     case "Adobe Illustrator":
-      return (
-        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-          <rect width="24" height="24" rx="3" fill="#300" />
-          <text
-            x="5"
-            y="17"
-            fontSize="11"
-            fontFamily="Arial Black, sans-serif"
-            fill="#FF9A00"
-          >
-            Ai
-          </text>
-        </svg>
-      );
+      return <SiAdobeillustrator className={className} />;
     default:
-      return null;
+      return <FaDatabase className={className} />; // fallback generic icon
   }
 };
 
 const ToolBadge = ({ label }) => (
   <span className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]">
-    <ToolIcon name={label} />
+    <ToolIcon name={label} className="w-5 h-5" />
     {label}
   </span>
 );
@@ -315,6 +302,19 @@ export default function Seedling() {
           <strong> MVP essentials</strong> to deliver a functional, testable
           product quickly without unnecessary complexity.
         </p>
+
+        {/* GitHub */}
+        <div className="mx-auto w-3/4 mb-7">
+          <a
+            href="https://github.com/TeeAtlas/DiSHi__"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium hover:opacity-90"
+          >
+            <FaGithub className="h-5 w-5" />
+            View on GitHub
+          </a>
+        </div>
       </section>
 
       {/* Tools & Technologies */}
