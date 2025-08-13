@@ -60,7 +60,7 @@ function ProjectsArea() {
     {
       title: "School Portfolio: DiSHi",
       description:
-        "A minimal React MVP. Focused on responsive layouts, paginations, CRUD operations, Data management, and frontend UI.",
+        "A minimal React MVP. Focused on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs.",
       tag: "school project",
       to: "/dishi",
       className:

@@ -3,12 +3,21 @@ import BackButton from "./BackButton";
 import DiagonalBackgroundShapes from "./DiagonalBGShapes";
 import { FaGithub, FaLinkedin, FaEnvelope, FaBehance } from "react-icons/fa";
 
+/**
+ * CaseStudyLayout (Updated to match Dishi layout)
+ * -------------------------------------------------
+ * - Keeps the same public API so existing pages don't break.
+ * - Matches Dishi.jsx visual scaffolding: light divider header, centered title/subtitle,
+ *   back button on the left, socials on the right, consistent max-width and content widths.
+ * - Uses inline Tailwind only (no external CSS), and subtle motion on BackButton by default.
+ * - Email icon copies address to clipboard with hover tooltip and temporary "copied" toast.
+ */
 export default function CaseStudyLayout({
   title = "Case Study",
   subtitle = "",
-  headerVariant = "divider",
+  headerVariant = "divider", // kept for backward compatibility
   info = null,
-  actions = null,
+  actions = null, // reserved (not rendered in Dishi variant but kept for API)
   headerCta = null,
   bgClass = "bg-[#252422]",
   textClass = "text-[#E3D5CA]",
@@ -18,96 +27,100 @@ export default function CaseStudyLayout({
 }) {
   const [emailCopied, setEmailCopied] = useState(false);
 
-  const backBtnClass = backButtonClass || textClass;
-  const iconClass = `w-5 h-5 ${textClass} hover:opacity-80 transition`;
+  // BackButton grows slightly on hover by default; caller can still pass extra classes.
+  const backBtnClass = `${backButtonClass ?? textClass} transition-transform duration-200 hover:scale-150`;
+  const iconBase = `w-5 h-5 ${textClass} hover:opacity-80 transition-opacity`;
   const contentWidth = "w-11/12 md:w-5/6";
 
   const handleEmailClick = (e) => {
     e.preventDefault();
-    navigator.clipboard.writeText("taniaboterman@gmail.com");
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 1500);
+    try {
+      navigator.clipboard.writeText("taniaboterman@gmail.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 1400);
+    } catch (_) {
+      // no-op: clipboard may be blocked in non-secure contexts
+    }
   };
 
   return (
     <main className="relative">
+      {/* Background visuals */}
       <DiagonalBackgroundShapes variant="bw" />
 
+      {/* Page container */}
       <div className="w-full flex justify-center px-4">
         <article
-          className={`relative z-10 w-full max-w-[1200px] rounded-xl p-8 min-h-[clamp(400px,60vh,900px)] ${bgClass} ${textClass}`}
+          className={`relative z-10 w-full max-w-[1200px] rounded-xl p-8 min-h-[clamp(480px,60vh,1000px)] ${bgClass} ${textClass}`}
           aria-labelledby="case-title"
         >
-          {/* Back • Title • Actions */}
-          <div className="grid grid-cols-[auto,1fr,auto] items-center gap-0">
-            {/* Back button + Social icons */}
-            <div className="mb-4 flex items-center justify-between">
-              <BackButton className={backBtnClass} />
+          {/* Row 1: Back on left, socials on right (matches Dishi) */}
+          <div className="mb-4 flex items-center justify-between">
+            <BackButton className={backBtnClass} />
 
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://github.com/TeeAtlas"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="GitHub"
-                >
-                  <FaGithub className={iconClass} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/tania-boterman/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin className={iconClass} />
-                </a>
-                <a
-                  href="https://www.behance.net/taniaboterman"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Behance"
-                >
-                  <FaBehance className={iconClass} />
-                </a>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/TeeAtlas"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="GitHub"
+              >
+                <FaGithub className={iconBase} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tania-boterman/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className={iconBase} />
+              </a>
+              <a
+                href="https://www.behance.net/taniaboterman"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Behance"
+              >
+                <FaBehance className={iconBase} />
+              </a>
 
-                {/* Email with tooltip & popup */}
-                <div className="relative group">
-                  <a
-                    href="#"
-                    onClick={handleEmailClick}
-                    aria-label="Email"
+              {/* Email with hover tooltip & quick toast */}
+              <div className="relative group">
+                <button
+                  onClick={handleEmailClick}
+                  aria-label="Copy email"
+                  className="outline-none"
+                >
+                  <FaEnvelope className={iconBase} />
+                </button>
 
+                {/* Tooltip (hover) */}
+                {!emailCopied && (
+                  <span
+                    className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap
+                    bg-[#333] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100
+                    transition-opacity duration-200 pointer-events-none"
                   >
-                    <FaEnvelope className={iconClass} />
-                  </a>
+                    taniaboterman@gmail.com
+                  </span>
+                )}
 
-                  {/* Tooltip on hover */}
-                  {!emailCopied && (
-                    <span
-                      className="absolute mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap
-                      bg-[#333] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 
-                      transition-opacity duration-200 pointer-events-none"
-                    >
-                      taniaboterman@gmail.com
-                    </span>
-                  )}
-
-                  {/* White popup when clicked */}
-                  {emailCopied && (
-                    <div
-                      className="absolute inset-0 flex items-center justify-center
-                      bg-white text-black text-xs font-medium rounded shadow 
-                      animate-fadeInOut"
-                    >
-                      Email copied!
-                    </div>
-                  )}
-                </div>
+                {/* Tiny toast on click */}
+                {emailCopied && (
+                  <div
+                    className="absolute -top-9 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-medium
+                    px-2 py-1 rounded shadow"
+                  >
+                    Copied!
+                  </div>
+                )}
               </div>
             </div>
+          </div>
 
-            {/* Center: Title & subtitle */}
-            {headerVariant === "divider" ? (
+          {/* Header (Dishi divider variant) */}
+          {headerVariant === "divider" ? (
+            <>
               <div className="justify-self-center text-center">
                 <h1
                   id="case-title"
@@ -116,21 +129,13 @@ export default function CaseStudyLayout({
                   {title}
                 </h1>
                 {subtitle ? (
-                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">
-                    {subtitle}
-                  </p>
+                  <p className="mt-1 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
                 ) : null}
               </div>
-            ) : (
-              <div />
-            )}
-          </div>
-
-          {headerVariant === "divider" ? (
-            <div
-              className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`}
-            />
+              <div className={`mt-3 mb-6 ${contentWidth} mx-auto ${dividerClass}`} />
+            </>
           ) : (
+            // Non-divider variant (kept for compatibility)
             <>
               <div className="mb-4 w-full md:max-w-3xl mx-auto rounded-lg border border-current/15 p-4 text-center">
                 <h1
@@ -140,9 +145,7 @@ export default function CaseStudyLayout({
                   {title}
                 </h1>
                 {subtitle ? (
-                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">
-                    {subtitle}
-                  </p>
+                  <p className="mt-2 text-base md:text-[1.1rem] opacity-90">{subtitle}</p>
                 ) : null}
                 {headerCta ? (
                   <div className="mt-3 flex justify-center">{headerCta}</div>

@@ -1,5 +1,5 @@
 // src/pages/case-studies/Seedling.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
 
 const ToolIcon = ({ name, className = "w-7 h-7" }) => {
@@ -44,21 +44,6 @@ const ToolIcon = ({ name, className = "w-7 h-7" }) => {
           </text>
         </svg>
       );
-    case "Behance":
-      return (
-        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-          <rect width="24" height="24" rx="3" fill="#1769FF" />
-          <text
-            x="3.5"
-            y="16"
-            fontSize="10"
-            fontFamily="Arial Black, sans-serif"
-            fill="#fff"
-          >
-            Be
-          </text>
-        </svg>
-      );
     default:
       return null;
   }
@@ -73,8 +58,21 @@ const ToolBadge = ({ label }) => (
 
 export default function Seedling() {
   const [modalImage, setModalImage] = useState(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
   const openModal = (src, alt) => setModalImage({ src, alt });
   const closeModal = () => setModalImage(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroBottom = document
+        .getElementById("hero-section")
+        ?.getBoundingClientRect().bottom;
+      setShowBackToTop(heroBottom !== undefined && heroBottom < 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <CaseStudyLayout
@@ -84,20 +82,92 @@ export default function Seedling() {
       bgClass="bg-[#F3ECE7]"
       textClass="text-[#333]"
     >
-      <img
-        src="/images/seedlingIntro.jpg"
-        alt="Seedling homepage"
-        className="rounded-lg w-3/4 mx-auto"
-      />
-      <img
-        src="/images/seedlingLowFiFrames.jpg"
-        alt="Seedling low-fidelity frames"
-        className="rounded-lg w-3/4 mx-auto mt-6"
-        loading="lazy"
-      />
+      {/* Sticky scrollable menu — original placement retained; sticks to top on scroll */}
+      <nav className="sticky top-0 z-30 mx-auto w-11/12 md:w-5/6">
+        <ul className="flex items-center justify-center gap-2 md:gap-3 whitespace-nowrap overflow-x-auto rounded-xl bg-white/60 backdrop-blur px-2 py-2">
+          <li>
+            <a
+              href="#top"
+              className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90"
+            >
+              Overview
+            </a>
+          </li>
+          <li>
+            <a
+              href="#gallery"
+              className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90"
+            >
+              Gallery
+            </a>
+          </li>
+          <li>
+            <a
+              href="#my-role"
+              className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90"
+            >
+              My Role
+            </a>
+          </li>
+          <li>
+            <a
+              href="#what-i-learned"
+              className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90"
+            >
+              What I Learned
+            </a>
+          </li>
+          <li>
+            <a
+              href="#tools"
+              className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90"
+            >
+              Tools & Tech
+            </a>
+          </li>
+          {showBackToTop && (
+            <li>
+              <a
+                href="#top"
+                className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90"
+              >
+                Back to Top
+              </a>
+            </li>
+          )}
+        </ul>
+      </nav>
 
+      {/* Top anchor for Overview */}
+      <div id="top" className="scroll-mt-24" />
+
+      {/* Hero image */}
+      <figure
+        id="hero-section"
+        className="group cursor-pointer w-3/4 mx-auto"
+        onClick={() =>
+          openModal("/images/seedlingIntro.jpg", "Seedling homepage")
+        }
+      >
+        <img
+          src="/images/seedlingIntro.jpg"
+          alt="Seedling homepage"
+          className="rounded-lg w-full h-auto transition-transform duration-300 ease-out group-hover:scale-[1.01]"
+        />
+      </figure>
+
+      {/* Divider below hero */}
       <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
 
+      {/* My Gallery heading — anchor lands just below sticky menu */}
+      <h2
+        id="gallery"
+        className="text-lg font-semibold text-[#333] w-11/12 md:w-5/6 mx-auto mb-4 scroll-mt-40 md:scroll-mt-48"
+      >
+        My Gallery
+      </h2>
+
+      {/* Gallery */}
       <section className="w-11/12 md:w-5/6 mx-auto mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <figure
@@ -106,11 +176,11 @@ export default function Seedling() {
               openModal("/images/seedlingUserFlow.jpg", "Seedling user flow")
             }
           >
-            <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
+            <div className="relative w-full overflow-hidden rounded-lg">
               <img
                 src="/images/seedlingUserFlow.jpg"
                 alt="Seedling user flow"
-                className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                className="block w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
               />
             </div>
@@ -132,11 +202,11 @@ export default function Seedling() {
               )
             }
           >
-            <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
+            <div className="relative w-full overflow-hidden rounded-lg">
               <img
                 src="/images/seedlingStyleGuide.jpg"
                 alt="Seedling style guide"
-                className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                className="block w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
               />
             </div>
@@ -150,6 +220,7 @@ export default function Seedling() {
         </div>
       </section>
 
+      {/* Gallery row 2 */}
       <section className="w-11/12 md:w-5/6 mx-auto mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <figure
@@ -158,11 +229,11 @@ export default function Seedling() {
               openModal("/images/seedlingFlow3.jpg", "Seedling onboarding flow")
             }
           >
-            <div className="relative w-full overflow-hidden rounded-lg shadow-sm">
+            <div className="relative w-full overflow-hidden rounded-lg">
               <img
                 src="/images/seedlingFlow3.jpg"
                 alt="Seedling onboarding flow"
-                className="block !w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                className="block w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
               />
             </div>
@@ -177,6 +248,10 @@ export default function Seedling() {
         </div>
       </section>
 
+      {/* Divider before My Role */}
+      <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
+
+      {/* Modal */}
       {modalImage && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <button
@@ -196,9 +271,10 @@ export default function Seedling() {
         </div>
       )}
 
-      <aside>
-        <p className="mt-6 mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
-          MY ROLE
+      {/* My Role */}
+      <aside id="my-role" className="scroll-mt-40 md:scroll-mt-48">
+        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
+          My Role
         </p>
         <p className="leading-relaxed mb-2">
           Seedling is a complete concept app I designed end-to-end.
@@ -222,30 +298,38 @@ export default function Seedling() {
           This project demonstrates my ability to own the full UI/UX process —
           from research to a polished product design.
         </p>
+      </aside>
 
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#333]">
-          Tools & Technologies
+      {/* Divider below My Role */}
+      <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
+
+      {/* What I Learned */}
+      <section id="what-i-learned" className="scroll-mt-40 md:scroll-mt-48">
+        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
+          What I Learned
         </p>
-        <div className="mx-auto w-3/4">
-          <div className="mb-6 flex flex-wrap gap-3">
-            {["Figma", "Adobe Photoshop", "Adobe Illustrator"].map((tag) => (
+        <p className="leading-relaxed mb-6">
+          This project reinforced the importance of designing with both the
+          child and parent user in mind, ensuring intuitive flows while
+          maintaining engagement. I also learned to prioritize{" "}
+          <strong> MVP essentials</strong> to deliver a functional, testable
+          product quickly without unnecessary complexity.
+        </p>
+      </section>
+
+      {/* Tools & Technologies */}
+      <section id="tools" className="scroll-mt-40 md:scroll-mt-48">
+        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
+          Tools & Technology
+        </p>
+        <div className="mx-auto w-3/4 mb-6">
+          <div className="flex flex-wrap gap-3">
+            {"Figma,Adobe Photoshop,Adobe Illustrator".split(",").map((tag) => (
               <ToolBadge key={tag} label={tag} />
             ))}
           </div>
         </div>
-
-        <div className="mx-auto w-3/4 mb-7">
-          <a
-            href="https://www.behance.net/taniaboterman"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium hover:opacity-90"
-          >
-            <ToolIcon name="Behance" />
-            View this &amp; my other UX/UI work on Behance
-          </a>
-        </div>
-      </aside>
+      </section>
     </CaseStudyLayout>
   );
 }
