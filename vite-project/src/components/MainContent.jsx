@@ -40,17 +40,19 @@ function HeroBanner() {
 
       <div className="absolute inset-0 bg-neutral-900/20 rounded-lg" />
 
-      <div className="absolute z-10 -mt-2 text-white text-left px-4 top-6 md:top-[35%] md:left-[30%] md:-translate-x-1/2 md:-translate-y-1/2">
+      <div
+        className="absolute z-10 -mt-2 text-white text-left px-4 top-6
+                md:top-[35%] md:left-8 md:translate-x-0 md:-translate-y-1/2"
+      >
         <h1 className="text-3xl md:text-7xl font-bold mb-2 tracking-tighter">
           Hello, I'm Tania
         </h1>
-        <p className="text-sm -mt-1 md:text-lg md:mt-0">
+        <p className="text-xs -mt-1 md:text-lg md:mt-0">
           I’m a UI-focused Web Developer and I like making interesting stuff.
           <br className="hidden sm:block" />I build clean, beautiful work from
           prototype to production.
         </p>
       </div>
-
       <div className="absolute right-4 bottom-4 md:bottom-6 md:right-[25px] md:left-auto z-20">
         <Navigation />
       </div>
@@ -101,7 +103,7 @@ function ProjectsArea() {
 
   return (
     <section id="projects" className="p-6 rounded-lg bg-[#252422]">
-      <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
+      <h2 className="text-xl md:text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
         Projects
       </h2>
 
@@ -140,10 +142,10 @@ function ToolsAndTech() {
   const tools = [
     "React",
     "JavaScript",
-    "C Programming",
-    "Tailwind CSS",
+    "C",
+    "Tailwind",
     "Figma",
-    "Adobe Creative Suite",
+    "Adobe",
     "Node.js",
     "Express",
     "PostgreSQL",
@@ -151,35 +153,19 @@ function ToolsAndTech() {
     "MongoDB",
   ];
 
-  // Split tools into two nearly equal arrays
-  const mid = Math.ceil(tools.length / 2);
-  const toolsRow1 = tools.slice(0, mid);
-  const toolsRow2 = tools.slice(mid);
-
   return (
     <section className="mb-9 rounded-lg bg-[#252422] relative isolate z-0 py-8">
-      <h2 className="text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
+      <h2 className="text-xl md:text-3xl font-semibold text-white mb-6 px-4 md:ml-[4%] tracking-tight">
         Tools & Technologies
       </h2>
-      <div className="px-4 md:px-0 flex flex-col gap-4 items-center">
-        <div className="flex flex-wrap justify-center gap-4 w-full">
-          {toolsRow1.map((tag) => (
+      <div className="px-8 md:px-5">
+        <div className="grid grid-cols-4 md:grid-cols-6 gap-2 md:gap-4 justify-items-center">
+          {tools.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]"
+              className="inline-flex items-center gap-1 rounded-lg border-0 bg-stone-50 px-2 py-1 text-[0.65rem] md:text-sm font-medium text-[#333] w-full justify-center h-9 md:h-11"
             >
-              <ToolIcon name={tag} className="w-5 h-5" />
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div className="flex flex-wrap justify-center gap-4 w-full">
-          {toolsRow2.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]"
-            >
-              <ToolIcon name={tag} className="w-5 h-5" />
+              <ToolIcon name={tag} className="w-4 h-4 md:w-5 md:h-5" />
               {tag}
             </span>
           ))}

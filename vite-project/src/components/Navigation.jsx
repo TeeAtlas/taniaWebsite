@@ -61,7 +61,7 @@ export default function NavigationDark() {
       </div>
 
       {/* Mobile navigation */}
-      <div className="nav-mobile">
+      <div className="nav-mobile text-sm">
         <NavLink
           href="https://github.com/TeeAtlas/"
           text={<FaGithub className="nav-icon" />}
@@ -70,6 +70,11 @@ export default function NavigationDark() {
         <NavLink
           href="https://www.linkedin.com/in/tania-boterman/"
           text={<FaLinkedin className="nav-icon" />}
+          _blank
+        />
+         <NavLink
+          href="https://www.behance.net/taniaboterman"
+          text={<FaBehance className="nav-icon" />}
           _blank
         />
         <button
@@ -91,7 +96,7 @@ export default function NavigationDark() {
 
           {copied && (
             <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-xs font-medium px-2 py-1 rounded shadow animate-fadeInOut">
-              Email copied!
+              Copied!
             </div>
           )}
         </button>
