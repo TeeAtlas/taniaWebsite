@@ -1,6 +1,46 @@
 import React, { useState, useEffect } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
-import { FaGithub } from "react-icons/fa";
+import {
+  FaGithub,
+  FaFigma,
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+} from "react-icons/fa";
+import {
+  SiMongodb,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiGit,
+} from "react-icons/si";
+
+const ToolIcon = ({ name, className = "w-7 h-7" }) => {
+  switch (name.trim()) {
+    case "Figma":
+      return <FaFigma className={className} />;
+    case "React":
+      return <FaReact className={className} />;
+    case "Node.js":
+      return <FaNodeJs className={className} />;
+    case "MongoDB":
+      return <SiMongodb className={className} />;
+    case "Git":
+      return <SiGit className={className} />;
+    case "Adobe Photoshop":
+      return <SiAdobephotoshop className={className} />;
+    case "Adobe Illustrator":
+      return <SiAdobeillustrator className={className} />;
+    default:
+      return <FaDatabase className={className} />; // fallback generic icon
+  }
+};
+
+const ToolBadge = ({ label }) => (
+  <span className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]">
+    <ToolIcon name={label} className="w-5 h-5" />
+    {label}
+  </span>
+);
 
 export default function Seabody() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -106,23 +146,10 @@ export default function Seabody() {
         </p>
 
         {/* Badges aligned with paragraph (no extra indent) */}
-        <div className="mx-auto w-3/4">
-          <div className="mb-6 flex flex-wrap gap-2">
-            {[
-              "WordPress",
-              "PHP",
-              "Vanilla CSS",
-              "JavaScript",
-              "Google Analytics",
-              "SEO best practices",
-              "Responsive design",
-            ].map((tag) => (
-              <span
-                key={tag}
-                className="rounded-lg border-0 bg-stone-50 px-3 py-1 text-xs font-medium text-[#333]"
-              >
-                {tag}
-              </span>
+        <div className="mx-auto w-3/4 mb-6">
+          <div className="flex flex-wrap gap-3">
+            {["Figma", "Adobe Photoshop", "Adobe Illustrator"].map((tag) => (
+              <ToolBadge key={tag} label={tag} />
             ))}
           </div>
         </div>
