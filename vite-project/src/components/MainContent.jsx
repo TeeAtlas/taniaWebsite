@@ -8,18 +8,26 @@ import {
   FaReact,
   FaNodeJs,
   FaDatabase,
+  FaJs,
 } from "react-icons/fa";
 import {
   SiMongodb,
   SiAdobephotoshop,
   SiAdobeillustrator,
   SiGit,
+  SiTailwindcss,
+  SiPostgresql,
+  SiExpress,
+  SiC,
+  SiAdobecreativecloud,
 } from "react-icons/si";
 
 export default function MainContent() {
   return (
     <>
+      {/* <DiagonalBackgroundShapes variant="bw" /> */}
       <DiagonalBackgroundShapes />
+
       <HeroBanner />
       <ToolsAndTech />
       <ProjectsArea />
@@ -29,10 +37,10 @@ export default function MainContent() {
 
 function HeroBanner() {
   return (
-    <section className="relative h-[200px] md:h-[400px] mb-9 flex items-center justify-center">
-      <div className="absolute inset-0 overflow-hidden rounded-lg shadow-lg">
+    <section className="relative h-[160px] md:h-[368px] mb-0 flex items-center justify-center">
+      <div className="absolute inset-0 overflow-hidden rounded-lg">
         <img
-          src="/images/tania_252422.jpg"
+          src="/images/tania-hero-banner.jpg"
           alt="Portrait of Tania"
           className="w-full h-full object-cover transition-transform duration-500 scale-[1.2] md:scale-100 object-[0%_7%] md:object-[0%_8%]"
         />
@@ -49,8 +57,8 @@ function HeroBanner() {
         </h1>
         <p className="text-xs -mt-1 md:text-lg md:mt-0">
           I’m a UI-focused Web Developer and I like making interesting stuff.
-          <br className="hidden sm:block" />I build clean, beautiful work from
-          prototype to production.
+          <br className="hidden sm:block" />
+          I build clean, beautiful work from prototype to production.
         </p>
       </div>
       <div className="absolute right-4 bottom-4 md:bottom-6 md:right-[25px] md:left-auto z-20">
@@ -133,6 +141,18 @@ const ToolIcon = ({ name, className = "w-7 h-7" }) => {
       return <SiAdobephotoshop className={className} />;
     case "Adobe Illustrator":
       return <SiAdobeillustrator className={className} />;
+    case "Tailwind":
+      return <SiTailwindcss className={className} />;
+    case "PostgreSQL":
+      return <SiPostgresql className={className} />;
+    case "Express":
+      return <SiExpress className={className} />;
+    case "JavaScript":
+      return <FaJs className={className} />;
+    case "C":
+      return <SiC className={className} />;
+    case "Adobe":
+      return <SiAdobecreativecloud className={className} />;
     default:
       return <FaDatabase className={className} />; // fallback generic icon
   }
@@ -145,6 +165,8 @@ function ToolsAndTech() {
     "C",
     "Tailwind",
     "Figma",
+    "Adobe Photoshop",
+    "Adobe Illustrator",
     "Adobe",
     "Node.js",
     "Express",
@@ -153,24 +175,56 @@ function ToolsAndTech() {
     "MongoDB",
   ];
 
+  // For mobile/tablet split into two rows as evenly as possible
+  const mid = Math.ceil(tools.length / 2);
+  const row1 = tools.slice(0, mid);
+  const row2 = tools.slice(mid);
+
   return (
-    <section className="mb-9 md:mb-9 rounded-lg bg-[#252422] relative isolate z-0 py-8">
-      <h2 className="text-xl md:text-3xl font-semibold text-white mb-6 px-4 md:ml-[4%] tracking-tight">
-        Tools & Technologies
+    <section className="md:mb-5 md:mt-4 relative isolate z-0 py-3">
+      <h2 className="text-xl md:text-3xl font-semibold text-[#252422] mb-3 md:mb-5 px-4 md:ml-[4%] tracking-tight">
+        Tech Stack
       </h2>
-      <div className="px-8 md:px-5">
-        <div className="grid grid-cols-4 md:grid-cols-6 gap-2 md:gap-4 justify-items-center">
-          {tools.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center gap-1 rounded-lg border-0 bg-stone-50 px-2 py-1 text-[0.65rem] md:text-sm font-medium text-[#333] w-full justify-center h-9 md:h-11"
-            >
-              <ToolIcon name={tag} className="w-4 h-4 md:w-5 md:h-5" />
-              {tag}
-            </span>
-          ))}
+
+      {/* Tablet & Mobile: two rows + slightly smaller icons */}
+      <div className="px-8 md:px-5 flex flex-col gap-3 items-center lg:hidden">
+        {[row1, row2].map((row, i) => (
+          <div key={i} className="flex flex-wrap justify-center gap-4 md:gap-6">
+            {row.map((tag) => (
+              <div key={tag} className="relative group flex items-center">
+                <ToolIcon
+                  name={tag}
+                  className="w-5 h-5 md:w-7 md:h-7 text-[#333] hover:scale-110 transition-transform cursor-pointer"
+                />
+                <span className="absolute left-1/2 -translate-x-1/2 -bottom-7 opacity-0 group-hover:opacity-100 pointer-events-none bg-[#252422] text-stone-50 text-xs rounded px-2 py-1 whitespace-nowrap shadow transition-opacity duration-200 z-10">
+                  {tag}
+                </span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop (unchanged single row, original sizes) */}
+      <div className="hidden lg:block">
+        <div className="px-8 md:px-5">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            {tools.map((tag) => (
+              <div key={tag} className="relative group flex items-center">
+                <ToolIcon
+                  name={tag}
+                  className="w-6 h-6 md:w-8 md:h-8 text-[#333] hover:scale-110 transition-transform cursor-pointer"
+                />
+                <span className="absolute left-1/2 -translate-x-1/2 -bottom-7 opacity-0 group-hover:opacity-100 pointer-events-none bg-[#252422] text-stone-50 text-xs rounded px-2 py-1 whitespace-nowrap shadow transition-opacity duration-200 z-10">
+                  {tag}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+// text dark = bg-[#252422] text light stone-50 #DAD7CD #E3D5CA #F3ECE7 #C4D7E0

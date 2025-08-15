@@ -63,7 +63,7 @@ export default function Seabody() {
   return (
     <CaseStudyLayout
       title="Seabody"
-      subtitle="Clean, image-forward site for sustainable beauty."
+      subtitle="Legacy ecommerce WordPress build."
       backButtonClass="text-[#333]"
       bgClass="bg-[#DAD7CD]"
       textClass="text-[#333]"

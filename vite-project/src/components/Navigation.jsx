@@ -13,26 +13,28 @@ export default function NavigationDark() {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  // Reusable icon sizing: small on mobile, step up on tablet/desktop
+  const iconSizes = "!w-4 !h-4 sm:!w-5 sm:!h-5 md:!w-6 md:!h-6 lg:!w-7 lg:!h-7 shrink-0";
+
   return (
     <nav className="navigation-wrapper text-[#333]">
       {/* Desktop navigation */}
       <div className="nav-desktop">
         <NavLink
           href="https://github.com/TeeAtlas/"
-          text={<FaGithub className="nav-icon" />}
+          text={<FaGithub className={`nav-icon ${iconSizes}`} />}
           _blank
         />
         <NavLink
           href="https://www.linkedin.com/in/tania-boterman/"
-          text={<FaLinkedin className="nav-icon" />}
+          text={<FaLinkedin className={`nav-icon ${iconSizes}`} />}
           _blank
         />
         <NavLink
           href="https://www.behance.net/taniaboterman"
-          text={<FaBehance className="nav-icon" />}
+          text={<FaBehance className={`nav-icon ${iconSizes}`} />}
           _blank
         />
-
         <button
           className="email-button relative"
           onMouseEnter={() => setShowEmail(true)}
@@ -42,7 +44,7 @@ export default function NavigationDark() {
           }}
           onClick={handleCopy}
         >
-          <FaEnvelope className="nav-icon" />
+          <FaEnvelope className={`nav-icon ${iconSizes}`} />
 
           {/* Hover tooltip */}
           {showEmail && !copied && (
@@ -61,20 +63,20 @@ export default function NavigationDark() {
       </div>
 
       {/* Mobile navigation */}
-      <div className="nav-mobile text-sm">
+      <div className="nav-mobile">
         <NavLink
           href="https://github.com/TeeAtlas/"
-          text={<FaGithub className="nav-icon" />}
+          text={<FaGithub className={`nav-icon ${iconSizes}`} />}
           _blank
         />
         <NavLink
           href="https://www.linkedin.com/in/tania-boterman/"
-          text={<FaLinkedin className="nav-icon" />}
+          text={<FaLinkedin className={`nav-icon ${iconSizes}`} />}
           _blank
         />
-         <NavLink
+        <NavLink
           href="https://www.behance.net/taniaboterman"
-          text={<FaBehance className="nav-icon" />}
+          text={<FaBehance className={`nav-icon ${iconSizes}`} />}
           _blank
         />
         <button
@@ -86,10 +88,10 @@ export default function NavigationDark() {
           }}
           onClick={handleCopy}
         >
-          <FaEnvelope className="nav-icon" />
+          <FaEnvelope className={`nav-icon ${iconSizes}`} />
 
           {showEmail && !copied && (
-            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-s px-2 py-1 rounded shadow whitespace-nowrap">
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white text-[#333] text-xs px-2 py-1 rounded shadow whitespace-nowrap">
               {email}
             </div>
           )}
