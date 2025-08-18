@@ -48,7 +48,7 @@ export default function CaseStudyLayout({
   return (
     <main className="relative">
       {/* Background visuals */}
-      <DiagonalBackgroundShapes />
+      <DiagonalBackgroundShapes variant="bw" />
 
       {/* Page container */}
       <div className="w-full flex justify-center px-4">
