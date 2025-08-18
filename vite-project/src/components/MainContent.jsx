@@ -48,10 +48,7 @@ function HeroBanner() {
 
       <div className="absolute inset-0 bg-neutral-900/20 rounded-lg" />
 
-      <div
-        className="absolute z-10 -mt-2 text-white text-left px-4 top-6
-                md:top-[35%] md:left-8 md:translate-x-0 md:-translate-y-1/2"
-      >
+      <div className="absolute z-10 -mt-2 text-[#E3D5CA] text-left px-4 top-6 md:top-[35%] md:left-8 md:translate-x-0 md:-translate-y-1/2">
         <h1 className="text-3xl md:text-7xl font-bold mb-2 tracking-tighter">
           Hello, I'm Tania
         </h1>
@@ -61,14 +58,15 @@ function HeroBanner() {
           I build clean, beautiful work from prototype to production.
         </p>
       </div>
+
+      {/* ⬇️ Pass a lighter color only on the main page */}
       <div className="absolute right-4 bottom-4 md:bottom-6 md:right-[25px] md:left-auto z-20">
-        <Navigation />
+        <Navigation iconColorClass="text-[#E3D5CA]" />
       </div>
     </section>
   );
 }
 
-// MainContent.jsx (replace ProjectsArea with this mapped version)
 function ProjectsArea() {
   const projects = [
     {
@@ -87,7 +85,7 @@ function ProjectsArea() {
       tag: "school project",
       to: "/dishi",
       className:
-        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#E3D5CA]  hover:scale-[1.03] hover:-rotate-[0.8deg]",
+        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#E3D5CA] hover:scale-[1.03] hover:-rotate-[0.8deg]",
     },
     {
       title: "School UI Concept: Seedling",
@@ -96,7 +94,7 @@ function ProjectsArea() {
       tag: "school project",
       to: "/seedling",
       className:
-        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#F3ECE7]  hover:scale-[1.03] hover:-rotate-[0.8deg]",
+        "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#F3ECE7] hover:scale-[1.03] hover:-rotate-[0.8deg]",
     },
     {
       title: "Kindergalactic App (WIP)",
@@ -110,8 +108,8 @@ function ProjectsArea() {
   ];
 
   return (
-    <section id="projects" className="p-6 rounded-lg bg-[#252422]">
-      <h2 className="text-xl md:text-3xl font-semibold text-white mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
+    <section id="projects" className="px-6 pb-6 pt-3 md:p-6 rounded-lg bg-[#313131]">
+      <h2 className="text-xl md:text-3xl font-semibold text-[#E3D5CA] mb-3 md:mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
         Projects
       </h2>
 
@@ -154,7 +152,7 @@ const ToolIcon = ({ name, className = "w-7 h-7" }) => {
     case "Adobe":
       return <SiAdobecreativecloud className={className} />;
     default:
-      return <FaDatabase className={className} />; // fallback generic icon
+      return <FaDatabase className={className} />;
   }
 };
 
@@ -175,18 +173,17 @@ function ToolsAndTech() {
     "MongoDB",
   ];
 
-  // For mobile/tablet split into two rows as evenly as possible
   const mid = Math.ceil(tools.length / 2);
   const row1 = tools.slice(0, mid);
   const row2 = tools.slice(mid);
 
   return (
-    <section className="md:mb-5 md:mt-4 relative isolate z-0 py-3">
-      <h2 className="text-xl md:text-3xl font-semibold text-[#252422] mb-3 md:mb-5 px-4 md:ml-[4%] tracking-tight">
+    <section className="md:mb-7 md:mt-4 relative isolate z-0 py-3">
+      <h2 className="text-xl md:text-3xl font-semibold text-[#252422] mb-5 px-4 md:ml-[4%] tracking-tight">
         Tech Stack
       </h2>
 
-      {/* Tablet & Mobile: two rows + slightly smaller icons */}
+      {/* Tablet & Mobile */}
       <div className="px-8 md:px-5 flex flex-col gap-3 items-center lg:hidden">
         {[row1, row2].map((row, i) => (
           <div key={i} className="flex flex-wrap justify-center gap-4 md:gap-6">
@@ -196,7 +193,7 @@ function ToolsAndTech() {
                   name={tag}
                   className="w-5 h-5 md:w-7 md:h-7 text-[#333] hover:scale-110 transition-transform cursor-pointer"
                 />
-                <span className="absolute left-1/2 -translate-x-1/2 -bottom-7 opacity-0 group-hover:opacity-100 pointer-events-none bg-[#252422] text-stone-50 text-xs rounded px-2 py-1 whitespace-nowrap shadow transition-opacity duration-200 z-10">
+                <span className="absolute left-1/2 -translate-x-1/2 -bottom-7 opacity-0 group-hover:opacity-100 pointer-events-none bg-[#252422] text-[#E3D5CA] text-xs rounded px-2 py-1 whitespace-nowrap shadow transition-opacity duration-200 z-10">
                   {tag}
                 </span>
               </div>
@@ -205,7 +202,7 @@ function ToolsAndTech() {
         ))}
       </div>
 
-      {/* Desktop (unchanged single row, original sizes) */}
+      {/* Desktop */}
       <div className="hidden lg:block">
         <div className="px-8 md:px-5">
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
@@ -215,7 +212,7 @@ function ToolsAndTech() {
                   name={tag}
                   className="w-6 h-6 md:w-8 md:h-8 text-[#333] hover:scale-110 transition-transform cursor-pointer"
                 />
-                <span className="absolute left-1/2 -translate-x-1/2 -bottom-7 opacity-0 group-hover:opacity-100 pointer-events-none bg-[#252422] text-stone-50 text-xs rounded px-2 py-1 whitespace-nowrap shadow transition-opacity duration-200 z-10">
+                <span className="absolute left-1/2 -translate-x-1/2 -bottom-7 opacity-0 group-hover:opacity-100 pointer-events-none bg-[#252422] text-[#E3D5CA] text-xs rounded px-2 py-1 whitespace-nowrap shadow transition-opacity duration-200 z-10">
                   {tag}
                 </span>
               </div>
@@ -226,5 +223,3 @@ function ToolsAndTech() {
     </section>
   );
 }
-
-// text dark = bg-[#252422] text light stone-50 #DAD7CD #E3D5CA #F3ECE7 #C4D7E0

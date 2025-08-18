@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 
 export default function NavLink({ href, text, onClick, _blank }) {
   return (
@@ -8,6 +7,7 @@ export default function NavLink({ href, text, onClick, _blank }) {
       target={_blank ? "_blank" : "_self"}
       rel={_blank ? "noopener noreferrer" : undefined}
       onClick={onClick}
+      className="inline-flex items-center text-[inherit]"
     >
       {text}
     </a>

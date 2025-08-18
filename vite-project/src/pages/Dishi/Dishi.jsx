@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+// src/pages/case-studies/Dishi.jsx
+import React, { useState, useEffect, useRef } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
 import { FaGithub, FaFigma, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
 import { SiMongodb, SiAdobephotoshop, SiAdobeillustrator, SiGit } from "react-icons/si";
 
+/* --- Shared helpers (same pattern as Seedling) --- */
 const ToolIcon = ({ name, className = "w-7 h-7" }) => {
   switch (name.trim()) {
     case "Figma":
@@ -20,7 +22,7 @@ const ToolIcon = ({ name, className = "w-7 h-7" }) => {
     case "Adobe Illustrator":
       return <SiAdobeillustrator className={className} />;
     default:
-      return <FaDatabase className={className} />; // fallback generic icon
+      return <FaDatabase className={className} />; // fallback
   }
 };
 
@@ -33,177 +35,208 @@ const ToolBadge = ({ label }) => (
 
 export default function Dishi() {
   const [modalImage, setModalImage] = useState(null);
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const openModal = (src, alt) => setModalImage({ src, alt });
   const closeModal = () => setModalImage(null);
 
+  /* Lock horizontal scroll & sideways pan on touch (parity with Seedling) */
   useEffect(() => {
-    const handleScroll = () => {
-      const heroBottom = document
-        .getElementById("hero-section")
-        ?.getBoundingClientRect().bottom;
-      setShowBackToTop(heroBottom !== undefined && heroBottom < 0);
+    const prevBodyOverflowX = document.body.style.overflowX;
+    const prevHtmlOverflowX = document.documentElement.style.overflowX;
+    const prevTouchActionBody = document.body.style.touchAction;
+    const prevTouchActionHtml = document.documentElement.style.touchAction;
+
+    document.body.style.overflowX = "hidden";
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.touchAction = "pan-y";
+    document.documentElement.style.touchAction = "pan-y";
+
+    return () => {
+      document.body.style.overflowX = prevBodyOverflowX;
+      document.documentElement.style.overflowX = prevHtmlOverflowX;
+      document.body.style.touchAction = prevTouchActionBody;
+      document.documentElement.style.touchAction = prevTouchActionHtml;
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  /* --- Carousel images (first image defines aspect ratio) --- */
+  const images = [
+    { src: "/images/dishiHomepage.jpg", alt: "DiSHi homepage" }, // first sets AR
+    { src: "/images/dishiReview.jpg", alt: "Dish detail view" },
+    { src: "/images/dishiSignUp.jpg", alt: "Sign-up flow with custom features" },
+  ];
+
+  // Carousel state/handlers
+  const [index, setIndex] = useState(0);
+  const clampIndex = (i) => (i + images.length) % images.length;
+  const prev = () => setIndex((i) => clampIndex(i - 1));
+  const next = () => setIndex((i) => clampIndex(i + 1));
+
+  // Swipe support
+  const touchStartX = useRef(null);
+  const onTouchStart = (e) => (touchStartX.current = e.touches[0].clientX);
+  const onTouchEnd = (e) => {
+    if (touchStartX.current == null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) (dx > 0 ? prev() : next());
+    touchStartX.current = null;
+  };
+
+  // Keep carousel height equal to first image’s natural aspect ratio (no cropping)
+  const trackWrapRef = useRef(null);
+  const [firstAR, setFirstAR] = useState(null); // aspect ratio = width / height
+  const [wrapWidth, setWrapWidth] = useState(null);
+
+  const onFirstLoad = (e) => {
+    const w = e.target.naturalWidth || e.target.width;
+    const h = e.target.naturalHeight || e.target.height;
+    if (w && h) setFirstAR(w / h);
+  };
+
+  useEffect(() => {
+    if (!trackWrapRef.current) return;
+    const ro = new ResizeObserver((entries) => {
+      const cr = entries[0]?.contentRect;
+      if (cr?.width) setWrapWidth(cr.width);
+    });
+    ro.observe(trackWrapRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  const lockedHeight = firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
 
   return (
     <CaseStudyLayout
       title="DiSHi"
-      subtitle="A responsive web app designed and developed from concept to launch."
+      subtitle="A minimal React MVP focused on responsive layouts, CRUD operations, and clean UI."
       backButtonClass="text-[#333]"
-      bgClass="bg-[#E3D5CA]"
+      bgClass=""   // match Seedling: no card background
       textClass="text-[#333]"
     >
-      {/* Sticky scrollable menu — same structure/styling as Seedling */}
-      <nav className="sticky top-0 z-30 mx-auto w-11/12 md:w-5/6 hidden sm:block">
-        <ul className="flex items-center justify-center gap-2 md:gap-3 whitespace-nowrap overflow-x-auto rounded-xl bg-white/60 backdrop-blur px-2 py-2">
-          <li>
-            <a href="#top" className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90">Overview</a>
-          </li>
-          <li>
-            <a href="#gallery" className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90">Gallery</a>
-          </li>
-          <li>
-            <a href="#my-role" className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90">My Role</a>
-          </li>
-          <li>
-            <a href="#what-i-learned" className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90">What I Learned</a>
-          </li>
-          <li>
-            <a href="#tools" className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90">Tools & Tech</a>
-          </li>
-          {showBackToTop && (
-            <li>
-              <a href="#top" className="inline-block rounded-lg px-3 py-2 text-sm font-medium hover:opacity-90">Back to Top</a>
-            </li>
+      {/* IMAGE CAROUSEL (parity with Seedling) */}
+      <section id="hero-section" className="w-11/12 md:w-5/6 mx-auto">
+        <h2
+          id="gallery"
+          className="text-lg font-semibold text-[#333] mb-4 scroll-mt-40 md:scroll-mt-48"
+        >
+          Gallery
+        </h2>
+
+        <div
+          ref={trackWrapRef}
+          className="relative overflow-hidden rounded-lg select-none bg-white"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          style={{
+            height: lockedHeight ?? undefined,
+            aspectRatio: lockedHeight ? "auto" : "16 / 9",
+          }}
+        >
+          {/* Track */}
+          <div
+            className="flex transition-transform duration-500 ease-out h-full"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {images.map((img, i) => (
+              <figure
+                key={img.src}
+                className="min-w-full h-full grid place-items-center bg-white group cursor-pointer"
+                onClick={() => openModal(img.src, img.alt)}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="max-w-full max-h-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.01]"
+                  loading={i === 0 ? "eager" : "lazy"}
+                  fetchpriority={i === 0 ? "high" : "auto"}
+                  onLoad={i === 0 ? onFirstLoad : undefined}
+                />
+                <figcaption className="sr-only">{img.alt}</figcaption>
+              </figure>
+            ))}
+          </div>
+
+          {/* Controls */}
+          {images.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={prev}
+                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white"
+                aria-label="Previous image"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white"
+                aria-label="Next image"
+              >
+                ›
+              </button>
+
+              {/* Dots */}
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setIndex(i)}
+                    className={`h-2 w-2 rounded-full ${i === index ? "bg-white" : "bg-white/50"}`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </>
           )}
-        </ul>
-      </nav>
-
-      {/* Top anchor for Overview */}
-      <div id="top" className="scroll-mt-24" />
-
-      {/* Hero image */}
-      <figure
-        id="hero-section"
-        className="group cursor-pointer w-3/4 mx-auto"
-        onClick={() => openModal("/images/dishiHomepage.jpg", "Dishi homepage")}
-      >
-        <img
-          src="/images/dishiHomepage.jpg"
-          alt="Dishi homepage"
-          className="rounded-lg w-full h-auto transition-transform duration-300 ease-out group-hover:scale-[1.01]"
-        />
-      </figure>
-
-      {/* Divider below hero */}
-      <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
-
-      {/* My Gallery heading — anchor lands just below sticky menu */}
-      <h2
-        id="gallery"
-        className="text-lg font-semibold text-[#333] w-11/12 md:w-5/6 mx-auto mb-4 scroll-mt-40 md:scroll-mt-48"
-      >
-        My Gallery
-      </h2>
-
-      {/* Gallery */}
-      <section className="w-11/12 md:w-5/6 mx-auto mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <figure
-            className="group cursor-pointer"
-            onClick={() => openModal("/images/dishiReview.jpg", "Dish detail view")}
-          >
-            <div className="relative w-full overflow-hidden rounded-lg">
-              <img
-                src="/images/dishiReview.jpg"
-                alt="Detail view A"
-                className="block w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-                loading="lazy"
-              />
-            </div>
-            <figcaption className="mt-2 text-sm leading-relaxed text-[#333]/50">
-              <strong>
-                The dish detail page lets users like & save, keeping key actions prominent for quick, intuitive interaction.
-              </strong>
-            </figcaption>
-          </figure>
-
-          <figure
-            className="group cursor-pointer"
-            onClick={() => openModal("/images/dishiSignUp.jpg", "Sign-up flow with custom features")}
-          >
-            <div className="relative w-full overflow-hidden rounded-lg">
-              <img
-                src="/images/dishiSignUp.jpg"
-                alt="Detail view B"
-                className="block w-full h-auto rounded-lg transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-                loading="lazy"
-              />
-            </div>
-            <figcaption className="mt-2 text-sm leading-relaxed text-[#333]/50">
-              <strong>
-                The sign-up flow includes password creation, error handling, dietary preference selection, and custom avatar upload for a personalized onboarding experience.
-              </strong>
-            </figcaption>
-          </figure>
         </div>
       </section>
 
-      {/* Divider before My Role */}
+      {/* Divider below carousel */}
       <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
-
-      {/* Modal */}
-      {modalImage && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <button
-            onClick={closeModal}
-            className="absolute top-6 right-6 text-white text-3xl font-bold hover:opacity-80"
-            aria-label="Close image"
-          >
-            ×
-          </button>
-          <div className="bg-white p-3 rounded-lg shadow-lg">
-            <img
-              src={modalImage.src}
-              alt={modalImage.alt}
-              className="rounded max-w-full max-h-[90vh]"
-            />
-          </div>
-        </div>
-      )}
 
       {/* My Role */}
       <aside id="my-role" className="scroll-mt-40 md:scroll-mt-48">
-       <h2
-        id="gallery"
-        className="text-lg font-semibold text-[#333] w-11/12 md:w-5/6 mx-auto mb-4 scroll-mt-40 md:scroll-mt-48"
-      >
-        My Role
-      </h2>
-        <p className="leading-relaxed mb-2">
-          DiSHi was a collaborative school project where I took the lead on <strong>front-end development</strong> and <strong>UI design</strong>. I guided the team from initial moodboards and competitive analysis through user flows, wireframes, and high-fidelity prototypes in <strong>Figma</strong>, focusing on a visually cohesive interface that balanced aesthetics with usability.
+        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
+          My Role
         </p>
         <p className="leading-relaxed mb-2">
-          Once designs were approved, I implemented the UI using <strong>React</strong> and semantic CSS, collaborating with the back-end team to integrate <strong>Node.js</strong> and <strong>MongoDB</strong>.
+          DiSHi was a collaborative school project where I led the{" "}
+          <strong>front-end development</strong> and <strong>UI design</strong>.
+          I shaped the visual language from moodboards and competitive analysis
+          through user flows, wireframes, and high-fidelity prototypes in{" "}
+          <strong>Figma</strong>.
+        </p>
+        <p className="leading-relaxed mb-2">
+          I implemented the UI in <strong>React</strong>, collaborated with the
+          back-end team using <strong>Node.js</strong> and <strong>MongoDB</strong>,
+          and handled <strong>CRUD operations</strong>, responsive layouts, and
+          error states to keep the experience smooth.
         </p>
         <p className="leading-relaxed mb-6">
-          I handled <strong>CRUD operations</strong>, built responsive layouts, and implemented <strong>error handling</strong> for a smooth user experience.
+          The focus was delivering a clean, minimal MVP that prioritized
+          usability and addressed key user needs.
         </p>
+      </aside>
 
-        {/* What I Learned */}
-        <p id="what-i-learned" className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#333] scroll-mt-40 md:scroll-mt-48">What I Learned</p>
+      {/* Divider below My Role */}
+      <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
+
+      {/* What I Learned */}
+      <section id="what-i-learned" className="scroll-mt-40 md:scroll-mt-48">
+        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
+          What I Learned
+        </p>
         <p className="leading-relaxed mb-6">
-          This project reinforced the importance of clear component architecture in React, early integration with the back-end team to avoid blockers, and maintaining consistent visual patterns across all views for user trust and ease-of-use.
+          I reinforced a clear component architecture in React, learned to
+          integrate with the back-end early to avoid blockers, and kept visual
+          patterns consistent across views so users build trust quickly.
         </p>
 
         {/* GitHub */}
         <div className="mx-auto w-3/4 mb-7">
           <a
-            href="https://github.com/your-username/Dishi"
+            href="https://github.com/TeeAtlas/DiSHi__"
             target="_blank"
             rel="noreferrer noopener"
             className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium hover:opacity-90"
@@ -212,19 +245,13 @@ export default function Dishi() {
             View on GitHub
           </a>
         </div>
-      </aside>
+      </section>
 
-      {/* Divider below My Role */}
-      <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
-
-      {/* Tools & Technologies (moved to bottom to match Seedling) */}
+      {/* Tools & Technology */}
       <section id="tools" className="scroll-mt-40 md:scroll-mt-48">
-        <h2
-        id="gallery"
-        className="text-lg font-semibold text-[#333] w-11/12 md:w-5/6 mx-auto mb-4 scroll-mt-40 md:scroll-mt-48"
-      >
-        Tools &
-      </h2>
+        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
+          Tools & Technology
+        </p>
         <div className="mx-auto w-3/4 mb-6">
           <div className="flex flex-wrap gap-3">
             {[
@@ -234,13 +261,33 @@ export default function Dishi() {
               "MongoDB",
               "Git",
               "Adobe Photoshop",
-              "Adobe Illustrator"
+              "Adobe Illustrator",
             ].map((tag) => (
               <ToolBadge key={tag} label={tag} />
             ))}
           </div>
         </div>
       </section>
+
+      {/* Image modal — tap anywhere to close */}
+      {modalImage && (
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={modalImage.src}
+              alt={modalImage.alt}
+              className="rounded max-w-full max-h-[85vh] cursor-pointer object-contain"
+              onClick={closeModal}
+            />
+          </div>
+        </div>
+      )}
     </CaseStudyLayout>
   );
 }
