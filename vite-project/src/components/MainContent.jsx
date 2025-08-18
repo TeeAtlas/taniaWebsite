@@ -48,7 +48,7 @@ function HeroBanner() {
 
       <div className="absolute inset-0 bg-neutral-900/20 rounded-lg" />
 
-      <div className="absolute z-10 -mt-2 text-[#E3D5CA] text-left px-4 top-6 md:top-[35%] md:left-8 md:translate-x-0 md:-translate-y-1/2">
+      <div className="absolute z-10 -mt-2 text-amber-50 text-left px-4 top-6 md:top-[35%] md:left-8 md:translate-x-0 md:-translate-y-1/2">
         <h1 className="text-3xl md:text-7xl font-bold mb-2 tracking-tighter">
           Hello, I'm Tania
         </h1>
@@ -61,7 +61,7 @@ function HeroBanner() {
 
       {/* ⬇️ Pass a lighter color only on the main page */}
       <div className="absolute right-4 bottom-4 md:bottom-6 md:right-[25px] md:left-auto z-20">
-        <Navigation iconColorClass="text-[#E3D5CA]" />
+        <Navigation iconColorClass="text-amber-50" />
       </div>
     </section>
   );
@@ -109,7 +109,7 @@ function ProjectsArea() {
 
   return (
     <section id="projects" className="px-6 pb-6 pt-3 md:p-6 rounded-lg bg-[#313131]">
-      <h2 className="text-xl md:text-3xl font-semibold text-[#E3D5CA] mb-3 md:mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
+      <h2 className="text-xl md:text-3xl font-semibold text-amber-50 mb-3 md:mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
         Projects
       </h2>
 
@@ -179,9 +179,10 @@ function ToolsAndTech() {
 
   return (
     <section className="md:mb-7 md:mt-4 relative isolate z-0 py-3">
-      <h2 className="text-xl md:text-3xl font-semibold text-[#252422] mb-5 px-4 md:ml-[4%] tracking-tight">
-        Tech Stack
-      </h2>
+      <h2 className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 px-4 ml-[-4%] md:ml-[4%] tracking-tight">
+  Tech Stack
+</h2>
+
 
       {/* Tablet & Mobile */}
       <div className="px-8 md:px-5 flex flex-col gap-3 items-center lg:hidden">
