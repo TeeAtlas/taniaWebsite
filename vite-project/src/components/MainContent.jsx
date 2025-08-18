@@ -54,7 +54,7 @@ function HeroBanner() {
         </h1>
         <p className="text-xs -mt-1 md:text-lg md:mt-0">
           I’m a UI-focused Web Developer and I like making interesting stuff.
-          <br className="hidden sm:block" />I build clean, beautiful work from
+          <br />I build clean, beautiful work from
           prototype to production.
         </p>
       </div>
