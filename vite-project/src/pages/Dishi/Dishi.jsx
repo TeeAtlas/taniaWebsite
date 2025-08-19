@@ -39,10 +39,25 @@ const ToolBadge = ({ label }) => (
    Component
 ========================= */
 export default function Dishi() {
-  // Modal
-  const [modalImage, setModalImage] = useState(null);
-  const openModal = (src, alt) => setModalImage({ src, alt });
-  const closeModal = () => setModalImage(null);
+  // Modal — index-based so we can swipe between images
+  const [modalIndex, setModalIndex] = useState(null);
+  const hasModal = modalIndex !== null;
+  const openModalAt = (i) => setModalIndex(i);
+  const closeModal = () => setModalIndex(null);
+  const prevModal = () => setModalIndex((i) => (i + images.length - 1) % images.length);
+  const nextModal = () => setModalIndex((i) => (i + 1) % images.length);
+
+  // Keyboard support while modal is open
+  useEffect(() => {
+    if (!hasModal) return;
+    const onKey = (e) => {
+      if (e.key === "ArrowLeft") prevModal();
+      else if (e.key === "ArrowRight") nextModal();
+      else if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [hasModal]);
 
   // Lock horizontal scroll & sideways pan on touch (parity with Seedling)
   useEffect(() => {
@@ -78,7 +93,7 @@ export default function Dishi() {
   const prev = () => setIndex((i) => clampIndex(i - 1));
   const next = () => setIndex((i) => clampIndex(i + 1));
 
-  // Swipe support
+  // Swipe support (carousel)
   const touchStartX = useRef(null);
   const onTouchStart = (e) => (touchStartX.current = e.touches[0].clientX);
   const onTouchEnd = (e) => {
@@ -86,6 +101,19 @@ export default function Dishi() {
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     if (Math.abs(dx) > 40) (dx > 0 ? prev() : next());
     touchStartX.current = null;
+  };
+
+  // Swipe support (modal)
+  const modalStartX = useRef(null);
+  const onModalTouchStart = (e) => (modalStartX.current = e.touches[0].clientX);
+  const onModalTouchEnd = (e) => {
+    if (modalStartX.current == null) return;
+    const dx = e.changedTouches[0].clientX - modalStartX.current;
+    modalStartX.current = null;
+    if (Math.abs(dx) > 40) {
+      if (dx > 0) prevModal();
+      else nextModal();
+    }
   };
 
   // Keep carousel height equal to first image’s natural aspect ratio (no cropping)
@@ -116,22 +144,20 @@ export default function Dishi() {
       title="DiSHi"
       subtitle="React MVP with user-focused, responsive layouts and CRUD operations."
       backButtonClass="text-[#333]"
-      bgClass=""   // match Seedling: no card background
+      bgClass="" // match Seedling: no card background
       textClass="text-[#333]"
     >
       {/* Content wrapper to match MainContent gutters */}
       <div className="px-4 md:px-8">
         {/* IMAGE CAROUSEL (parity with Seedling) */}
         <section id="hero-section" aria-labelledby="gallery-heading" className="mb-6 md:mb-8">
-          <h2
-            id="gallery-heading"
-            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
-          >
+          <h2 id="gallery-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
             Gallery
           </h2>
 
           <div
             ref={trackWrapRef}
+            data-edge-swipe-exempt="true"
             className="relative overflow-hidden rounded-lg select-none bg-white"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
@@ -143,7 +169,7 @@ export default function Dishi() {
                 <figure
                   key={img.src}
                   className="min-w-full h-full grid place-items-center bg-white group cursor-pointer"
-                  onClick={() => openModal(img.src, img.alt)}
+                  onClick={() => openModalAt(i)}
                 >
                   <img
                     src={img.src}
@@ -203,8 +229,7 @@ export default function Dishi() {
             My Role
           </h2>
           <p className="leading-relaxed mb-2">
-            DiSHi was a collaborative school project where I led the <strong>front-end development</strong> and <strong>UI design</strong>.
-            I shaped the visual language from moodboards and competitive analysis through user flows, wireframes, and high-fidelity prototypes in <strong>Figma</strong>.
+            DiSHi was a collaborative school project where I led the <strong>front-end development</strong> and <strong>UI design</strong>. I shaped the visual language from moodboards and competitive analysis through user flows, wireframes, and high-fidelity prototypes in <strong>Figma</strong>.
           </p>
           <p className="leading-relaxed mb-2">
             I implemented the UI in <strong>React</strong>, collaborated with the back-end team using <strong>Node.js</strong> and <strong>MongoDB</strong>, and handled <strong>CRUD operations</strong>, responsive layouts, and error states to keep the experience smooth.
@@ -246,31 +271,53 @@ export default function Dishi() {
             Tools & Technology
           </h2>
           <div className="flex flex-wrap gap-3">
-            {[
-              "Figma",
-              "React",
-              "Node.js",
-              "MongoDB",
-              "Git",
-              "Adobe Photoshop",
-              "Adobe Illustrator",
-            ].map((tag) => (
+            {["Figma", "React", "Node.js", "MongoDB", "Git", "Adobe Photoshop", "Adobe Illustrator"].map((tag) => (
               <ToolBadge key={tag} label={tag} />
             ))}
           </div>
         </section>
       </div>
 
-      {/* Image modal — tap anywhere to close */}
-      {modalImage && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={closeModal}>
-          <div className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+      {/* Image modal — swipe + arrows */}
+      {hasModal && (
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+          data-edge-swipe-exempt="true"
+          onClick={closeModal}
+          onTouchStart={onModalTouchStart}
+          onTouchEnd={onModalTouchEnd}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image viewer"
+        >
+          <div className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
             <img
-              src={modalImage.src}
-              alt={modalImage.alt}
-              className="rounded max-w-full max-h-[85vh] cursor-pointer object-contain"
-              onClick={closeModal}
+              src={images[modalIndex].src}
+              alt={images[modalIndex].alt}
+              className="rounded max-w-full max-h-[85vh] object-contain select-none"
+              draggable="false"
             />
+
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={prevModal}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-sm shadow hover:bg-white"
+                  aria-label="Previous image"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  onClick={nextModal}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-sm shadow hover:bg-white"
+                  aria-label="Next image"
+                >
+                  ›
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -6,18 +6,18 @@ export default function Kindergalactic() {
     <CaseStudyLayout
       title="Kindergalactic"
       subtitle="Playful, cosmic-inspired kids’ clothing brand."
-      backButtonClass="text-[#333]"
-      bgClass="bg-[#F3ECE7]"
+      backButtonClass="text-[#333] transition-transform duration-200 hover:scale-105"
+      bgClass=""
       textClass="text-[#333]"
     >
-      <p className="text-center text-lg mt-6">
+      <p className="mx-auto max-w-prose text-center text-lg mt-8 leading-relaxed">
         Watch this space - exciting things are coming soon!
       </p>
 
-      <p className="text-center mt-4">
+      <p className="mx-auto max-w-prose text-center mt-6">
         <button
           onClick={() => window.open("https://kindergalactic.com", "_blank")}
-          className="underline text-[#333] hover:opacity-80"
+          className="underline underline-offset-4 text-[#333] hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#333] rounded-sm transition"
         >
           kindergalactic.com
         </button>
