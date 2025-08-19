@@ -1,20 +1,12 @@
 // src/pages/case-studies/Seedling.jsx
 import React, { useState, useEffect, useRef } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
-import {
-  FaGithub,
-  FaFigma,
-  FaReact,
-  FaNodeJs,
-  FaDatabase,
-} from "react-icons/fa";
-import {
-  SiMongodb,
-  SiAdobephotoshop,
-  SiAdobeillustrator,
-  SiGit,
-} from "react-icons/si";
+import { FaGithub, FaFigma, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
+import { SiMongodb, SiAdobephotoshop, SiAdobeillustrator, SiGit } from "react-icons/si";
 
+/* =========================
+   Icons & Badges (Reusable)
+========================= */
 const ToolIcon = ({ name, className = "w-7 h-7" }) => {
   switch (name.trim()) {
     case "Figma":
@@ -37,20 +29,33 @@ const ToolIcon = ({ name, className = "w-7 h-7" }) => {
 };
 
 const ToolBadge = ({ label }) => (
-  <span className="inline-flex items-center gap-2 rounded-lg border-0 bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]">
+  <span className="inline-flex items-center gap-2 rounded-lg bg-stone-50 px-3 py-2 text-sm font-medium text-[#333]">
     <ToolIcon name={label} className="w-5 h-5" />
     {label}
   </span>
 );
 
+/* =========================
+   Component
+========================= */
 export default function Seedling() {
+  // Modal
   const [modalImage, setModalImage] = useState(null);
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
   const openModal = (src, alt) => setModalImage({ src, alt });
   const closeModal = () => setModalImage(null);
 
-  // Lock horizontal scroll & sideways pan on touch
+  // Back-to-top visibility on scroll (kept for parity if used elsewhere)
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroBottom = document.getElementById("hero-section")?.getBoundingClientRect().bottom;
+      setShowBackToTop(heroBottom !== undefined && heroBottom < 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Lock horizontal scroll & sideways pan on touch (match MainContent behavior expectations)
   useEffect(() => {
     const prevBodyOverflowX = document.body.style.overflowX;
     const prevHtmlOverflowX = document.documentElement.style.overflowX;
@@ -70,24 +75,13 @@ export default function Seedling() {
     };
   }, []);
 
-  // Back-to-top visibility on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroBottom = document
-        .getElementById("hero-section")
-        ?.getBoundingClientRect().bottom;
-      setShowBackToTop(heroBottom !== undefined && heroBottom < 0);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Carousel images (hero + gallery combined)
+  // Carousel images
   const images = [
     { src: "/images/seedlingIntro.jpg", alt: "Seedling homepage" }, // first defines aspect ratio
-    { src: "/images/seedlingUserFlow.jpg", alt: "Seedling user flow" },
-    { src: "/images/seedlingStyleGuide.jpg", alt: "Seedling style guide" },
-    { src: "/images/seedlingFlow3.jpg", alt: "Seedling onboarding flow" },
+    { src: "/images/seedling-low-fi.jpg", alt: "Seedling low fi frames" },
+    { src: "/images/seedling-user-flow.jpg", alt: "Seedling user flow" },
+    { src: "/images/seedling-style-guide.jpg", alt: "Seedling style guide" },
+    { src: "/images/seedling-final-flow-1.jpg", alt: "Seedling final flow 1" },
   ];
 
   // Carousel state/handlers
@@ -127,184 +121,160 @@ export default function Seedling() {
     return () => ro.disconnect();
   }, []);
 
-  const lockedHeight =
-    firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
+  const lockedHeight = firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
 
   return (
     <CaseStudyLayout
       title="Seedling"
       subtitle="The fun and engaging way for parents to teach kids about money."
       backButtonClass="text-[#333]"
-      bgClass="" // remove background/card
+      bgClass=""
       textClass="text-[#333]"
     >
-      {/* IMAGE CAROUSEL with fixed height from first image ratio (no cropping) */}
-      <section id="hero-section" className="w-11/12 md:w-5/6 mx-auto">
-        <h2
-          id="gallery"
-          className="text-lg font-semibold text-[#333] mb-4 scroll-mt-40 md:scroll-mt-48"
-        >
-          Gallery
-        </h2>
+      {/* Content wrapper to match MainContent gutters */}
+      <div className="px-4 md:px-8">
+        {/* Hero / Gallery */}
+        <section id="hero-section" aria-labelledby="gallery-heading" className="mb-6 md:mb-8">
+          <h2
+            id="gallery-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
+            Gallery
+          </h2>
 
-        <div
-          ref={trackWrapRef}
-          className="relative overflow-hidden rounded-lg select-none bg-white"
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          style={{
-            height: lockedHeight ?? undefined,
-            aspectRatio: lockedHeight ? "auto" : "16 / 9",
-          }}
-        >
-          {/* Track */}
           <div
-            className="flex transition-transform duration-500 ease-out h-full"
-            style={{ transform: `translateX(-${index * 100}%)` }}
+            ref={trackWrapRef}
+            className="relative overflow-hidden rounded-lg select-none bg-white"
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            style={{ height: lockedHeight ?? undefined, aspectRatio: lockedHeight ? "auto" : "16 / 9" }}
           >
-            {images.map((img, i) => (
-              <figure
-                key={img.src}
-                className="min-w-full h-full grid place-items-center bg-white group cursor-pointer"
-                onClick={() => openModal(img.src, img.alt)}
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="max-w-full max-h-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.01]"
-                  loading={i === 0 ? "eager" : "lazy"}
-                  fetchpriority={i === 0 ? "high" : "auto"}
-                  onLoad={i === 0 ? onFirstLoad : undefined}
-                />
-                <figcaption className="sr-only">{img.alt}</figcaption>
-              </figure>
-            ))}
-          </div>
-
-          {/* Controls */}
-          {images.length > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={prev}
-                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white"
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white"
-                aria-label="Next image"
-              >
-                ›
-              </button>
-
-              {/* Dots */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-                {images.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setIndex(i)}
-                    className={`h-2 w-2 rounded-full ${
-                      i === index ? "bg-white" : "bg-white/50"
-                    }`}
-                    aria-label={`Go to slide ${i + 1}`}
+            {/* Track */}
+            <div className="flex transition-transform duration-500 ease-out h-full" style={{ transform: `translateX(-${index * 100}%)` }}>
+              {images.map((img, i) => (
+                <figure
+                  key={img.src}
+                  className="min-w-full h-full grid place-items-center bg-white group cursor-pointer"
+                  onClick={() => openModal(img.src, img.alt)}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="max-w-full max-h-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.01]"
+                    loading={i === 0 ? "eager" : "lazy"}
+                    fetchpriority={i === 0 ? "high" : "auto"}
+                    onLoad={i === 0 ? onFirstLoad : undefined}
                   />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
+                  <figcaption className="sr-only">{img.alt}</figcaption>
+                </figure>
+              ))}
+            </div>
 
-      {/* Divider below carousel */}
-      <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
+            {/* Controls */}
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={prev}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white"
+                  aria-label="Previous image"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  onClick={next}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white"
+                  aria-label="Next image"
+                >
+                  ›
+                </button>
 
-      {/* My Role */}
-      <aside id="my-role" className="scroll-mt-40 md:scroll-mt-48">
-        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
-          My Role
-        </p>
-        <p className="leading-relaxed mb-2">
-          Seedling is a complete concept app I designed end-to-end.
-        </p>
-        <p className="leading-relaxed mb-2">
-          I led user research, competitive analysis, and persona development,
-          then created wireframes, high-fidelity UI, and interactive prototypes
-          in <strong>Figma</strong>.
-        </p>
-        <p className="leading-relaxed mb-2">
-          All branding and visual assets were produced in{" "}
-          <strong>Adobe Creative Suite</strong>, ensuring a cohesive,
-          cross-device design system.
-        </p>
-        <p className="leading-relaxed mb-2">
-          The development includes responsive layouts, navigation, and
-          interactions, applying information architecture and UX best practices
-          to make the product intuitive and visually engaging.
-        </p>
-        <p className="leading-relaxed mb-6">
-          This project demonstrates my ability to own the full UI/UX process —
-          from research to a polished product design.
-        </p>
-      </aside>
+                {/* Dots */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+                  {images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setIndex(i)}
+                      className={`h-2 w-2 rounded-full ${i === index ? "bg-white" : "bg-white/50"}`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </section>
 
-      {/* Divider below My Role */}
-      <div className="w-11/12 md:w-5/6 mx-auto h-[2px] bg-[#333]/30 my-6" />
+        {/* Divider */}
+        <div className="h-[2px] bg-[#333]/30 my-6" />
 
-      {/* What I Learned */}
-      <section id="what-i-learned" className="scroll-mt-40 md:scroll-mt-48">
-        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
-          What I Learned
-        </p>
-        <p className="leading-relaxed mb-6">
-          This project reinforced the importance of designing with both the
-          child and parent user in mind, ensuring intuitive flows while
-          maintaining engagement. I also learned to prioritize{" "}
-          <strong> MVP essentials</strong> to deliver a functional, testable
-          product quickly without unnecessary complexity.
-        </p>
+        {/* My Role */}
+        <section id="my-role" aria-labelledby="my-role-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
+          <h2 id="my-role-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+            My Role
+          </h2>
+          <p className="leading-relaxed mb-2">Seedling is a complete concept app I designed end-to-end.</p>
+          <p className="leading-relaxed mb-2">
+            I led user research, competitive analysis, and persona development, then created wireframes, high-fidelity UI, and
+            interactive prototypes in <strong>Figma</strong>.
+          </p>
+          <p className="leading-relaxed mb-2">
+            All branding and visual assets were produced in <strong>Adobe Creative Suite</strong>, ensuring a cohesive, cross-device
+            design system.
+          </p>
+          <p className="leading-relaxed mb-2">
+            The development includes responsive layouts, navigation, and interactions, applying information architecture and UX best
+            practices to make the product intuitive and visually engaging.
+          </p>
+          <p className="leading-relaxed">This project demonstrates my ability to own the full UI/UX process — from research to a polished product design.</p>
+        </section>
 
-        {/* GitHub */}
-        <div className="mx-auto w-3/4 mb-7">
-          <a
-            href="https://github.com/TeeAtlas/DiSHi__"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 rounded-xl border-0 bg-stone-50 px-4 py-2 text-sm font-medium hover:opacity-90"
-          >
-            <FaGithub className="h-5 w-5" />
-            View on GitHub
-          </a>
-        </div>
-      </section>
+        {/* Divider */}
+        <div className="h-[2px] bg-[#333]/30 my-6" />
 
-      {/* Tools & Technologies */}
-      <section id="tools" className="scroll-mt-40 md:scroll-mt-48">
-        <p className="mb-2 text sm font-semibold uppercase tracking-wide text-[#333]">
-          Tools & Technology
-        </p>
-        <div className="mx-auto w-3/4 mb-6">
+        {/* What I Learned */}
+        <section id="what-i-learned" aria-labelledby="what-i-learned-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
+          <h2 id="what-i-learned-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+            What I Learned
+          </h2>
+          <p className="leading-relaxed mb-6">
+            This project reinforced the importance of designing with both the child and parent user in mind, ensuring intuitive flows
+            while maintaining engagement. I also learned to prioritize <strong>MVP essentials</strong> to deliver a functional, testable
+            product quickly without unnecessary complexity.
+          </p>
+
+          {/* GitHub */}
+          <div className="mb-7">
+            <a
+              href="https://github.com/TeeAtlas/DiSHi__"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-2 rounded-xl bg-stone-50 px-4 py-2 text-sm font-medium hover:opacity-90"
+            >
+              <FaGithub className="h-5 w-5" />
+              View on GitHub
+            </a>
+          </div>
+        </section>
+
+        {/* Tools & Technology */}
+        <section id="tools" aria-labelledby="tools-heading" className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48">
+          <h2 id="tools-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+            Tools & Technology
+          </h2>
           <div className="flex flex-wrap gap-3">
             {"Figma,Adobe Photoshop,Adobe Illustrator".split(",").map((tag) => (
               <ToolBadge key={tag} label={tag} />
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Image modal — tap anywhere to close (no X needed) */}
       {modalImage && (
-        <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={closeModal}>
+          <div className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
             <img
               src={modalImage.src}
               alt={modalImage.alt}

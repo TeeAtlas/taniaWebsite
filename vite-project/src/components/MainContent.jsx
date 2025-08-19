@@ -151,7 +151,7 @@ function HeroBanner() {
         <p className="text-xs -mt-1 md:text-lg md:mt-0">
           I’m a UI-focused Web Developer.
           <br />
-          I build clean, beautiful work from prototype to production.
+          This is my portfolio.
         </p>
       </div>
 
