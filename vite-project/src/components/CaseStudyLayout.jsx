@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import BackButton from "./BackButton";
+import SwipeBack from "../hooks/SwipeBack";
 import DiagonalBackgroundShapes from "./DiagonalBGShapes";
 import { FaGithub, FaLinkedin, FaEnvelope, FaBehance } from "react-icons/fa";
 
@@ -33,6 +34,9 @@ export default function CaseStudyLayout({
   } transition-transform duration-200 hover:scale-150`;
   const iconBase = `w-5 h-5 ${textClass} hover:opacity-80 transition-opacity`;
   const contentWidth = "w-11/12 md:w-5/6";
+
+  SwipeBack({ edge: 24, threshold: 80, fallback: "/" });
+
 
   const handleEmailClick = (e) => {
     e.preventDefault();
