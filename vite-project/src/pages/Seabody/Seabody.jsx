@@ -58,7 +58,8 @@ export default function Seabody() {
 
   // Carousel images
   const images = [
-    { src: "/images/s_bodyHomepage_1.jpg", alt: "Seabody homepage" },
+    { src: "/images/sea-home-header.jpg", alt: "Seabody desktop homepage" },
+    { src: "/images/sea-mobile-header.jpg", alt: "Seabody desktop homepage" },
   ];
 
   // Carousel state/handlers
@@ -73,7 +74,7 @@ export default function Seabody() {
   const onTouchEnd = (e) => {
     if (touchStartX.current == null) return;
     const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(dx) > 40) (dx > 0 ? prev() : next());
+    if (Math.abs(dx) > 40) dx > 0 ? prev() : next();
     touchStartX.current = null;
   };
 
@@ -98,7 +99,8 @@ export default function Seabody() {
     return () => ro.disconnect();
   }, []);
 
-  const lockedHeight = firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
+  const lockedHeight =
+    firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
 
   return (
     <CaseStudyLayout
@@ -111,7 +113,11 @@ export default function Seabody() {
       {/* Content wrapper to match MainContent gutters */}
       <div className="px-4 md:px-8">
         {/* Gallery */}
-        <section id="hero-section" aria-labelledby="gallery-heading" className="mb-6 md:mb-8">
+        <section
+          id="hero-section"
+          aria-labelledby="gallery-heading"
+          className="mb-6 md:mb-8"
+        >
           <h2
             id="gallery-heading"
             className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
@@ -124,10 +130,16 @@ export default function Seabody() {
             className="relative overflow-hidden rounded-lg select-none bg-white"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            style={{ height: lockedHeight ?? undefined, aspectRatio: lockedHeight ? "auto" : "16 / 9" }}
+            style={{
+              height: lockedHeight ?? undefined,
+              aspectRatio: lockedHeight ? "auto" : "16 / 9",
+            }}
           >
             {/* Track */}
-            <div className="flex transition-transform duration-500 ease-out h-full" style={{ transform: `translateX(-${index * 100}%)` }}>
+            <div
+              className="flex transition-transform duration-500 ease-out h-full"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
               {images.map((img, i) => (
                 <figure
                   key={img.src}
@@ -172,7 +184,9 @@ export default function Seabody() {
                     <button
                       key={i}
                       onClick={() => setIndex(i)}
-                      className={`h-2 w-2 rounded-full ${i === index ? "bg-white" : "bg-white/50"}`}
+                      className={`h-2 w-2 rounded-full ${
+                        i === index ? "bg-white" : "bg-white/50"
+                      }`}
                       aria-label={`Go to slide ${i + 1}`}
                     />
                   ))}
@@ -186,12 +200,23 @@ export default function Seabody() {
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* My Role */}
-        <section id="my-role" aria-labelledby="my-role-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="my-role-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="my-role"
+          aria-labelledby="my-role-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="my-role-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             My Role
           </h2>
           <p className="leading-relaxed">
-            On this legacy WordPress build I streamlined navigation and routing, consolidated CSS, improved responsive layouts, and cleaned up menus to reduce friction. I also addressed SEO issues (duplicate tags, analytics debugging) and added targeted JavaScript to improve performance and search visibility.
+            On this legacy WordPress build I streamlined navigation and routing,
+            consolidated CSS, improved responsive layouts, and cleaned up menus
+            to reduce friction. I also addressed SEO issues (duplicate tags,
+            analytics debugging) and added targeted JavaScript to improve
+            performance and search visibility.
           </p>
         </section>
 
@@ -199,12 +224,23 @@ export default function Seabody() {
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* What I Learned */}
-        <section id="what-i-learned" aria-labelledby="what-i-learned-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="what-i-learned-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="what-i-learned"
+          aria-labelledby="what-i-learned-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="what-i-learned-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             What I Learned
           </h2>
           <p className="leading-relaxed mb-6">
-            Working within a legacy stack sharpened my attention to regression risks and the value of incremental, testable changes. I leaned on consistent visual patterns, careful refactors, and analytics checks to ship improvements safely without disrupting existing traffic or SEO.
+            Working within a legacy stack sharpened my attention to regression
+            risks and the value of incremental, testable changes. I leaned on
+            consistent visual patterns, careful refactors, and analytics checks
+            to ship improvements safely without disrupting existing traffic or
+            SEO.
           </p>
 
           <div className="mb-7">
@@ -220,8 +256,15 @@ export default function Seabody() {
         </section>
 
         {/* Tools & Technology */}
-        <section id="tools" aria-labelledby="tools-heading" className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="tools-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="tools"
+          aria-labelledby="tools-heading"
+          className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="tools-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             Tools & Technology
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -234,8 +277,14 @@ export default function Seabody() {
 
       {/* Image modal */}
       {modalImage && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={closeModal}>
-          <div className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={modalImage.src}
               alt={modalImage.alt}
