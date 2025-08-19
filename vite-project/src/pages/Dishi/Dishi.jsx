@@ -66,9 +66,9 @@ export default function Dishi() {
 
   /* --- Carousel images (first image defines aspect ratio) --- */
   const images = [
-    { src: "/images/dishiHomepage.jpg", alt: "DiSHi homepage" }, // first sets AR
-    { src: "/images/dishiReview.jpg", alt: "Dish detail view" },
-    { src: "/images/dishiSignUp.jpg", alt: "Sign-up flow with custom features" },
+    { src: "/images/dishi-homepage.jpg", alt: "DiSHi homepage" }, // first sets AR
+    { src: "/images/dishi-review.jpg", alt: "Dish detail view" },
+    { src: "/images/dishi-sign-up.jpg", alt: "Sign-up flow with custom features" },
   ];
 
   // Carousel state/handlers
