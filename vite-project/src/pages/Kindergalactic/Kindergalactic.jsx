@@ -7,7 +7,7 @@ export default function Kindergalactic() {
       title="Kindergalactic"
       subtitle="Playful, cosmic-inspired kids’ clothing brand."
       backButtonClass="text-[#333] transition-transform duration-200 hover:scale-105"
-      bgClass=""
+      bgClass="transparent"
       textClass="text-[#333]"
     >
       <p className="mx-auto max-w-prose text-center text-lg mt-8 leading-relaxed">
