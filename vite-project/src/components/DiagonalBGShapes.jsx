@@ -2,10 +2,8 @@
 import React from "react";
 
 export default function DiagonalBackgroundShapes({ variant = "color" }) {
-  const s1 =
-    variant === "bw" ? "bg-neutral-900" : "bg-[#fce4ec]";
-  const s2 =
-    variant === "bw" ? "bg-neutral-700" : "bg-[#ffe29a]";
+  const s1 = variant === "bw" ? "bg-neutral-900" : "bg-[#E0C4C1]";
+  const s2 = variant === "bw" ? "bg-neutral-700" : "bg-[#C8DAD3]";
 
   if (variant === "softTopDarkBottom") {
     // keep same polygon shapes, just swap in your grey + dark colors
