@@ -81,7 +81,8 @@ export default function Seedling() {
     { src: "/images/seedling-low-fi.jpg", alt: "Seedling low fi frames" },
     { src: "/images/seedling-user-flow.jpg", alt: "Seedling user flow" },
     { src: "/images/seedling-style-guide.jpg", alt: "Seedling style guide" },
-    { src: "/images/seedling-final-flow-1.jpg", alt: "Seedling final flow 1" },
+    { src: "/images/seedling-onboarding-flow-1.jpg", alt: "Seedling onboarding flow 1" },
+    { src: "/images/seedling-onboarding-flow-2.jpg", alt: "Seedling onboarding flow 2" },
   ];
 
   // Carousel state/handlers
