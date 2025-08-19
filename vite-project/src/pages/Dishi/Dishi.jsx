@@ -69,6 +69,7 @@ export default function Dishi() {
     { src: "/images/dishi-homepage.jpg", alt: "DiSHi homepage" }, // first sets AR
     { src: "/images/dishi-review.jpg", alt: "Dish detail view" },
     { src: "/images/dishi-sign-up.jpg", alt: "Sign-up flow with custom features" },
+    { src: "/images/dishi-trello.jpg", alt: "Trello workflow" },
   ];
 
   // Carousel state/handlers
@@ -113,7 +114,7 @@ export default function Dishi() {
   return (
     <CaseStudyLayout
       title="DiSHi"
-      subtitle="A minimal React MVP focused on responsive layouts, CRUD operations, and clean UI."
+      subtitle="React MVP with user-focused, responsive layouts and CRUD operations."
       backButtonClass="text-[#333]"
       bgClass=""   // match Seedling: no card background
       textClass="text-[#333]"
