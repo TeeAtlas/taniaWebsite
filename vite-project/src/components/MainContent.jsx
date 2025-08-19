@@ -44,10 +44,19 @@ const PROJECTS = [
     description:
       "Clean, structured app with thoughtful typography and consistent visual styles to help parents teach kids about money.",
     tag: "school project",
-    to: "/seedling",
+    to: "/seedling-old",
     className:
       "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#F3ECE7] hover:scale-[1.03] hover:-rotate-[0.8deg]",
   },
+  // {
+  //   title: "School UI Concept: Seedling",
+  //   description:
+  //     "Clean, structured app with thoughtful typography and consistent visual styles to help parents teach kids about money.",
+  //   tag: "school project",
+  //   to: "/seedling",
+  //   className:
+  //     "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#F3ECE7] hover:scale-[1.03] hover:-rotate-[0.8deg]",
+  // },
   {
     title: "Kindergalactic App (WIP)",
     description:
