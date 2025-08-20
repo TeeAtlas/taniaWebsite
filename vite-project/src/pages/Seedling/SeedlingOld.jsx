@@ -1,8 +1,19 @@
 // src/pages/case-studies/Seedling.jsx
 import React, { useState, useEffect, useRef } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
-import { FaGithub, FaFigma, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
-import { SiMongodb, SiAdobephotoshop, SiAdobeillustrator, SiGit } from "react-icons/si";
+import {
+  FaGithub,
+  FaFigma,
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+} from "react-icons/fa";
+import {
+  SiMongodb,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiGit,
+} from "react-icons/si";
 
 /* =========================
    Icons & Badges (Reusable)
@@ -44,14 +55,17 @@ export default function Seedling() {
   const hasModal = modalIndex !== null;
   const openModalAt = (i) => setModalIndex(i);
   const closeModal = () => setModalIndex(null);
-  const prevModal = () => setModalIndex((i) => (i + images.length - 1) % images.length);
+  const prevModal = () =>
+    setModalIndex((i) => (i + images.length - 1) % images.length);
   const nextModal = () => setModalIndex((i) => (i + 1) % images.length);
 
   // Back-to-top visibility on scroll (kept for parity if used elsewhere)
   const [showBackToTop, setShowBackToTop] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      const heroBottom = document.getElementById("hero-section")?.getBoundingClientRect().bottom;
+      const heroBottom = document
+        .getElementById("hero-section")
+        ?.getBoundingClientRect().bottom;
       setShowBackToTop(heroBottom !== undefined && heroBottom < 0);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -84,8 +98,14 @@ export default function Seedling() {
     { src: "/images/seedling-low-fi.jpg", alt: "Seedling low fi frames" },
     { src: "/images/seedling-user-flow.jpg", alt: "Seedling user flow" },
     { src: "/images/seedling-style-guide.jpg", alt: "Seedling style guide" },
-    { src: "/images/seedling-onboarding-flow-1.jpg", alt: "Seedling onboarding flow 1" },
-    { src: "/images/seedling-onboarding-flow-2.jpg", alt: "Seedling onboarding flow 2" },
+    {
+      src: "/images/seedling-onboarding-flow-1.jpg",
+      alt: "Seedling onboarding flow 1",
+    },
+    {
+      src: "/images/seedling-onboarding-flow-2.jpg",
+      alt: "Seedling onboarding flow 2",
+    },
   ];
 
   // Carousel state/handlers
@@ -138,7 +158,8 @@ export default function Seedling() {
     return () => ro.disconnect();
   }, []);
 
-  const lockedHeight = firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
+  const lockedHeight =
+    firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
 
   return (
     <CaseStudyLayout
@@ -151,8 +172,15 @@ export default function Seedling() {
       {/* Content wrapper to match MainContent gutters */}
       <div className="px-4 md:px-8">
         {/* Hero / Gallery */}
-        <section id="hero-section" aria-labelledby="gallery-heading" className="mb-6 md:mb-8">
-          <h2 id="gallery-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="hero-section"
+          aria-labelledby="gallery-heading"
+          className="mb-6 md:mb-8"
+        >
+          <h2
+            id="gallery-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             Gallery
           </h2>
 
@@ -162,10 +190,16 @@ export default function Seedling() {
             className="relative overflow-hidden rounded-lg select-none bg-white"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            style={{ height: lockedHeight ?? undefined, aspectRatio: lockedHeight ? "auto" : "16 / 9" }}
+            style={{
+              height: lockedHeight ?? undefined,
+              aspectRatio: lockedHeight ? "auto" : "16 / 9",
+            }}
           >
             {/* Track */}
-            <div className="flex transition-transform duration-500 ease-out h-full" style={{ transform: `translateX(-${index * 100}%)` }}>
+            <div
+              className="flex transition-transform duration-500 ease-out h-full"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
               {images.map((img, i) => (
                 <figure
                   key={img.src}
@@ -211,7 +245,9 @@ export default function Seedling() {
                     <button
                       key={i}
                       onClick={() => setIndex(i)}
-                      className={`h-2 w-2 rounded-full ${i === index ? "bg-white" : "bg-white/50"}`}
+                      className={`h-2 w-2 rounded-full ${
+                        i === index ? "bg-white" : "bg-white/50"
+                      }`}
                       aria-label={`Go to slide ${i + 1}`}
                     />
                   ))}
@@ -225,52 +261,108 @@ export default function Seedling() {
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* My Role */}
-        <section id="my-role" aria-labelledby="my-role-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="my-role-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="my-role"
+          aria-labelledby="my-role-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="my-role-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             My Role
           </h2>
-          <p className="leading-relaxed mb-2">Seedling is a complete concept app I designed end-to-end.</p>
-          <p className="leading-relaxed mb-2">
-            I led user research, competitive analysis, and persona development, then created wireframes, high-fidelity UI, and interactive prototypes in <strong>Figma</strong>.
-          </p>
-          <p className="leading-relaxed mb-2">
-            All branding and visual assets were produced in <strong>Adobe Creative Suite</strong>, ensuring a cohesive, cross-device design system.
-          </p>
-          <p className="leading-relaxed mb-2">
-            The development includes responsive layouts, navigation, and interactions, applying information architecture and UX best practices to make the product intuitive and visually engaging.
-          </p>
-          <p className="leading-relaxed">This project demonstrates my ability to own the full UI/UX process — from research to a polished product design.</p>
+          <ul className="list-disc list-inside leading-relaxed space-y-2 mb-4">
+            <li>Designed and built a complete concept app, end-to-end.</li>
+            <li>
+              Led user research, competitive analysis, and persona development.
+            </li>
+            <li>
+              Created wireframes, high-fidelity UI, and interactive prototypes
+              in <strong>Figma</strong>.
+            </li>
+            <li>
+              Produced branding and visual assets in{" "}
+              <strong>Adobe Creative Suite</strong> for a cohesive design
+              system.
+            </li>
+            <li>
+              Developed responsive layouts, navigation, and interactions —
+              applying IA and UX best practices.
+            </li>
+            <li>
+              Demonstrates ability to own the full UI/UX process from research
+              to polished product.
+            </li>
+          </ul>
         </section>
 
         {/* Divider */}
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* What I Learned */}
-        <section id="what-i-learned" aria-labelledby="what-i-learned-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="what-i-learned-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="what-i-learned"
+          aria-labelledby="what-i-learned-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="what-i-learned-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             What I Learned
           </h2>
-          <p className="leading-relaxed mb-6">
-            This project reinforced the importance of designing with both the child and parent user in mind, ensuring intuitive flows while maintaining engagement. I also learned to prioritize <strong>MVP essentials</strong> to deliver a functional, testable product quickly without unnecessary complexity.
-          </p>
+          <ul className="list-disc list-inside leading-relaxed space-y-2">
+            <li>
+              <strong>Test first, design later</strong> — the value of
+              validating assumptions early.
+            </li>
+            <li>
+              How structured <strong>wireframes</strong> speed up iteration and
+              reduce rework.
+            </li>
+            <li>
+              The importance of <strong>user testing</strong> for uncovering
+              usability gaps, not just visual polish.
+            </li>
+            <li>
+              How to scope a UX/UI project from{" "}
+              <strong>concept to deliverable</strong> without full development.
+            </li>
+            <li>
+              The need to design with <strong>usability in mind</strong>,
+              prioritizing clarity over decoration.
+            </li>
+            <li>
+              Why consistent systems (typography, color, components) make
+              products feel professional.
+            </li>
+          </ul>
 
           {/* GitHub */}
-          <div className="mb-7">
+          <div className="mt-7 mb-7">
             <a
-              href="https://github.com/TeeAtlas/DiSHi__"
+              href="https://www.behance.net/taniaboterman"
               target="_blank"
               rel="noreferrer noopener"
               className="inline-flex items-center gap-2 rounded-xl bg-stone-50 px-4 py-2 text-sm font-medium hover:opacity-90"
             >
               <FaGithub className="h-5 w-5" />
-              View on GitHub
+              View on Behance
             </a>
           </div>
         </section>
 
         {/* Tools & Technology */}
-        <section id="tools" aria-labelledby="tools-heading" className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="tools-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="tools"
+          aria-labelledby="tools-heading"
+          className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="tools-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             Tools & Technology
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -293,7 +385,10 @@ export default function Seedling() {
           aria-modal="true"
           aria-label="Image viewer"
         >
-          <div className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh] relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={images[modalIndex].src}
               alt={images[modalIndex].alt}

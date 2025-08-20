@@ -36,7 +36,8 @@ export default function Seabody() {
   const hasModal = modalIndex !== null;
   const openModalAt = (i) => setModalIndex(i);
   const closeModal = () => setModalIndex(null);
-  const prevModal = () => setModalIndex((i) => (i + images.length - 1) % images.length);
+  const prevModal = () =>
+    setModalIndex((i) => (i + images.length - 1) % images.length);
   const nextModal = () => setModalIndex((i) => (i + 1) % images.length);
 
   // Keyboard support while modal is open
@@ -127,7 +128,8 @@ export default function Seabody() {
     return () => ro.disconnect();
   }, []);
 
-  const lockedHeight = firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
+  const lockedHeight =
+    firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
 
   return (
     <CaseStudyLayout
@@ -140,8 +142,15 @@ export default function Seabody() {
       {/* Content wrapper to match MainContent gutters */}
       <div className="px-4 md:px-8">
         {/* Gallery */}
-        <section id="hero-section" aria-labelledby="gallery-heading" className="mb-6 md:mb-8">
-          <h2 id="gallery-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="hero-section"
+          aria-labelledby="gallery-heading"
+          className="mb-6 md:mb-8"
+        >
+          <h2
+            id="gallery-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             Gallery
           </h2>
 
@@ -151,10 +160,16 @@ export default function Seabody() {
             className="relative overflow-hidden rounded-lg select-none bg-white"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            style={{ height: lockedHeight ?? undefined, aspectRatio: lockedHeight ? "auto" : "16 / 9" }}
+            style={{
+              height: lockedHeight ?? undefined,
+              aspectRatio: lockedHeight ? "auto" : "16 / 9",
+            }}
           >
             {/* Track */}
-            <div className="flex transition-transform duration-500 ease-out h-full" style={{ transform: `translateX(-${index * 100}%)` }}>
+            <div
+              className="flex transition-transform duration-500 ease-out h-full"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
               {images.map((img, i) => (
                 <figure
                   key={img.src}
@@ -199,7 +214,9 @@ export default function Seabody() {
                     <button
                       key={i}
                       onClick={() => setIndex(i)}
-                      className={`h-2 w-2 rounded-full ${i === index ? "bg-white" : "bg-white/50"}`}
+                      className={`h-2 w-2 rounded-full ${
+                        i === index ? "bg-white" : "bg-white/50"
+                      }`}
                       aria-label={`Go to slide ${i + 1}`}
                     />
                   ))}
@@ -213,28 +230,80 @@ export default function Seabody() {
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* My Role */}
-        <section id="my-role" aria-labelledby="my-role-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="my-role-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="my-role"
+          aria-labelledby="my-role-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="my-role-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             My Role
           </h2>
-          <p className="leading-relaxed">
-            On this legacy WordPress build I streamlined navigation and routing, consolidated CSS, improved responsive layouts, and cleaned up menus to reduce friction. I also addressed SEO issues (duplicate tags, analytics debugging) and added targeted JavaScript to improve performance and search visibility.
-          </p>
+          <ul className="list-disc list-inside leading-relaxed space-y-2">
+            <li>
+              Streamlined navigation and routing on a legacy{" "}
+              <strong>WordPress</strong> build.
+            </li>
+            <li>
+              Consolidated <strong>CSS</strong> for maintainability and
+              consistency.
+            </li>
+            <li>
+              Improved <strong>responsive layouts</strong> across devices.
+            </li>
+            <li>Simplified menus to reduce user friction.</li>
+            <li>
+              Resolved <strong>SEO</strong> issues — duplicate tags and
+              analytics debugging.
+            </li>
+            <li>
+              Added targeted <strong>JavaScript</strong> to boost performance
+              and search visibility.
+            </li>
+          </ul>
         </section>
 
         {/* Divider */}
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* What I Learned */}
-        <section id="what-i-learned" aria-labelledby="what-i-learned-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="what-i-learned-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="what-i-learned"
+          aria-labelledby="what-i-learned-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="what-i-learned-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             What I Learned
           </h2>
-          <p className="leading-relaxed mb-6">
-            Working within a legacy stack sharpened my attention to regression risks and the value of incremental, testable changes. I leaned on consistent visual patterns, careful refactors, and analytics checks to ship improvements safely without disrupting existing traffic or SEO.
-          </p>
+          <ul className="list-disc list-inside leading-relaxed space-y-2">
+            <li>
+              Setting up a <strong>staging environment</strong> to minimize
+              mistakes before deployment.
+            </li>
+            <li>
+              The value of <strong>regular standups</strong> for clear
+              communication with teams.
+            </li>
+            <li>
+              How <strong>code reviews</strong> improve quality and knowledge
+              sharing.
+            </li>
+            <li>
+              Hands-on experience with <strong>SEO handling</strong> to maintain
+              visibility.
+            </li>
+            <li>
+              Managing <strong>Google Tags (Gtags)</strong> for stability and
+              consistent analytics.
+            </li>
+          </ul>
 
-          <div className="mb-7">
+          <div className="mt-7 mb-7">
             <a
               href="https://seabody.com"
               target="_blank"
@@ -247,8 +316,15 @@ export default function Seabody() {
         </section>
 
         {/* Tools & Technology */}
-        <section id="tools" aria-labelledby="tools-heading" className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="tools-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="tools"
+          aria-labelledby="tools-heading"
+          className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="tools-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             Tools & Technology
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -271,7 +347,10 @@ export default function Seabody() {
           aria-modal="true"
           aria-label="Image viewer"
         >
-          <div className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh] relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={images[modalIndex].src}
               alt={images[modalIndex].alt}

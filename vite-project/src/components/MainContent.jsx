@@ -24,7 +24,7 @@ const PROJECTS = [
   {
     title: "Client Portfolio: Seabody",
     description:
-      "A clean, image-forward site for sustainable skin care and beauty products.",
+      "Legacy WordPress build — navigation, UX, and custom design.",
     tag: "client work",
     to: "/seabody",
     className:
@@ -33,23 +33,23 @@ const PROJECTS = [
   {
     title: "School Portfolio: DiSHi",
     description:
-      "A minimal React MVP. Focused on responsive layouts, paginations, CRUD operations, Data management, and frontend UI. Focus on usability and addressing user needs.",
+      "React MVP with responsive layouts, CRUD, and pagination.",
     tag: "school project",
     to: "/dishi",
     className:
       "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#E3D5CA] hover:scale-[1.03] hover:-rotate-[0.8deg]",
   },
   {
-    title: "School UI Concept: Seedling",
+    title: "School UX/UI Concept: Seedling",
     description:
-      "Clean, structured app with thoughtful typography and consistent visual styles to help parents teach kids about money.",
+      "Structured finance app prototype — clean UI, user-centered flow.",
     tag: "school project",
     to: "/seedling-old",
     className:
       "rounded-lg p-4 cursor-pointer transform transition-transform duration-300 ease-in-out h-[200px] bg-[#F3ECE7] hover:scale-[1.03] hover:-rotate-[0.8deg]",
   },
   // {
-  //   title: "School UI Concept: Seedling",
+  //   title: "School-V2 UI Concept: Seedling",
   //   description:
   //     "Clean, structured app with thoughtful typography and consistent visual styles to help parents teach kids about money.",
   //   tag: "school project",
@@ -60,7 +60,7 @@ const PROJECTS = [
   {
     title: "Kindergalactic App (WIP)",
     description:
-      "A creative, whimsical UI concept. Playful, cosmic, and kid-inspired brand.",
+      "Playful, cosmic, and kid-inspired brand.",
     tag: "upcoming",
     to: "/kindergalactic",
     className:
@@ -158,9 +158,9 @@ function HeroBanner() {
           Hello, I&apos;m Tania
         </h1>
         <p className="text-xs -mt-1 md:text-lg md:mt-0">
-          I’m a UI-focused Web Developer.
+          UI-focused Web Developer.
           <br />
-          This is my portfolio.
+          Welcome to my portfolio.
         </p>
       </div>
 

@@ -1,8 +1,19 @@
 // src/pages/case-studies/Dishi.jsx
 import React, { useState, useEffect, useRef } from "react";
 import CaseStudyLayout from "../../components/CaseStudyLayout";
-import { FaGithub, FaFigma, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
-import { SiMongodb, SiAdobephotoshop, SiAdobeillustrator, SiGit } from "react-icons/si";
+import {
+  FaGithub,
+  FaFigma,
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+} from "react-icons/fa";
+import {
+  SiMongodb,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiGit,
+} from "react-icons/si";
 
 /* =========================
    Icons & Badges (Reusable)
@@ -44,7 +55,8 @@ export default function Dishi() {
   const hasModal = modalIndex !== null;
   const openModalAt = (i) => setModalIndex(i);
   const closeModal = () => setModalIndex(null);
-  const prevModal = () => setModalIndex((i) => (i + images.length - 1) % images.length);
+  const prevModal = () =>
+    setModalIndex((i) => (i + images.length - 1) % images.length);
   const nextModal = () => setModalIndex((i) => (i + 1) % images.length);
 
   // Keyboard support while modal is open
@@ -83,7 +95,10 @@ export default function Dishi() {
   const images = [
     { src: "/images/dishi-homepage.jpg", alt: "DiSHi homepage" }, // first sets AR
     { src: "/images/dishi-review.jpg", alt: "Dish detail view" },
-    { src: "/images/dishi-sign-up.jpg", alt: "Sign-up flow with custom features" },
+    {
+      src: "/images/dishi-sign-up.jpg",
+      alt: "Sign-up flow with custom features",
+    },
     { src: "/images/dishi-trello.jpg", alt: "Trello workflow" },
   ];
 
@@ -99,7 +114,7 @@ export default function Dishi() {
   const onTouchEnd = (e) => {
     if (touchStartX.current == null) return;
     const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(dx) > 40) (dx > 0 ? prev() : next());
+    if (Math.abs(dx) > 40) dx > 0 ? prev() : next();
     touchStartX.current = null;
   };
 
@@ -137,7 +152,8 @@ export default function Dishi() {
     return () => ro.disconnect();
   }, []);
 
-  const lockedHeight = firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
+  const lockedHeight =
+    firstAR && wrapWidth ? Math.round(wrapWidth / firstAR) : null;
 
   return (
     <CaseStudyLayout
@@ -150,8 +166,15 @@ export default function Dishi() {
       {/* Content wrapper to match MainContent gutters */}
       <div className="px-4 md:px-8">
         {/* IMAGE CAROUSEL (parity with Seedling) */}
-        <section id="hero-section" aria-labelledby="gallery-heading" className="mb-6 md:mb-8">
-          <h2 id="gallery-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="hero-section"
+          aria-labelledby="gallery-heading"
+          className="mb-6 md:mb-8"
+        >
+          <h2
+            id="gallery-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             Gallery
           </h2>
 
@@ -161,10 +184,16 @@ export default function Dishi() {
             className="relative overflow-hidden rounded-lg select-none bg-white"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            style={{ height: lockedHeight ?? undefined, aspectRatio: lockedHeight ? "auto" : "16 / 9" }}
+            style={{
+              height: lockedHeight ?? undefined,
+              aspectRatio: lockedHeight ? "auto" : "16 / 9",
+            }}
           >
             {/* Track */}
-            <div className="flex transition-transform duration-500 ease-out h-full" style={{ transform: `translateX(-${index * 100}%)` }}>
+            <div
+              className="flex transition-transform duration-500 ease-out h-full"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
               {images.map((img, i) => (
                 <figure
                   key={img.src}
@@ -210,7 +239,9 @@ export default function Dishi() {
                     <button
                       key={i}
                       onClick={() => setIndex(i)}
-                      className={`h-2 w-2 rounded-full ${i === index ? "bg-white" : "bg-white/50"}`}
+                      className={`h-2 w-2 rounded-full ${
+                        i === index ? "bg-white" : "bg-white/50"
+                      }`}
                       aria-label={`Go to slide ${i + 1}`}
                     />
                   ))}
@@ -224,35 +255,86 @@ export default function Dishi() {
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* My Role */}
-        <section id="my-role" aria-labelledby="my-role-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="my-role-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="my-role"
+          aria-labelledby="my-role-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="my-role-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             My Role
           </h2>
-          <p className="leading-relaxed mb-2">
-            DiSHi was a collaborative school project where I led the <strong>front-end development</strong> and <strong>UI design</strong>. I shaped the visual language from moodboards and competitive analysis through user flows, wireframes, and high-fidelity prototypes in <strong>Figma</strong>.
-          </p>
-          <p className="leading-relaxed mb-2">
-            I implemented the UI in <strong>React</strong>, collaborated with the back-end team using <strong>Node.js</strong> and <strong>MongoDB</strong>, and handled <strong>CRUD operations</strong>, responsive layouts, and error states to keep the experience smooth.
-          </p>
-          <p className="leading-relaxed">
-            The focus was delivering a clean, minimal MVP that prioritized usability and addressed key user needs.
-          </p>
+          <ul className="list-disc list-inside leading-relaxed space-y-2">
+            <li>
+              Led <strong>front-end development</strong> and{" "}
+              <strong>UI design</strong> in a collaborative school project.
+            </li>
+            <li>
+              Defined the visual language through moodboards, competitive
+              analysis, user flows, and wireframes.
+            </li>
+            <li>
+              Created high-fidelity prototypes in <strong>Figma</strong> for
+              testing and iteration.
+            </li>
+            <li>
+              Implemented the UI in <strong>React</strong>, collaborating with
+              back-end teammates using <strong>Node.js</strong> and{" "}
+              <strong>MongoDB</strong>.
+            </li>
+            <li>
+              Built <strong>CRUD operations</strong>, responsive layouts, and
+              error states for smooth UX.
+            </li>
+            <li>
+              Delivered a clean, minimal MVP prioritizing usability and key user
+              needs.
+            </li>
+          </ul>
         </section>
 
         {/* Divider */}
         <div className="h-[2px] bg-[#333]/30 my-6" />
 
         {/* What I Learned */}
-        <section id="what-i-learned" aria-labelledby="what-i-learned-heading" className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="what-i-learned-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="what-i-learned"
+          aria-labelledby="what-i-learned-heading"
+          className="mb-6 md:mb-8 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="what-i-learned-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             What I Learned
           </h2>
-          <p className="leading-relaxed mb-6">
-            I reinforced a clear component architecture in React, learned to integrate with the back-end early to avoid blockers, and kept visual patterns consistent across views so users build trust quickly.
-          </p>
+          <ul className="list-disc list-inside leading-relaxed space-y-2">
+            <li>
+              The importance of <strong>team collaboration</strong> and aligning
+              across roles.
+            </li>
+            <li>
+              How to <strong>compromise on wants vs. needs</strong> to stay
+              focused on user value.
+            </li>
+            <li>
+              The value of <strong>daily standups</strong> for communication and
+              momentum.
+            </li>
+            <li>
+              How <strong>code reviews</strong> improve quality and shared
+              understanding.
+            </li>
+            <li>
+              Why it’s better to <strong>fail early</strong> and{" "}
+              <strong> iterate quickly</strong>.
+            </li>
+          </ul>
 
           {/* GitHub */}
-          <div className="mb-7">
+          <div className="mt-7 mb-7">
             <a
               href="https://github.com/TeeAtlas/DiSHi__"
               target="_blank"
@@ -266,12 +348,27 @@ export default function Dishi() {
         </section>
 
         {/* Tools & Technology */}
-        <section id="tools" aria-labelledby="tools-heading" className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48">
-          <h2 id="tools-heading" className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight">
+        <section
+          id="tools"
+          aria-labelledby="tools-heading"
+          className="mb-6 md:mb-10 scroll-mt-40 md:scroll-mt-48"
+        >
+          <h2
+            id="tools-heading"
+            className="text-xl md:text-3xl font-bold text-[#333] mb-3 md:mb-6 tracking-tight"
+          >
             Tools & Technology
           </h2>
           <div className="flex flex-wrap gap-3">
-            {["Figma", "React", "Node.js", "MongoDB", "Git", "Adobe Photoshop", "Adobe Illustrator"].map((tag) => (
+            {[
+              "Figma",
+              "React",
+              "Node.js",
+              "MongoDB",
+              "Git",
+              "Adobe Photoshop",
+              "Adobe Illustrator",
+            ].map((tag) => (
               <ToolBadge key={tag} label={tag} />
             ))}
           </div>
@@ -290,7 +387,10 @@ export default function Dishi() {
           aria-modal="true"
           aria-label="Image viewer"
         >
-          <div className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="bg-white p-3 rounded-lg shadow-lg max-w-[95vw] max-h-[90vh] relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={images[modalIndex].src}
               alt={images[modalIndex].alt}
