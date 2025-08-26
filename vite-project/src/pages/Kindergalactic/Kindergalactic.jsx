@@ -17,7 +17,7 @@ export default function Kindergalactic() {
       <p className="mx-auto max-w-prose text-center mt-6">
         <button
           onClick={() =>
-            window.open("https://teeatlas.github.io/kindergalactic/", "_blank")
+            window.open("http://kindergalactic.com/", "_blank")
           }
           className="underline underline-offset-4 text-[#333] hover:opacity-80 focus:outline-none  rounded-sm transition"
         >
