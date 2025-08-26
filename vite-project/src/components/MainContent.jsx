@@ -24,7 +24,7 @@ const PROJECTS = [
   {
     title: "Client Portfolio: Seabody",
     description:
-      "Legacy WordPress build — navigation, UX, and custom design.",
+      "Legacy WordPress build - navigation, UX, and custom design.",
     tag: "client work",
     to: "/seabody",
     className:
@@ -42,7 +42,7 @@ const PROJECTS = [
   {
     title: "School UX/UI Concept: Seedling",
     description:
-      "Structured finance app prototype — clean UI, user-centered flow.",
+      "Structured finance app prototype - clean UI, user-centered flow.",
     tag: "school project",
     to: "/seedling-old",
     className:
